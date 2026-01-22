@@ -1,0 +1,26 @@
+{
+  "userManagement": {
+    "userManagement": "User management",
+    "export": "Export",
+    "search": "Search",
+    "id": "ID",
+    "name": "Name",
+    "kanaName": "Kana Name",
+    "company": "Company",
+    "email": "Email",
+    "gender": "Gender",
+    "birthday": "Birthday",
+    "country": "Country",
+    "phoneNumber": "Phone Number",
+    "shippingAddress": "Shipping Address",
+    "magazineSubscription": "Magazine Subscription",
+    "purchaseHistory": "Purchase history",
+    "yes": "Yes",
+    "no": "No",
+    "genders": {
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    }
+  }
+}

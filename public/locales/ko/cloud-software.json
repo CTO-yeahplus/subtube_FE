@@ -1,0 +1,251 @@
+{
+  "youtube": {
+    "youtube-account": "YouTube Account",
+    "manage-and-add-your-youtube-accounts": "Manage and add your YouTube accounts",
+    "youtube-accounts": "YouTube Accounts",
+    "total-videos": "Total Videos",
+    "translated-videos": "Translated Videos",
+    "translated-captions": "Translated Captions",
+    "videos": "videos",
+    "video": "video",
+    "no-data": "No Data",
+    "try-account": "Try add a YouTube account first!",
+    "add-account": "Add YouTube Account",
+    "refresh-videos": "Refresh videos",
+    "refresh-videos-successfully": "Refresh videos successfully",
+    "delete-account": "Delete account",
+    "delete-account-desc": "Are you sure you want to delete this account?",
+    "permanently-deleted": "The account will be permanently deleted!",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "your-youtube-accounts": "Your Youtube Accounts",
+    "connected-account": "{{count}} connected account",
+    "connected-accounts": "{{count}} connected accounts",
+    "limit-of-connection": "You’ve reached the limit of connection",
+    "your-current-plan-level": "Your current plan: <b>{{level}}</b> only supports connecting to <b>{{count}} YouTube accounts</b>",
+    "upgrade-your-plan": "Please upgrade your plan to connect to more YouTube accounts",
+    "no-thanks": "No, thanks",
+    "upgrade": "Upgrade",
+    "your-current-plan": "Your current plan:",
+    "valid-until": "Valid until",
+    "plan-overview": {
+      "title": "Getting a Gold Button with a Smart Plan",
+      "most-popular": "Most Popular",
+      "des1": "Get 2 months free with annual subscription to any plan",
+      "des2": "So Sign up for an annual plan and get 2 months free!",
+      "12-languages": "Get peace of mind by translating your video into up to <b>12</b> languages.",
+      "40-languages": "Meet your goals with up to <b>5</b> connected accounts and <b>40</b> languages.",
+      "unlimited-languages": "Achieve your desires with our unlimited plan!",
+      "1-account-checked": "Connect only <b style='color:#01509A'>1</b> YouTube account",
+      "12-languages-checked": "Translation language options up to <b style='color:#01509A'>12</b>",
+      "5-account-checked": "Connect upto <b style='color:#01509A'>5</b> YouTube accounts",
+      "40-languages-checked": "Translation language options up to <b style='color:#01509A'>40</b>",
+      "unlimited-account-checked": "<b>Unlimited</b> connect YouTube accounts",
+      "unlimited-languages-checked": "<b>Unlimited</b> translation languages",
+      "cancelMembership": "Cancel Membership",
+      "getStarted": "Get Started",
+      "currentPlan": "Current Plan",
+      "freeAnnually": "Get 2 months FREE annually",
+      "planWillChange": "Your plan will change to",
+      "restartMembershipDesc": "As requested, your membership will be canceled on",
+      "restartMember": "Restart Membership"
+    },
+    "date": {
+      "year": "Year",
+      "month": "Month",
+      "billAnnually": "Year, billed annually"
+    }
+  },
+  "translator": {
+    "translator": "Translator",
+    "translateVideos": "Translate videos from your YouTube accounts",
+    "selectVideo": "Select Video",
+    "languages": "Languages",
+    "customize": "Customize",
+    "reviewAndPublish": "Review & Publish",
+    "previous": "Previous",
+    "nextStep": "Next Step",
+    "publish": "Publish",
+    "noVideo": "No video selected",
+    "selectVideoInlist": "To select a video or move to next step, simply click on a video from the list below.",
+    "account": "Account:",
+    "refresh": "Refresh",
+    "filters": "Filters:",
+    "typeToFilter": "Type here to filter...",
+    "video": "Video",
+    "title": "Title",
+    "description": "Description",
+    "translated": "Translated",
+    "captionized": "Captionized",
+    "date": "Date",
+    "selectLanguages": "Select languages",
+    "originalLanguage": "Original Language",
+    "translationLanguages": "Translation Languages",
+    "totalSelected": "Total Selected: {{number}}",
+    "available": "Available: {{number}}",
+    "numberLanguage": "language",
+    "numberLanguages": "languages",
+    "excludeTranslation": "Exclude from translation",
+    "exclude": "Exclude",
+    "reviewTranslation": "Review translation",
+    "restoreTranslation": "Restore translation",
+    "captionMaster": "CaptionMaster",
+    "translateCaption": "Translate subtitles/captions to different languages",
+    "finishedUpdating": "Finished updating!",
+    "close": "Close",
+    "finishedUpdatingVideo": "Finished updating video details.",
+    "finishedUpdatingCaption": "Finished adding captions.",
+    "translatingVideo": "Please wait... Translating video",
+    "publishingVideos": "Please wait... Publishing Videos details on YouTube",
+    "publishingCaptions": "Please wait... Publishing Captions on YouTube",
+    "waitingDesc": "It can take upto 60 seconds for the action to complete",
+    "waitingTranslateDesc": "It can take up to 5 minutes to finish translating this video",
+    "yes": "YES",
+    "no": "NO",
+    "time": "Time",
+    "existing_caption": "Existing caption",
+    "read_captions_from_youtube": "Read captions from Youtube",
+    "clear_captions": "Clear captions",
+    "exclusion": "Exclusion",
+    "language-limit-popover": {
+      "title": "Your plan’s limit of translation",
+      "only-support": "only supports translating to",
+      "support": "supports translating to",
+      "languages": "{{number}} languages",
+      "please-upgrade": "Please upgrade your plan to select more languages",
+      "achieve-your-desire": "Achieve your desires with our unlimited plan!",
+      "no": "No, thanks",
+      "upgrade": "Upgrade",
+      "ok": "OK"
+    },
+    "finish-updating-modal": {
+      "click": "Click",
+      "here": "here",
+      "to-view": "to view the Video on YouTube",
+      "translator": {
+        "subtext-start": "To view the video title/description in different languages, make sure you",
+        "subtext-highlight": "open YouTube in a private page/tab of your browser",
+        "subtext-continue": "From the top right menu of YouTube (3 dots) select the Language in which you want to see the title and the description.",
+        "subtext-second": "If you are logged in with an account, there is a chance the title/description won’t show in a different language, that’s why we recommend to open a private tab."
+      },
+      "caption": {
+        "subtext-start": "To view the video Captions in different languages,",
+        "subtext-highlight": "click in the YouTube player in the bottom right on the captions button",
+        "subtext-continue": " and select the captions that you want to see."
+      }
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "or": "or",
+    "placeOrder": "Place Order",
+    "acceptText": "By clicking <b>Place Order</b>, you accept the <a style='text-decoration: underline' target='_blank' href='https://www.paypal.com/us/legalhub/useragreement-full'>Terms & Conditions</a>",
+    "poweredBy": "Powered by",
+    "addCard": "Add New Card",
+    "tax": "Tax",
+    "total": "Total",
+    "subTotal": "Sub total",
+    "validUntil": "Valid until",
+    "startFrom": "Started from",
+    "billedAnnually": "Billed annually",
+    "remaining": "Remaining",
+    "date": {
+      "year": "Year"
+    },
+    "paymentMethod": "Payment Method",
+    "saveCards": "Save cards",
+    "pay": "Pay",
+    "note": "Note:",
+    "noteContent1": "We currently only support Visa, MasterCard and American Express cards.",
+    "noteContent2": "If you are unable to add your card, please contact us."
+  },
+  "downgrade": {
+    "selectAccount": "Select account to continue",
+    "confirmChange": "Confirm change your subscription plan",
+    "descripiton1": "Your new plan: <b>{{level}}</b> only supports connecting to <b>{{number}} YouTube account</b>",
+    "description2": "Please select the account you will use in the next period:",
+    "textSelectAccount": "You can select {{number}} account:",
+    "note": "Note",
+    "noteContent": "Other YouTube accounts will be deleted when the new plan is applied",
+    "yourNewPlan": "Your new plan",
+    "startOn": "starts on ",
+    "description3": "You’ll still be able to use your current membership privileged until then.",
+    "button": {
+      "cancel": "Cancel",
+      "next": "Next",
+      "back": "Back",
+      "confirm": "Confirm"
+    },
+    "currentPlan": "Current Plan",
+    "billedAnnually": "Billed annually",
+    "validUntil": "Valid until",
+    "startFrom": "Start from",
+    "newPlan": "New Plan"
+  },
+  "cancelPlan": {
+    "title": "Confirm cancel your membership",
+    "note": "Note",
+    "noteContent": "All your YouTube accounts will be deleted when the membership cancellation takes effect.",
+    "yourNewPlan": "Your new plan",
+    "startOn": "starts on ",
+    "currentPlan": "Current Plan",
+    "billedAnnually": "Billed annually",
+    "validUntil": "Valid until",
+    "description": "Your membership will be cancelled on ",
+    "description2": "You’ll still be able to use your current membership privileged until then.",
+    "button": {
+      "finish": "Finish Cancellation",
+      "keep": "Keep current plan"
+    }
+  },
+  "infoConfirm": {
+    "button": {
+      "ok": "OK",
+      "done": "Done",
+      "tryAgain": "Try Again"
+    },
+    "payment": {
+      "success": {
+        "title": "Payment Success",
+        "description": "Congratulations, your subscription plan has been updated."
+      },
+      "failed": {
+        "title": "Payment Failed",
+        "description": "We encountered an error while processing your payment.",
+        "tryAgain": "Please try again."
+      }
+    },
+    "downgrade": {
+      "success": {
+        "title": "We’ve changed your plan",
+        "yourNewPlan": "Your new plan starts on ",
+        "description": "You’ll still be able to use your current membership privileged until then."
+      }
+    },
+    "cancel": {
+      "success": {
+        "description": "Your access to all features in the current plan of SubTube will end on",
+        "title": "We’re sorry to say goodbye"
+      }
+    }
+  },
+  "renewPlan": {
+    "title": "Your plan has not been renewed",
+    "note": "Note:",
+    "noteContent": " If the plan has not been renewed within 30 days, all YouTube accounts connected to your account will be disconnected.",
+    "description": "Your plan has not been renewed from <b>{{date}}</b>.",
+    "description2": "To continue using the service, please renew your package manually!",
+    "button": {
+      "close": "Close",
+      "renew": "Renew"
+    }
+  },
+  "reminder": {
+    "title": "Payment Reminder",
+    "description1": "Your current plan will end soon!",
+    "description2": "Please renew the plan before <b>{{date}}</b> to keep using the services.",
+    "button": {
+      "renew": "Renew"
+    }
+  }
+}

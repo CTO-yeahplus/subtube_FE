@@ -1,0 +1,90 @@
+{
+  "menu": {
+    "insight": "Insight",
+    "testimonial": "Testimonial",
+    "guidance": "Guidance",
+    "pricing": "Pricing",
+    "logIn": "Log In",
+    "signup": "Sign up"
+  },
+  "slide": {
+    "title1": "Imagine the Glamorous Life of Influencers Who Have Earned the Gold and Silver Buttons",
+    "desc1": "Picture the life you've always dreamed of, both at the start of your YouTube journey and in this very moment. The shortcut is right in front of you. With Sub-Tube, the YouTube Gold and Silver Buttons are no longer just stories for special people.",
+    "title2": "Are you dreaming of becoming a global YouTube star? Do you want to expand your audience beyond borders?",
+    "desc2": "Sub-Tube makes it easy to translate titles, descriptions, and subtitles into 40 languages, connecting you with audiences worldwide. Your unique content deserves to be loved by people all over the world. Don’t limit yourself to one market. Expand your reach, increase subscribers, and boost views with Sub-Tube. Start your journey to global fame today!"
+  },
+  "numberLanguage": "Why is the number of languages you translate your YouTube content into so important?",
+  "sizeMarket": {
+    "title": "The Size of the Market that Can Prove Your Worth",
+    "desc1": "Imagine targeting one country versus targeting 40 countries.",
+    "desc2": "The difference in market size is tremendous.",
+    "desc3": "With Sub-Tube, your content can reach billions of potential viewers around the world.",
+    "desc4": "Here’s the impact:"
+  },
+  "getStarted": "Get Started",
+  "joinNow": "Join Now",
+  "learnMore": "Learn More",
+  "targets": "Targets",
+  "subscribers": "Subscribers (Including Potential Subscribers)",
+  "views": "Views",
+  "comments": "Comments",
+  "likes": "Likes",
+  "1-country": "1 country",
+  "1M": "1M+",
+  "10M": "10M+",
+  "10.000": "10.000+",
+  "100.000": "100.000+",
+  "40-countries": "40+ countries",
+  "1B": "1B+",
+  "100M-To-1B": "100M+ to 1B+",
+  "100.000-To-1M": "100.000+ to 1M+",
+  "1M-like": "1M+",
+  "breaksDown": "Sub-Tube breaks down language barriers and helps you reach viewers worldwide. Your unique story deserves to be loved by people around the world. Don’t miss the opportunity to exponentially grow your channel. Try Sub-Tube now and make your content accessible globally!",
+  "expand": {
+    "title": "Expand Your Brand Value Globally: Sub-Tube Can Help!",
+    "desc1": "In today's digital age, it is more important than ever for creators to expand their brand beyond local markets and reach a global audience. Sub-Tube's translator is the key. Here’s how Sub-Tube's translator can benefit creators looking to expand their brand value in various markets such as North America, South America, Asia, and Europe.",
+    "desc2": "Expand your brand value from local to global with Sub-Tube's translator. Sub-Tube will assist you in becoming a successful creator in various markets such as North America, South America, Asia, and Europe. Try Sub-Tube now and unlock the limitless possibilities as a global creator!",
+    "card": {
+      "title1": "Multilingual Accessibility",
+      "desc1": "Sub-Tube's translator can translate YouTube titles, descriptions, and subtitles into over 40 languages. This means your content is accessible to viewers who speak different languages around the world. It provides an opportunity to leap from the local market to the global market.",
+      "title2": "Wide Reach",
+      "desc2": "By providing content tailored to the various languages and cultures of regions such as North America, South America, Asia, and Europe, you can secure a wider reach. This greatly contributes to gaining more subscribers, views, and likes from diverse regions.",
+      "title3": "Enhanced Engagement and Interaction",
+      "desc3": "Content provided in a language that viewers can understand leads to higher engagement rates. Increased interactions such as comments, shares, and likes are key to channel growth. Sub-Tube strengthens communication with viewers, helping to form a loyal fan base.",
+      "title4": "Increased Brand Awareness and Credibility",
+      "desc4": "Providing content in multiple languages in the global market naturally increases brand awareness and credibility. Viewers prefer content in their own language, which helps prove that your brand is a reliable content provider in the global market.",
+      "title5": "Time and Cost Savings",
+      "desc5": "Compared to using professional translation services individually, Sub-Tube’s translator can generate multilingual content faster and cheaper. This allows creators to invest more time in content creation and save costs to focus on other important activities.",
+      "title6": "Enhanced Competitiveness",
+      "desc6": "Competition in the global market is fierce. Using Sub-Tube's translator can give you an edge over competitors. By providing content in multiple languages, you can reach more viewers and strengthen your position as a global creator."
+    }
+  },
+  "member": {
+    "date1": "04/07/2024",
+    "date2": "08/07/2024",
+    "date3": "28/08/2024"
+  },
+  "guidance": "Guidance",
+  "pricing": {
+    "title": "Pricing",
+    "desc1": "Get 2 months free with annual subscription to any plan",
+    "desc2": "So Sign up for an annual plan and get 2 months free!",
+    "plan-overview": {
+      "bronze": "Bronze",
+      "silver": "Silver",
+      "gold": "Gold",
+      "year": "year",
+      "month": "month",
+      "2-months-free": "<b style='color:#01509A'>2</b> months free",
+      "12-languages": "Get peace of mind by translating your video into up to <b>12</b> languages.",
+      "40-languages": "Meet your goals with up to <b>5</b> connected accounts and <b>40</b> languages.",
+      "unlimited-languages": "Achieve your desires with our unlimited plan!",
+      "1-account-checked": "<b style='color:#01509A'>1</b> YouTube account",
+      "12-languages-checked": "<b style='color:#01509A'>12</b> translation languages",
+      "5-account-checked": "<b style='color:#01509A'>5</b> YouTube accounts",
+      "40-languages-checked": "<b style='color:#01509A'>40</b> translation languages",
+      "unlimited-account-checked": "<b style='color:#01509A'>Unlimited</b> YouTube accounts",
+      "unlimited-languages-checked": "<b style='color:#01509A'>Unlimited</b> translation languages"
+    }
+  }
+}

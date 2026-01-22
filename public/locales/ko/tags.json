@@ -1,0 +1,10 @@
+{
+  "tagManagement": {
+    "tagManagement": "Tag Management",
+    "view": "View Product List",
+    "tagName": "Tag name",
+    "tagID": "Tag ID",
+    "products": "Products",
+    "action": "Action"
+  }
+}

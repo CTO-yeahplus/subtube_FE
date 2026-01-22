@@ -1,0 +1,410 @@
+import { CurrencyTypeEnum, LEVEL_USER } from '@/interfaces';
+
+import { PRICE } from './price';
+
+export enum ROUTER_PATH {
+  LOGIN = '/auth/login',
+  REGISTER = '/auth/register',
+  FORGOT_PASSWORD = '/auth/forgot-password',
+  NEW_PASSWORD = '/auth/new-password',
+  DASHBOARD = '/',
+  YOUTUBE_ACCOUNT = '/cloud-software/youtube-accounts',
+  TRANSLATOR = '/cloud-software/translator',
+  CAPTION = '/cloud-software/captionizer',
+  PERSONAL_INFO = '/my-profile/personal-info',
+  SECURITY_SETTINGS = '/my-profile/security-settings',
+  PAYMENT_HISTORY = '/my-profile/payment-history',
+}
+
+export const PRIVATE_ROUTE: string[] = [
+  // ROUTER_PATH.DASHBOARD,
+  ROUTER_PATH.YOUTUBE_ACCOUNT,
+  ROUTER_PATH.TRANSLATOR,
+  ROUTER_PATH.CAPTION,
+  ROUTER_PATH.PERSONAL_INFO,
+  ROUTER_PATH.SECURITY_SETTINGS,
+  ROUTER_PATH.PAYMENT_HISTORY,
+];
+export const AUTH_ROUTE: string[] = [
+  ROUTER_PATH.LOGIN,
+  ROUTER_PATH.REGISTER,
+  ROUTER_PATH.FORGOT_PASSWORD,
+];
+
+export const SCREENS = {
+  DESKTOP: 1024,
+};
+
+export const LOCALE = {
+  EN: 'en',
+  KO: 'ko',
+};
+
+export const DEFAULT_LOCALE = LOCALE.EN;
+
+export enum RESPONSE_CODE {
+  SUCCESS = 200,
+  UNAUTHORIZED = 401,
+  BAD_REQUEST = 400,
+  NOT_FOUND = 404,
+  PERMISSION = 403,
+  SERVER_ERROR = 500,
+  VALIDATION_ERROR = 422,
+}
+
+export enum Priority {
+  INFO,
+  LOW,
+  MEDIUM,
+  HIGH,
+}
+
+export enum SORT_TYPE {
+  DESC = 'desc',
+  desc = 'desc',
+  ASC = 'ASC',
+  asc = 'asc',
+}
+
+export const DATE_FORMAT = {
+  MONTH_YEAR: 'MM/YY',
+  BASIC: 'DD-MM-YYYY',
+  DATE_FULL: 'YYYY/MM/DD HH:mm',
+  DAY_MONTH_YEAR: 'DD/MM/YYYY',
+  YEAR_MONTH_DAY: 'YYYY/MM/DD',
+  FULL_DATE_WITH_TIME: 'HH:mm DD/MM/YYYY',
+  LONG_DATE: 'MMMM D, YYYY',
+};
+
+export const currencies = {
+  [CurrencyTypeEnum.USD]: {
+    text: 'USD',
+    icon: '$',
+  },
+  [CurrencyTypeEnum.BTC]: {
+    text: 'BTC',
+    icon: '₿',
+  },
+  [CurrencyTypeEnum.ETH]: {
+    text: 'ETH',
+    icon: 'Ξ',
+  },
+};
+
+export const passwordPattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/);
+
+export const websitePattern =
+  /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)?/gi;
+
+export const NUMBER_CHARACTERS = {
+  phone: {
+    max: 15,
+    min: 8,
+  },
+  title: {
+    max: 100,
+    min: 1,
+  },
+  description: {
+    max: 5000,
+    min: 0,
+  },
+};
+
+export const INVALID_CODE = 'INVALID_CODE';
+
+export const LIST_COUNTRY_CODE = [
+  '1',
+  '7',
+  '20',
+  '27',
+  '30',
+  '31',
+  '32',
+  '33',
+  '34',
+  '36',
+  '39',
+  '40',
+  '41',
+  '43',
+  '44',
+  '45',
+  '46',
+  '47',
+  '48',
+  '49',
+  '51',
+  '52',
+  '53',
+  '54',
+  '55',
+  '56',
+  '57',
+  '58',
+  '60',
+  '61',
+  '62',
+  '63',
+  '64',
+  '65',
+  '66',
+  '81',
+  '82',
+  '84',
+  '86',
+  '90',
+  '91',
+  '92',
+  '93',
+  '94',
+  '95',
+  '98',
+  '211',
+  '212',
+  '213',
+  '216',
+  '218',
+  '220',
+  '221',
+  '222',
+  '223',
+  '224',
+  '225',
+  '226',
+  '227',
+  '228',
+  '229',
+  '230',
+  '231',
+  '232',
+  '233',
+  '234',
+  '235',
+  '236',
+  '237',
+  '238',
+  '239',
+  '240',
+  '241',
+  '242',
+  '243',
+  '244',
+  '245',
+  '246',
+  '248',
+  '249',
+  '250',
+  '251',
+  '252',
+  '253',
+  '254',
+  '255',
+  '256',
+  '257',
+  '258',
+  '260',
+  '261',
+  '262',
+  '263',
+  '264',
+  '265',
+  '266',
+  '267',
+  '268',
+  '269',
+  '291',
+  '297',
+  '351',
+  '352',
+  '353',
+  '354',
+  '355',
+  '356',
+  '357',
+  '358',
+  '359',
+  '370',
+  '371',
+  '372',
+  '373',
+  '374',
+  '375',
+  '376',
+  '377',
+  '378',
+  '380',
+  '381',
+  '382',
+  '383',
+  '385',
+  '386',
+  '387',
+  '389',
+  '420',
+  '421',
+  '423',
+  '501',
+  '502',
+  '503',
+  '504',
+  '505',
+  '506',
+  '507',
+  '509',
+  '590',
+  '591',
+  '592',
+  '593',
+  '594',
+  '595',
+  '596',
+  '597',
+  '598',
+  '599',
+  '670',
+  '673',
+  '674',
+  '675',
+  '676',
+  '677',
+  '678',
+  '679',
+  '680',
+  '685',
+  '686',
+  '687',
+  '688',
+  '689',
+  '691',
+  '692',
+  '850',
+  '852',
+  '853',
+  '855',
+  '856',
+  '880',
+  '886',
+  '960',
+  '961',
+  '962',
+  '963',
+  '964',
+  '965',
+  '966',
+  '967',
+  '968',
+  '970',
+  '971',
+  '972',
+  '973',
+  '974',
+  '975',
+  '976',
+  '977',
+  '992',
+  '993',
+  '994',
+  '995',
+  '996',
+  '998',
+  '1242',
+  '1246',
+  '1268',
+  '1473',
+  '1671',
+  '1758',
+  '1767',
+  '1784',
+  '1868',
+  '1869',
+  '1876',
+];
+
+export const MESSAGES_ERROR = {
+  WRONG_PASS_LOGIN: 'WRONG_PASS_LOGIN',
+  PHONE_HAS_TAKEN: 'PHONE_HAS_TAKEN',
+  EMAIL_OR_PHONE_NOT_EXIST: 'EMAIL_OR_PHONE_NOT_EXIST',
+  EMAIL_TAKEN: 'EMAIL_TAKEN',
+  PHONE_TAKEN: 'PHONE_TAKEN',
+  EMAIL_EXISTED_NOT_VERIFIED: 'EMAIL_EXISTED_NOT_VERIFIED',
+  NUMBER_USED_NOT_VERIFIED: 'NUMBER_USED_NOT_VERIFIED',
+};
+
+export const FIREBASE_ERROR = {
+  INVALID_CODE: 'auth/invalid-verification-code',
+  CODE_EXPIRED: 'auth/code-expired',
+  QUOTA_EXCEEDED: 'auth/quota-exceeded',
+};
+
+export const STEP_TRANSLATE = {
+  STEP_1: 0,
+  STEP_2: 1,
+  STEP_3: 2,
+  STEP_4: 3,
+};
+
+export const RANK_NAME = {
+  [LEVEL_USER.BRONZE]: 'Bronze',
+  [LEVEL_USER.SILVER]: 'Silver',
+  [LEVEL_USER.GOLD]: 'Gold',
+  [LEVEL_USER.DEFAULT]: '',
+};
+
+export const planData = [
+  {
+    level: LEVEL_USER.BRONZE,
+    title: 'Bronze',
+    description: 'youtube.plan-overview.12-languages',
+    currentPriceYear: Number(PRICE[LEVEL_USER.BRONZE].currentPrice.toFixed(1)),
+    currentPriceMonth: Number((Number(PRICE[LEVEL_USER.BRONZE].currentPrice) / 12).toFixed(1)),
+    salePriceYear: Number(PRICE[LEVEL_USER.BRONZE].salePrice.toFixed(1)),
+    salePriceMonth: Number((Number(PRICE[LEVEL_USER.BRONZE].salePrice) / 12).toFixed(1)),
+    info: ['youtube.plan-overview.1-account-checked', 'youtube.plan-overview.12-languages-checked'],
+  },
+  {
+    level: LEVEL_USER.SILVER,
+    title: 'Silver',
+    description: 'youtube.plan-overview.40-languages',
+    currentPriceYear: Number(PRICE[LEVEL_USER.SILVER].currentPrice.toFixed(1)),
+    currentPriceMonth: Number((Number(PRICE[LEVEL_USER.SILVER].currentPrice) / 12).toFixed(1)),
+    salePriceYear: Number(PRICE[LEVEL_USER.SILVER].salePrice.toFixed(1)),
+    salePriceMonth: Number((Number(PRICE[LEVEL_USER.SILVER].salePrice) / 12).toFixed(1)),
+    mostPopular: true,
+    info: ['youtube.plan-overview.5-account-checked', 'youtube.plan-overview.40-languages-checked'],
+  },
+  {
+    level: LEVEL_USER.GOLD,
+    title: 'Gold',
+    description: 'youtube.plan-overview.unlimited-languages',
+    currentPriceYear: Number(PRICE[LEVEL_USER.GOLD].currentPrice.toFixed(1)),
+    currentPriceMonth: Number((Number(PRICE[LEVEL_USER.GOLD].currentPrice) / 12).toFixed(1)),
+    salePriceYear: Number(PRICE[LEVEL_USER.GOLD].salePrice.toFixed(1)),
+    salePriceMonth: Number((Number(PRICE[LEVEL_USER.GOLD].salePrice) / 12).toFixed(1)),
+    info: [
+      'youtube.plan-overview.unlimited-account-checked',
+      'youtube.plan-overview.unlimited-languages-checked',
+    ],
+  },
+];
+
+export enum TType {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  WARNING = 'warning',
+  SAD = 'sad',
+  REMINDER = 'reminder',
+}
+
+export enum TypeConfirm {
+  PAYMENT_SUCCESS = 'payment-success',
+  PAYMENT_FAIL = 'payment-fail',
+  DOWNGRADE_SUCCESS = 'downgrade-success',
+  CANCEL_SUCCESS = 'cancel-success',
+}
+
+export enum PaymentStatus {
+  PAID = 'PAID',
+  PENDING = 'PENDING',
+  FAILED = 'FAILED',
+}

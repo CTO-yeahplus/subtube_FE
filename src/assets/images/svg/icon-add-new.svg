@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="92" height="56" viewBox="0 0 92 56" fill="none">
+<g id="master">
+<rect x="0.5" y="0.5" width="91" height="55" rx="7.5" fill="white"/>
+<rect x="0.5" y="0.5" width="91" height="55" rx="7.5" stroke="#BEC0C6"/>
+<path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M48 17C48 15.8954 47.1046 15 46 15C44.8954 15 44 15.8954 44 17V26H35C33.8954 26 33 26.8954 33 28C33 29.1046 33.8954 30 35 30H44V39C44 40.1046 44.8954 41 46 41C47.1046 41 48 40.1046 48 39V30H57C58.1046 30 59 29.1046 59 28C59 26.8954 58.1046 26 57 26H48V17Z" fill="#BEC0C6"/>
+</g>
+</svg>

@@ -1,0 +1,101 @@
+import { RESPONSE_CODE } from '@/constants';
+import { ApiError, ServerError, ValidationError } from '@/interfaces';
+import { FormInstance } from 'antd';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+
+import { useAppMutationCustomProps } from './useAppMutation';
+import { useFeedback } from './useFeedback';
+
+type ARGS = {
+  error: ApiError;
+  form?: FormInstance;
+  customProps?: useAppMutationCustomProps;
+};
+
+export default function useLoadServerError() {
+  const { notification } = useFeedback();
+  const loadServerErrors = (args: ARGS) => {
+    const { error, form, customProps } = args;
+
+    if (!error) {
+      return;
+    }
+
+    const response = error;
+
+    const isClientError =
+      !Object.prototype.hasOwnProperty.call(error, 'response') && error.statusText == '';
+    if (isClientError && response.status !== RESPONSE_CODE.NOT_FOUND && customProps?.toast) {
+      const response = error.data as ServerError;
+      if (typeof response.message !== 'string') return;
+      notification.error({ message: response.message });
+      return;
+    }
+
+    if (response.status === RESPONSE_CODE.SERVER_ERROR) {
+      // show toast notification
+      return;
+    }
+
+    if (form !== undefined && response.status === RESPONSE_CODE.VALIDATION_ERROR) {
+      const data = response.data as ValidationError;
+      attachErrorsIntoForm(data, form);
+      return;
+    }
+    // const data = response.data as ServerError;
+    // showError(data || []);
+  };
+
+  const attachErrorsIntoForm = (data: ValidationError, form: FormInstance) => {
+    let errorLoaded = false;
+
+    const formValues = form.getFieldsValue();
+    forEach(formValues, (_: string, key: string) => {
+      const info = find(data.detail, (item) => item.field === key);
+      if (!info) {
+        return;
+      }
+
+      errorLoaded = true;
+      // TODO handler i18n with item.key
+      form.setFieldsValue({
+        [key]: {
+          value: null,
+          error: info.message,
+        },
+      });
+    });
+
+    if (errorLoaded) {
+      return;
+    }
+
+    // show toast message
+    let message = 'Some fields are invalid';
+    const info = data.detail[0].message;
+    if (info) {
+      message = info;
+    }
+    showError(message);
+  };
+
+  const showError = (error: any) => {
+    // Custom i18n with error.key
+    let message = error[0]?.message || error;
+
+    if (message === 'canceled') {
+      return;
+    }
+
+    if (message === 'Too Many Attempts.') {
+      message = '...';
+    }
+
+    notification.error({ message });
+  };
+
+  return {
+    loadServerErrors,
+  };
+}

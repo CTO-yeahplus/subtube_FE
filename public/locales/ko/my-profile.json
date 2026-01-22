@@ -1,0 +1,52 @@
+{
+  "PersonalInfo": "Personal Info",
+  "SecuritySettings": "Security Settings",
+  "Payments": "Payment History",
+  "Personal": {
+    "YourCurrentPlan": "Your current plan:",
+    "ValidUntil": "Valid until:",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "PhoneNumber": "Phone Number",
+    "Email": "Email",
+    "Cancel": "Cancel",
+    "Save": "Save",
+    "Edit": "Edit",
+    "UpdateProfileSuccessfully": "Update profile successfully."
+  },
+  "ChangePassword": {
+    "title": "Change Password",
+    "Password": "Password",
+    "CurrentPassword": "Current Password",
+    "NewPassword": "New Password",
+    "ConfirmPassword": "Confirm Password",
+    "success": "Change password successfully."
+  },
+  "PaymentMethod": {
+    "title": "Payment Method",
+    "ValidThru": "Valid thru",
+    "AddNewCard": "Add New Card",
+    "MarkAsDefault": "Mark as default",
+    "DeleteCard": "Delete Card"
+  },
+  "PaymentHistory": {
+    "title": "Payment History",
+    "SubscriptionPlan": "Subscription Plan",
+    "Date": "Date",
+    "Status": "Status",
+    "TotalAmount": "Total Amount"
+  },
+  "AddCard": {
+    "CardNumber": "Card Number",
+    "CardholderName": "Cardholder Name",
+    "YourName": "Your name",
+    "ExpDate": "Exp. Date",
+    "CVV": "CVV",
+    "Submit": "Submit"
+  },
+  "DeleteCard": {
+    "title": "Delete Card",
+    "content": "Are you sure you want to delete this card?",
+    "Delete": "Delete"
+  }
+}

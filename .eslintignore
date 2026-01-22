@@ -1,0 +1,6 @@
+node_modules
+scripts
+debugger
+
+src/components/common/date-picker/index.tsx
+src/constants/regex.ts
