@@ -1,31 +1,26 @@
 # 🧠 Deep Context Snapshot
 
-**Generated at:** 2026-01-22 07:38:46
-**Project:** card_secret_fe (0.1.0)
-**Tech Stack:** Next.js, React, Firebase
+**Generated at:** 2026-01-23 16:55:32
+**Project:** youtube_translation_fe
 
-> **🛑 INSTRUCTION FOR AI (GEMINI/GPT):**
-> 1. This document contains the **entire source code** of the project.
-> 2. The **File Map** below shows the structure.
-> 3. Each file section has a **Context Summary** analyzing imports, components, and types.
-> 4. Use this context to answer questions about architecture, debugging, or feature implementation.
-> 5. **Do not hallucinate** files that are not in this list.
-
----
+> **🛑 INSTRUCTION FOR AI:**
+> Use this document to understand the current architecture, directory structure, and code logic.
+> Always refer to the specific file contents below when proposing changes.
 
 ## 🗺️ File Map
-**Total Files Scanned:** 342
-
 ```text
 .
-│   ├── next-i18next.config.js
-│   ├── next.config.js
-│   ├── lint-staged.config.js
-│   ├── next-env.d.ts
-│   ├── package.json
-│   ├── commitlint.config.js
-│   ├── tsconfig.json
-│   ├── .eslintrc.json
+│   next-i18next.config.js
+│   .yarnrc.yml
+│   next.config.js
+│   lint-staged.config.js
+│   next-env.d.ts
+│   README.md
+│   package.json
+│   commitlint.config.js
+│   tsconfig.json
+│   snapshot_pro_fe.py
+│   .eslintrc.json
 │   .husky/
 │   │   _/
 │   .yarn/
@@ -33,492 +28,492 @@
 │   public/
 │   │   locales/
 │   │   │   ko/
-│   │   │   │   ├── labelManagement.json
-│   │   │   │   ├── my-profile.json
-│   │   │   │   ├── common.json
-│   │   │   │   ├── cloud-software.json
-│   │   │   │   ├── users.json
-│   │   │   │   ├── dashboard.json
-│   │   │   │   ├── auth.json
-│   │   │   │   ├── tags.json
+│   │   │   │   labelManagement.json
+│   │   │   │   my-profile.json
+│   │   │   │   common.json
+│   │   │   │   cloud-software.json
+│   │   │   │   users.json
+│   │   │   │   dashboard.json
+│   │   │   │   auth.json
+│   │   │   │   tags.json
 │   │   │   en/
-│   │   │   │   ├── labelManagement.json
-│   │   │   │   ├── my-profile.json
-│   │   │   │   ├── common.json
-│   │   │   │   ├── cloud-software.json
-│   │   │   │   ├── users.json
-│   │   │   │   ├── dashboard.json
-│   │   │   │   ├── auth.json
-│   │   │   │   ├── tags.json
+│   │   │   │   labelManagement.json
+│   │   │   │   my-profile.json
+│   │   │   │   common.json
+│   │   │   │   cloud-software.json
+│   │   │   │   users.json
+│   │   │   │   dashboard.json
+│   │   │   │   auth.json
+│   │   │   │   tags.json
 │   │   pdf/
 │   │   │   ko/
 │   │   │   en/
 │   │   favicon/
 │   src/
-│   │   ├── middleware.ts
+│   │   middleware.ts
 │   │   types/
-│   │   │   ├── page.d.ts
+│   │   │   page.d.ts
 │   │   plugins/
-│   │   │   ├── firebase.ts
-│   │   │   ├── paypal.ts
+│   │   │   firebase.ts
+│   │   │   paypal.ts
 │   │   constants/
-│   │   │   ├── price.ts
-│   │   │   ├── regex.ts
-│   │   │   ├── common.ts
-│   │   │   ├── index.ts
-│   │   │   ├── theme.ts
+│   │   │   price.ts
+│   │   │   regex.ts
+│   │   │   common.ts
+│   │   │   index.ts
+│   │   │   theme.ts
 │   │   stores/
-│   │   │   ├── hooks.ts
-│   │   │   ├── store.ts
-│   │   │   ├── provider.tsx
+│   │   │   hooks.ts
+│   │   │   store.ts
+│   │   │   provider.tsx
 │   │   │   progress/
-│   │   │   │   ├── progress.slice.ts
+│   │   │   │   progress.slice.ts
 │   │   │   auth/
-│   │   │   │   ├── auth.slice.ts
+│   │   │   │   auth.slice.ts
 │   │   utils/
-│   │   │   ├── dates.ts
-│   │   │   ├── common.ts
-│   │   │   ├── local-storage.ts
-│   │   │   ├── cookie.ts
-│   │   │   ├── index.ts
-│   │   │   ├── query.ts
-│   │   │   ├── theme.ts
-│   │   │   ├── react-query.ts
+│   │   │   dates.ts
+│   │   │   common.ts
+│   │   │   local-storage.ts
+│   │   │   cookie.ts
+│   │   │   index.ts
+│   │   │   query.ts
+│   │   │   theme.ts
+│   │   │   react-query.ts
 │   │   styles/
-│   │   │   ├── theme-global.ts
-│   │   │   ├── theme-config.tsx
-│   │   │   ├── theme-reset.ts
+│   │   │   theme-global.ts
+│   │   │   theme-config.tsx
+│   │   │   theme-reset.ts
 │   │   │   themes/
-│   │   │   │   ├── theme-variables.ts
+│   │   │   │   theme-variables.ts
 │   │   │   │   light/
-│   │   │   │   │   ├── index.ts
+│   │   │   │   │   index.ts
 │   │   │   │   dark/
-│   │   │   │   │   ├── index.ts
+│   │   │   │   │   index.ts
 │   │   components/
 │   │   │   language-switcher/
-│   │   │   │   ├── index.tsx
-│   │   │   │   ├── index.styles.ts
+│   │   │   │   index.tsx
+│   │   │   │   index.styles.ts
 │   │   │   cloud-software/
-│   │   │   │   ├── index.utils.ts
+│   │   │   │   index.utils.ts
 │   │   │   │   translator/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.utils.ts
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.utils.ts
+│   │   │   │   │   index.styles.ts
 │   │   │   │   │   components/
 │   │   │   │   │   │   select-language/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   review-translation/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   exclude-translation/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   select-video/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.utils.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.utils.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   captionizer/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.utils.ts
-│   │   │   │   │   ├── index.styles.ts
-│   │   │   │   │   ├── action-hook.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.utils.ts
+│   │   │   │   │   index.styles.ts
+│   │   │   │   │   action-hook.ts
 │   │   │   │   │   components/
 │   │   │   │   │   │   review-translation/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   exclude-translation/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   │   caption-content/
-│   │   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   │   │   caption-item/
-│   │   │   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   components/
-│   │   │   │   │   ├── CardStatistics.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   CardStatistics.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   youtube-account/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   │   current-plan/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   icon-level/
-│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   index.tsx
 │   │   │   auth/
 │   │   │   │   register-form/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.utils.ts
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.utils.ts
+│   │   │   │   │   index.styles.ts
 │   │   │   │   login-form/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   phone-number-form/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   verify-account/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   forgot-password-form/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   email-form/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   verify-error/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   new-password-form/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   modals/
 │   │   │   │   modal-plan-overview/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   │   cancel/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   checkout/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   payment-method/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   downgrage/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   modal-confirm-plan/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   modal-route-change/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   modal-finish-update/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   modal-confirm/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   modal-language-limit/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   modal-reminder/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   modal-loading/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   modal-plan/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   dashboard/
-│   │   │   │   ├── index.tsx
-│   │   │   │   ├── index.styles.ts
+│   │   │   │   index.tsx
+│   │   │   │   index.styles.ts
 │   │   │   common/
 │   │   │   │   base-autocomplete/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-badge/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-tooltip/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-plan/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-checkbox/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-hashtag/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-carousel/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   │   carousel-arrow/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   base-collapse/
-│   │   │   │   │   ├── base-collapse.tsx
+│   │   │   │   │   base-collapse.tsx
 │   │   │   │   base-modal/
-│   │   │   │   │   ├── BaseModal.tsx
+│   │   │   │   │   BaseModal.tsx
 │   │   │   │   base-space/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   container-wrapper/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-skeleton/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   forms/
 │   │   │   │   │   base-buttons-form/
-│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   index.tsx
 │   │   │   │   │   base-form/
-│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   index.tsx
 │   │   │   │   │   components/
 │   │   │   │   │   │   base-form-title/
-│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   index.ts
 │   │   │   │   │   │   base-buttons-group/
-│   │   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   │   base-form-item/
-│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   index.ts
 │   │   │   │   │   │   base-form-list/
-│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   index.ts
 │   │   │   │   base-typography/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-spin/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-cascader/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-loading/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-result/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   not-found/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-tabs/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-breadcrumb/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.tsx
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.tsx
 │   │   │   │   base-calendar/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-rate/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-layout/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   selects/
 │   │   │   │   │   base-select/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   month-select/
-│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   index.tsx
 │   │   │   │   base-progress/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-dropdown/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-card/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-steps/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-spinner/
-│   │   │   │   │   ├── global-spinner.tsx
+│   │   │   │   │   global-spinner.tsx
 │   │   │   │   error-boundary/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.style.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.style.ts
 │   │   │   │   base-table/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-status/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-notification/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   calendar-switch/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-slider/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   no-data/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   seo-header/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-button/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-image/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-pagination/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-popover/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   date-picker/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── TimeRangePicker.tsx
-│   │   │   │   │   ├── index.styled.tsx
+│   │   │   │   │   index.tsx
+│   │   │   │   │   TimeRangePicker.tsx
+│   │   │   │   │   index.styled.tsx
 │   │   │   │   base-label/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-row/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-switch/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-avatar/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-burger/
-│   │   │   │   │   ├── BurgerIcon.tsx
+│   │   │   │   │   BurgerIcon.tsx
 │   │   │   │   base-divider/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-alert/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-article/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-col/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-popconfirm/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-empty/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-tag/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   overlay/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-radio/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-feed/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-upload/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   base-menu/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   base-list/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   step-switch/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   inputs/
 │   │   │   │   │   openurl-input/
-│   │   │   │   │   │   ├── OpenURLInput.tsx
+│   │   │   │   │   │   OpenURLInput.tsx
 │   │   │   │   │   masked-input/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   verification-code-input/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   number-input/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   password-input/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   suffix-input/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   base-input/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   clipboard-input/
-│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   index.tsx
 │   │   │   │   │   search-input/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   my-profile/
 │   │   │   │   payments/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   │   payment-history/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   pesonal-info/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.utils.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.utils.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   components/
 │   │   │   │   │   content-left/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.utils.tsx
-│   │   │   │   │   │   ├── index.styles.tsx
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.utils.tsx
+│   │   │   │   │   │   index.styles.tsx
 │   │   │   │   security-settings/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   header/
-│   │   │   │   ├── index.tsx
-│   │   │   │   ├── index.styles.ts
+│   │   │   │   index.tsx
+│   │   │   │   index.styles.ts
 │   │   │   │   profile/
 │   │   │   │   │   profile-dropdown/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   │   profile-overlay/
-│   │   │   │   │   │   ├── index.tsx
-│   │   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   │   index.tsx
+│   │   │   │   │   │   index.styles.ts
 │   │   │   │   mobile-header/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   desktop-header/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   layouts/
-│   │   │   ├── index.tsx
+│   │   │   index.tsx
 │   │   │   admin-layout/
-│   │   │   │   ├── index.tsx
-│   │   │   │   ├── index.styles.ts
+│   │   │   │   index.tsx
+│   │   │   │   index.styles.ts
 │   │   │   │   footer/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   sider/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   content/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   sider-menu/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── SiderLogo.tsx
-│   │   │   │   │   ├── menu.utils.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   SiderLogo.tsx
+│   │   │   │   │   menu.utils.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   │   header/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.styles.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.styles.ts
 │   │   │   auth-layout/
-│   │   │   │   ├── index.tsx
-│   │   │   │   ├── index.styles.ts
+│   │   │   │   index.tsx
+│   │   │   │   index.styles.ts
 │   │   │   main-layout/
-│   │   │   │   ├── index.tsx
+│   │   │   │   index.tsx
 │   │   hooks/
-│   │   │   ├── useFeedback.ts
-│   │   │   ├── useDimensions.ts
-│   │   │   ├── useOnClickOutside.ts
-│   │   │   ├── useLoadServerError.ts
-│   │   │   ├── useCheckMobile.ts
-│   │   │   ├── useAppMutation.ts
-│   │   │   ├── use-timer.ts
-│   │   │   ├── useMounted.ts
-│   │   │   ├── useDebounce.ts
-│   │   │   ├── usePagination.ts
-│   │   │   ├── useResponsive.ts
-│   │   │   ├── useAppQuery.ts
+│   │   │   useFeedback.ts
+│   │   │   useDimensions.ts
+│   │   │   useOnClickOutside.ts
+│   │   │   useLoadServerError.ts
+│   │   │   useCheckMobile.ts
+│   │   │   useAppMutation.ts
+│   │   │   use-timer.ts
+│   │   │   useMounted.ts
+│   │   │   useDebounce.ts
+│   │   │   usePagination.ts
+│   │   │   useResponsive.ts
+│   │   │   useAppQuery.ts
 │   │   │   features/
-│   │   │   │   ├── useYoutubeAccount.ts
-│   │   │   │   ├── useTranslate.ts
-│   │   │   │   ├── useSupcriptionPlan.ts
-│   │   │   │   ├── useCaptionize.ts
-│   │   │   │   ├── useAuth.ts
-│   │   │   │   ├── useUsers.ts
-│   │   │   │   ├── useTagManagement.ts
-│   │   │   │   ├── useLabelManagement.ts
+│   │   │   │   useYoutubeAccount.ts
+│   │   │   │   useTranslate.ts
+│   │   │   │   useSupcriptionPlan.ts
+│   │   │   │   useCaptionize.ts
+│   │   │   │   useAuth.ts
+│   │   │   │   useUsers.ts
+│   │   │   │   useTagManagement.ts
+│   │   │   │   useLabelManagement.ts
 │   │   api/
 │   │   │   cloud-software/
 │   │   │   │   caption/
-│   │   │   │   │   ├── index.ts
+│   │   │   │   │   index.ts
 │   │   │   │   translate/
-│   │   │   │   │   ├── index.ts
+│   │   │   │   │   index.ts
 │   │   │   │   youtube-accounts/
-│   │   │   │   │   ├── index.ts
+│   │   │   │   │   index.ts
 │   │   │   auth/
-│   │   │   │   ├── index.ts
+│   │   │   │   index.ts
 │   │   │   labelManagement/
-│   │   │   │   ├── index.ts
+│   │   │   │   index.ts
 │   │   │   users/
-│   │   │   │   ├── index.ts
+│   │   │   │   index.ts
 │   │   │   request/
-│   │   │   │   ├── index.ts
+│   │   │   │   index.ts
 │   │   │   supcription-plan/
-│   │   │   │   ├── index.ts
+│   │   │   │   index.ts
 │   │   │   tag/
-│   │   │   │   ├── index.tsx
+│   │   │   │   index.tsx
 │   │   controllers/
-│   │   │   ├── notification.tsx
-│   │   │   ├── modal.tsx
+│   │   │   notification.tsx
+│   │   │   modal.tsx
 │   │   assets/
 │   │   │   images/
 │   │   │   │   svg/
@@ -533,66 +528,65 @@
 │   │   │   │   translator/
 │   │   │   │   dashboard/
 │   │   pages/
-│   │   │   ├── index.tsx
-│   │   │   ├── _document.tsx
-│   │   │   ├── _app.tsx
+│   │   │   index.tsx
+│   │   │   _document.tsx
+│   │   │   _app.tsx
 │   │   │   cloud-software/
 │   │   │   │   youtube-accounts/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   translator/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   captionizer/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   auth/
 │   │   │   │   verify-password/
 │   │   │   │   │   error/
-│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   index.tsx
 │   │   │   │   verify-account/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   signup/
 │   │   │   │   │   error/
-│   │   │   │   │   │   ├── index.tsx
+│   │   │   │   │   │   index.tsx
 │   │   │   │   register/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   new-password/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   forgot-password/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   login/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   youtube/
 │   │   │   │   callback/
-│   │   │   │   │   ├── index.tsx
-│   │   │   │   │   ├── index.utils.ts
+│   │   │   │   │   index.tsx
+│   │   │   │   │   index.utils.ts
 │   │   │   my-profile/
 │   │   │   │   payment-history/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   personal-info/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   │   │   security-settings/
-│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   index.tsx
 │   │   interfaces/
-│   │   │   ├── common.ts
-│   │   │   ├── plan-overview.ts
-│   │   │   ├── labelManagement.ts
-│   │   │   ├── users.ts
-│   │   │   ├── cloud-software.ts
-│   │   │   ├── index.ts
-│   │   │   ├── theme.ts
-│   │   │   ├── auth.ts
-│   │   │   ├── tags.ts
+│   │   │   common.ts
+│   │   │   plan-overview.ts
+│   │   │   labelManagement.ts
+│   │   │   users.ts
+│   │   │   cloud-software.ts
+│   │   │   index.ts
+│   │   │   theme.ts
+│   │   │   auth.ts
+│   │   │   tags.ts
 ```
 
 ---
 
-## 💻 Source Details
+### 📄 next-i18next.config.js
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
 
-        ### 📄 next-i18next.config.js
-        > **Context Summary**
-        * (No structural elements detected)
-
-        ```js
-        // used for SSR (getServerSideProps)
+```javascript
+// used for SSR (getServerSideProps)
 const { resolve } = require('path');
 
 module.exports = {
@@ -607,12 +601,29 @@ module.exports = {
   reloadOnPrerender: process.env.NODE_ENV === 'development',
 };
 
-        ### 📄 next.config.js
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```js
-        // next.config.js
+### 📄 .yarnrc.yml
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```yml
+nodeLinker: node-modules
+
+yarnPath: .yarn/releases/yarn-4.2.2.cjs
+
+```
+---
+
+### 📄 next.config.js
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```javascript
+// next.config.js
 
 const { i18n } = require('./next-i18next.config.js');
 
@@ -642,12 +653,16 @@ const nextConfig = {
 
 module.exports = nextConfig;
 
-        ### 📄 lint-staged.config.js
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```js
-        module.exports = {
+### 📄 lint-staged.config.js
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```javascript
+module.exports = {
   // Type check TypeScript files
   '**/*.(ts|tsx)': () => 'yarn tsc --noEmit',
 
@@ -661,23 +676,79 @@ module.exports = nextConfig;
   '**/*.(md|json)': (filenames) => `yarn prettier --write ${filenames.join(' ')}`,
 };
 
-        ### 📄 next-env.d.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        /// <reference types="next" />
+### 📄 next-env.d.ts
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```typescript
+/// <reference types="next" />
 /// <reference types="next/image-types/global" />
 
 // NOTE: This file should not be edited
 // see https://nextjs.org/docs/basic-features/typescript for more information.
 
-        ### 📄 package.json
-        > **Context Summary**
-        * 📦 **Package Config** (See Project Overview)
+```
+---
 
-        ```json
-        {
+### 📄 README.md
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```md
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+```
+---
+
+### 📄 package.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "name": "card_secret_fe",
   "version": "0.1.0",
   "private": true,
@@ -780,12 +851,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 commitlint.config.js
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```js
-        module.exports = {
+### 📄 commitlint.config.js
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```javascript
+module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
     'header-max-length': [2, 'always', 66], // github commit without being truncated
@@ -810,12 +885,16 @@ module.exports = nextConfig;
   },
 };
 
-        ### 📄 tsconfig.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 tsconfig.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -840,12 +919,189 @@ module.exports = nextConfig;
   "exclude": ["node_modules"]
 }
 
-        ### 📄 .eslintrc.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 snapshot_pro_fe.py
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+
+```py
+import os
+import datetime
+import fnmatch
+
+# ==========================================
+# ⚙️ 설정 (내 프로젝트에 맞게 수정 가능)
+# ==========================================
+
+# 스캔할 파일 확장자 목록 (분석이 필요한 코드 파일만 포함)
+INCLUDE_EXTENSIONS = {
+    # Front-end
+    '.ts', '.tsx', '.js', '.jsx', '.css', '.scss', '.json',
+    # Back-end
+    '.py', '.java', '.go', '.rb', '.php',
+    # Config / Etc
+    '.md', '.yml', '.yaml', '.sql', '.prisma', '.env.example'
+}
+
+# 무시할 폴더 및 파일 패턴 (용량을 줄이고 노이즈 제거)
+IGNORE_PATTERNS = [
+    'node_modules', '.git', '.next', '.vscode', '.idea', 'dist', 'build', 'out',
+    'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml',
+    '*.png', '*.jpg', '*.jpeg', '*.gif', '*.svg', '*.ico', '*.woff', '*.woff2', '*.ttf',
+    '__pycache__', 'venv', 'env', '.DS_Store',
+    'generate_snapshot.py', 'SNAPSHOT_*.md' # 자기 자신과 결과물 제외
+]
+
+# ==========================================
+# 🛠️ 로직 시작
+# ==========================================
+
+def should_ignore(path, is_dir=False):
+    """무시할 파일/폴더인지 확인"""
+    name = os.path.basename(path)
+    for pattern in IGNORE_PATTERNS:
+        if fnmatch.fnmatch(name, pattern):
+            return True
+        # 경로 상에 무시할 폴더가 포함되어 있는지 확인 (예: src/node_modules/...)
+        if is_dir and pattern in path.split(os.sep):
+             return True
+    return False
+
+def generate_file_tree(startpath):
+    """프로젝트 구조를 트리 형태로 문자열 반환"""
+    tree_str = "## 🗺️ File Map\n```text\n.\n"
+    for root, dirs, files in os.walk(startpath):
+        # 무시할 폴더 필터링 (in-place 수정)
+        dirs[:] = [d for d in dirs if not should_ignore(os.path.join(root, d), is_dir=True)]
+        
+        level = root.replace(startpath, '').count(os.sep)
+        indent = '│   ' * (level)
+        subindent = '│   ' * (level + 1)
+        
+        # 현재 폴더 이름 (루트 제외)
+        if root != startpath:
+            tree_str += '{}{}/\n'.format(indent, os.path.basename(root))
+            
+        for f in files:
+            if not should_ignore(f) and os.path.splitext(f)[1] in INCLUDE_EXTENSIONS:
+                tree_str += '{}{}\n'.format(subindent, f)
+    tree_str += "```\n\n---\n"
+    return tree_str
+
+def summarize_context(content, filename):
+    """코드 내용을 간단히 분석하여 Context Summary 생성"""
+    summary = []
+    lines = content.split('\n')
+    
+    # 주요 키워드 추출 (간단한 파싱)
+    imports = []
+    exports = []
+    types = []
+    functions = []
+
+    for line in lines:
+        line = line.strip()
+        if line.startswith('import '):
+            imports.append(line[:50] + '...' if len(line) > 50 else line)
+        elif line.startswith('export interface') or line.startswith('export type'):
+            types.append(line.split('{')[0].strip())
+        elif line.startswith('export const') or line.startswith('export function') or line.startswith('export class'):
+            # 함수나 컴포넌트 이름 추출 시도
+            parts = line.split(' ')
+            if len(parts) > 2:
+                exports.append(parts[2].split('(')[0].split(':')[0])
+
+    if imports:
+        summary.append(f"* 🔗 **Imports:** {len(imports)} found")
+    if types:
+        summary.append(f"* 🛠️ **Types/Interfaces:** {', '.join(types[:5])}" + ("..." if len(types)>5 else ""))
+    if exports:
+        summary.append(f"* 🚀 **Exports/Components:** {', '.join(exports[:5])}" + ("..." if len(exports)>5 else ""))
+        
+    return "\n".join(summary) if summary else "* (No significant exports/imports detected)"
+
+def create_snapshot(root_path='.'):
+    """전체 스냅샷 파일 생성"""
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    project_name = os.path.basename(os.path.abspath(root_path))
+    output_filename = f"SNAPSHOT_{project_name.upper()}_{datetime.datetime.now().strftime('%Y%m%d_%H%M')}.md"
+
+    print(f"📸 Generating snapshot for: {project_name}...")
+
+    with open(output_filename, 'w', encoding='utf-8') as outfile:
+        # 1. 헤더 작성
+        outfile.write(f"# 🧠 Deep Context Snapshot\n\n")
+        outfile.write(f"**Generated at:** {timestamp}\n")
+        outfile.write(f"**Project:** {project_name}\n")
+        outfile.write(f"\n> **🛑 INSTRUCTION FOR AI:**\n")
+        outfile.write(f"> Use this document to understand the current architecture, directory structure, and code logic.\n")
+        outfile.write(f"> Always refer to the specific file contents below when proposing changes.\n\n")
+
+        # 2. 파일 트리 작성
+        outfile.write(generate_file_tree(root_path))
+
+        # 3. 파일 내용 순회 및 작성
+        file_count = 0
+        for root, dirs, files in os.walk(root_path):
+            dirs[:] = [d for d in dirs if not should_ignore(os.path.join(root, d), is_dir=True)]
+            
+            for file in files:
+                if should_ignore(file):
+                    continue
+                
+                ext = os.path.splitext(file)[1]
+                if ext not in INCLUDE_EXTENSIONS:
+                    continue
+
+                file_path = os.path.join(root, file)
+                relative_path = os.path.relpath(file_path, root_path)
+                
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        
+                    file_count += 1
+                    print(f"Scanning: {relative_path}")
+
+                    # 섹션 헤더
+                    outfile.write(f"\n### 📄 {relative_path}\n")
+                    
+                    # Context Summary 생성
+                    summary = summarize_context(content, file)
+                    outfile.write(f"> **Context Summary**\n> \n")
+                    for line in summary.split('\n'):
+                        outfile.write(f"> {line}\n")
+                    outfile.write("\n")
+
+                    # 코드 블록
+                    lang = ext.replace('.', '')
+                    if lang == 'tsx' or lang == 'ts': lang = 'typescript'
+                    if lang == 'js' or lang == 'jsx': lang = 'javascript'
+                    
+                    outfile.write(f"```{lang}\n{content}\n```\n")
+                    outfile.write("---\n")
+
+                except Exception as e:
+                    print(f"⚠️ Error reading {file_path}: {e}")
+
+    print(f"\n✅ Snapshot created successfully: {output_filename}")
+    print(f"📊 Total files scanned: {file_count}")
+
+if __name__ == "__main__":
+    create_snapshot()
+```
+---
+
+### 📄 .eslintrc.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "extends": [
     // "next/babel",
@@ -875,12 +1131,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/labelManagement.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/labelManagement.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "label": {
     "labelName": "Label Name",
     "labelID": "Label ID",
@@ -889,12 +1149,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/my-profile.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/my-profile.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "PersonalInfo": "Personal Info",
   "SecuritySettings": "Security Settings",
   "Payments": "Payment History",
@@ -947,12 +1211,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/common.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/common.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "title": "Wellcome Nextjs",
   "login": "Log In",
   "register": "Register",
@@ -1060,12 +1328,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/cloud-software.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/cloud-software.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "youtube": {
     "youtube-account": "YouTube Account",
     "manage-and-add-your-youtube-accounts": "Manage and add your YouTube accounts",
@@ -1317,12 +1589,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/users.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/users.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "userManagement": {
     "userManagement": "User management",
     "export": "Export",
@@ -1349,12 +1625,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/dashboard.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/dashboard.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "menu": {
     "insight": "통찰력",
     "testimonial": "추천서",
@@ -1445,12 +1725,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/auth.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/auth.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "login": {
     "facebookLink": "Continue with Facebook",
     "googleLink": "Continue with Google",
@@ -1525,12 +1809,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/ko/tags.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/ko/tags.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "tagManagement": {
     "tagManagement": "Tag Management",
     "view": "View Product List",
@@ -1541,12 +1829,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/labelManagement.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/labelManagement.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "label": {
     "labelName": "Label Name",
     "labelID": "Label ID",
@@ -1555,12 +1847,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/my-profile.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/my-profile.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "PersonalInfo": "Personal Info",
   "SecuritySettings": "Security Settings",
   "Payments": "Payment History",
@@ -1613,12 +1909,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/common.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/common.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "title": "Wellcome Nextjs",
   "login": "Log In",
   "register": "Register",
@@ -1726,12 +2026,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/cloud-software.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/cloud-software.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "youtube": {
     "youtube-account": "YouTube Account",
     "manage-and-add-your-youtube-accounts": "Manage and add your YouTube accounts",
@@ -1983,12 +2287,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/users.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/users.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "userManagement": {
     "userManagement": "User management",
     "export": "Export",
@@ -2015,12 +2323,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/dashboard.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/dashboard.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "menu": {
     "insight": "Insight",
     "testimonial": "Testimonial",
@@ -2111,12 +2423,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/auth.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/auth.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "login": {
     "facebookLink": "Continue with Facebook",
     "googleLink": "Continue with Google",
@@ -2191,12 +2507,16 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 public/locales/en/tags.json
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```json
-        {
+### 📄 public/locales/en/tags.json
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```json
+{
   "tagManagement": {
     "tagManagement": "Tag Management",
     "view": "View Product List",
@@ -2207,14 +2527,17 @@ module.exports = nextConfig;
   }
 }
 
-        ### 📄 src/middleware.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, next/server`
-* wf **Function:** `middleware`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { AUTH_ROUTE, PRIVATE_ROUTE, ROUTER_PATH } from '@/constants';
+### 📄 src/middleware.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** middleware
+
+```typescript
+import { AUTH_ROUTE, PRIVATE_ROUTE, ROUTER_PATH } from '@/constants';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -2237,13 +2560,17 @@ export function middleware(request: NextRequest) {
   // }
 }
 
-        ### 📄 src/types/page.d.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `next, react`
-* wb **Type/Intf:** `Page`
+```
+---
 
-        ```ts
-        /* eslint-disable @typescript-eslint/ban-types */
+### 📄 src/types/page.d.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🛠️ **Types/Interfaces:** export type Page<P =
+
+```typescript
+/* eslint-disable @typescript-eslint/ban-types */
 import { NextPage } from 'next';
 import { ComponentType, ReactElement, ReactNode } from 'react';
 
@@ -2252,12 +2579,17 @@ export type Page<P = {}> = NextPage<P> & {
   layout?: ComponentType;
 };
 
-        ### 📄 src/plugins/firebase.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `firebase/app, firebase/auth`
+```
+---
 
-        ```ts
-        import { initializeApp } from 'firebase/app';
+### 📄 src/plugins/firebase.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** auth
+
+```typescript
+import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -2274,24 +2606,33 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-        ### 📄 src/plugins/paypal.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        export const paypalConfig = {
+### 📄 src/plugins/paypal.ts
+> **Context Summary**
+> 
+> * 🚀 **Exports/Components:** paypalConfig
+
+```typescript
+export const paypalConfig = {
   clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID as string,
   dataSdkIntegrationSource: 'integrationbuilder_ac',
   disableFunding: ['paylater', 'venmo'],
   currency: 'USD',
 };
 
-        ### 📄 src/constants/price.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces`
+```
+---
 
-        ```ts
-        import { LEVEL_USER, Price } from '@/interfaces';
+### 📄 src/constants/price.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** PRICE
+
+```typescript
+import { LEVEL_USER, Price } from '@/interfaces';
 
 export const PRICE: Price = {
   [LEVEL_USER.BRONZE]: {
@@ -2308,23 +2649,32 @@ export const PRICE: Price = {
   },
 };
 
-        ### 📄 src/constants/regex.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        export const REGEX_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,30}$/;
+### 📄 src/constants/regex.ts
+> **Context Summary**
+> 
+> * 🚀 **Exports/Components:** REGEX_PASSWORD, REGEX_EMAIL, REGEX_PHONE
+
+```typescript
+export const REGEX_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,30}$/;
 
 export const REGEX_EMAIL = /^[\w-+\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 export const REGEX_PHONE = /^\+(\d{1,3})(\d{9,12})$/;
 
-        ### 📄 src/constants/common.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces`
+```
+---
 
-        ```ts
-        import { CurrencyTypeEnum, LEVEL_USER } from '@/interfaces';
+### 📄 src/constants/common.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** PRIVATE_ROUTE, AUTH_ROUTE, SCREENS, LOCALE, DEFAULT_LOCALE...
+
+```typescript
+import { CurrencyTypeEnum, LEVEL_USER } from '@/interfaces';
 
 import { PRICE } from './price';
 
@@ -2735,21 +3085,30 @@ export enum PaymentStatus {
   FAILED = 'FAILED',
 }
 
-        ### 📄 src/constants/index.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        export * from './common';
+### 📄 src/constants/index.ts
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```typescript
+export * from './common';
 export * from './theme';
 
-        ### 📄 src/constants/theme.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `StatisticColor`
+```
+---
 
-        ```ts
-        import { FC } from 'react';
+### 📄 src/constants/theme.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🛠️ **Types/Interfaces:** export type StatisticColor = 'primary' | 'error' | 'secondary' | 'success';
+> * 🚀 **Exports/Components:** BORDER_RADIUS, BASE_COLORS, LAYOUT, FONT_FAMILY, FONT_SIZE...
+
+```typescript
+import { FC } from 'react';
 
 export type StatisticColor = 'primary' | 'error' | 'secondary' | 'success';
 interface ConfigStatistic {
@@ -2941,12 +3300,17 @@ export const statistics: ConfigStatistic[] = [
   },
 ];
 
-        ### 📄 src/stores/hooks.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react-redux`
+```
+---
 
-        ```ts
-        import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+### 📄 src/stores/hooks.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** useAppDispatch, useAppSelector
+
+```typescript
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from './store';
 
@@ -2954,15 +3318,18 @@ import { AppDispatch, RootState } from './store';
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-        ### 📄 src/stores/store.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@reduxjs/toolkit, next-redux-wrapper`
-* wb **Type/Intf:** `RootState`
-* wb **Type/Intf:** `AppDispatch`
-* wb **Type/Intf:** `AppStore`
+```
+---
 
-        ```ts
-        import { combineReducers, configureStore } from '@reduxjs/toolkit';
+### 📄 src/stores/store.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export type RootState = ReturnType<typeof store.getState>;, export type AppDispatch = typeof store.dispatch;, export type AppStore = ReturnType<typeof makeStore>;
+> * 🚀 **Exports/Components:** store, wrapper
+
+```typescript
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
 
 import authReducer from './auth/auth.slice';
@@ -2984,13 +3351,17 @@ export type AppDispatch = typeof store.dispatch;
 export type AppStore = ReturnType<typeof makeStore>;
 export const wrapper = createWrapper<AppStore>(makeStore, { debug: true });
 
-        ### 📄 src/stores/provider.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react, react-redux`
-* wf **Function:** `Providers`
+```
+---
 
-        ```typescript
-        'use client';
+### 📄 src/stores/provider.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Providers
+
+```typescript
+'use client';
 
 import React from 'react';
 import { Provider } from 'react-redux';
@@ -3001,12 +3372,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return <Provider store={store}>{children}</Provider>;
 }
 
-        ### 📄 src/stores/progress/progress.slice.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@reduxjs/toolkit`
+```
+---
 
-        ```ts
-        import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+### 📄 src/stores/progress/progress.slice.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** {, selectIsProgress, selectIsOpenRenewPlan, selectIsOpenPlanOverview, selectIsOpenReminderPayment
+
+```typescript
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import type { RootState } from '../store';
 
@@ -3062,12 +3438,17 @@ export const selectIsOpenPlanOverview = (state: RootState) => state.progress.isO
 export const selectIsOpenReminderPayment = (state: RootState) =>
   state.progress.isOpenReminderPayment;
 
-        ### 📄 src/stores/auth/auth.slice.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/utils/cookie, @reduxjs/toolkit`
+```
+---
 
-        ```ts
-        import cookies from '@/utils/cookie';
+### 📄 src/stores/auth/auth.slice.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** {, selectCurrentUser
+
+```typescript
+import cookies from '@/utils/cookie';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import type { User } from '../../interfaces/auth';
@@ -3115,13 +3496,18 @@ export default slice.reducer;
 
 export const selectCurrentUser = (state: RootState) => state.auth.user;
 
-        ### 📄 src/utils/dates.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `dayjs/plugin/duration, dayjs/plugin/isBetween, dayjs/plugin/localeData, dayjs/plugin/localizedFormat, dayjs/plugin/utc`
-* wb **Type/Intf:** `AppDate`
+```
+---
 
-        ```ts
-        import dayjs, { Dayjs } from 'dayjs';
+### 📄 src/utils/dates.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🛠️ **Types/Interfaces:** export type AppDate = Dayjs;
+> * 🚀 **Exports/Components:** Dates
+
+```typescript
+import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/de';
 import duration from 'dayjs/plugin/duration';
 import isBetween from 'dayjs/plugin/isBetween';
@@ -3171,12 +3557,17 @@ export class Dates {
   }
 }
 
-        ### 📄 src/utils/common.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-badge, @/components/common/base-notification, @/constants, @/constants, @/interfaces`...
+```
+---
 
-        ```ts
-        import { BaseBadgeProps } from '@/components/common/base-badge';
+### 📄 src/utils/common.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** camelize, getCurrencyPrice, getMarkAreaData, capitalize, hexToRGB...
+
+```typescript
+import { BaseBadgeProps } from '@/components/common/base-badge';
 import { NotificationType } from '@/components/common/base-notification';
 import { Priority } from '@/constants';
 import { currencies } from '@/constants';
@@ -3475,12 +3866,17 @@ export const sleep = (milliseconds: number) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
-        ### 📄 src/utils/local-storage.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces`
+```
+---
 
-        ```ts
-        import { UserModel } from '@/interfaces';
+### 📄 src/utils/local-storage.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** persistToken, readToken, persistUser, readUser, deleteToken...
+
+```typescript
+import { UserModel } from '@/interfaces';
 
 export const persistToken = (token: string): void => {
   localStorage.setItem('accessToken', token);
@@ -3503,12 +3899,16 @@ export const readUser = (): UserModel | null => {
 export const deleteToken = (): void => localStorage.removeItem('accessToken');
 export const deleteUser = (): void => localStorage.removeItem('user');
 
-        ### 📄 src/utils/cookie.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `js-cookie`
+```
+---
 
-        ```ts
-        import Cookies from 'js-cookie';
+### 📄 src/utils/cookie.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+
+```typescript
+import Cookies from 'js-cookie';
 
 const cookies = {
   set: (name: string, value: string) => {
@@ -3524,22 +3924,31 @@ const cookies = {
 
 export default cookies;
 
-        ### 📄 src/utils/index.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        export * from './common';
+### 📄 src/utils/index.ts
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```typescript
+export * from './common';
 export * from './local-storage';
 export * from './query';
 export * from './dates';
 
-        ### 📄 src/utils/query.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/stores/auth/auth.slice, @/stores/store, @/stores/store, @reduxjs/toolkit/query/react`...
+```
+---
 
-        ```ts
-        import { RESPONSE_CODE } from '@/constants';
+### 📄 src/utils/query.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** baseQuery, baseQueryWithAuthentication
+
+```typescript
+import { RESPONSE_CODE } from '@/constants';
 import { removeCredentials } from '@/stores/auth/auth.slice';
 import { RootState } from '@/stores/store';
 import { store } from '@/stores/store';
@@ -3578,12 +3987,16 @@ export const baseQueryWithAuthentication: BaseQueryFn<
   return result;
 };
 
-        ### 📄 src/utils/theme.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        export const capitalize = (word: string): string => `${word[0].toUpperCase()}${word.slice(1)}`;
+### 📄 src/utils/theme.ts
+> **Context Summary**
+> 
+> * 🚀 **Exports/Components:** capitalize, hexToRGB, shadeColor
+
+```typescript
+export const capitalize = (word: string): string => `${word[0].toUpperCase()}${word.slice(1)}`;
 
 export const hexToRGB = (hex: string): string => {
   const r = parseInt(hex.slice(1, 3), 16),
@@ -3613,12 +4026,17 @@ export const shadeColor = (color: string, percent: number): string => {
   return '#' + RR + GG + BB;
 };
 
-        ### 📄 src/utils/react-query.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@tanstack/react-query`
+```
+---
 
-        ```ts
-        import {
+### 📄 src/utils/react-query.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** queryClient
+
+```typescript
+import {
   QueryClient,
   QueryClientProvider,
   useMutation,
@@ -3638,12 +4056,16 @@ export const queryClient = new QueryClient({
   },
 });
 
-        ### 📄 src/styles/theme-global.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants`
+```
+---
 
-        ```ts
-        import { FONT_FAMILY } from '@/constants';
+### 📄 src/styles/theme-global.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+
+```typescript
+import { FONT_FAMILY } from '@/constants';
 import 'react-phone-input-2/lib/style.css';
 import * as styled from 'styled-components';
 
@@ -3685,12 +4107,17 @@ export default styled.createGlobalStyle`
   }
 `;
 
-        ### 📄 src/styles/theme-config.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/utils`
+```
+---
 
-        ```typescript
-        import {
+### 📄 src/styles/theme-config.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** getThemeConfig
+
+```typescript
+import {
   BASE_COLORS,
   BORDER_RADIUS,
   BREAKPOINTS,
@@ -4038,12 +4465,17 @@ export const getThemeConfig = (theme: ThemeType): ThemeConfig => {
   };
 };
 
-        ### 📄 src/styles/theme-reset.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import { css } from 'styled-components';
+### 📄 src/styles/theme-reset.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** resetCss
+
+```typescript
+import { css } from 'styled-components';
 
 export const resetCss = css`
   * {
@@ -4074,12 +4506,17 @@ export const resetCss = css`
   }
 `;
 
-        ### 📄 src/styles/themes/theme-variables.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/interfaces, @/utils, styled-components`
+```
+---
 
-        ```ts
-        import { BASE_COLORS } from '@/constants';
+### 📄 src/styles/themes/theme-variables.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** themeObject, antThemeObject, getThemeVariables, commonThemeVariables
+
+```typescript
+import { BASE_COLORS } from '@/constants';
 import { ThemeType } from '@/interfaces';
 import { hexToRGB } from '@/utils';
 import { css } from 'styled-components';
@@ -4197,12 +4634,17 @@ export const commonThemeVariables = css`
   --red: ${BASE_COLORS.red};
 `;
 
-        ### 📄 src/styles/themes/light/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/utils`
+```
+---
 
-        ```ts
-        import { BASE_COLORS } from '@/constants';
+### 📄 src/styles/themes/light/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** lightColorsTheme, antLightColorsTheme
+
+```typescript
+import { BASE_COLORS } from '@/constants';
 import { shadeColor } from '@/utils';
 
 export const lightColorsTheme = {
@@ -4278,12 +4720,17 @@ export const antLightColorsTheme = {
   primary10: '#000000',
 };
 
-        ### 📄 src/styles/themes/dark/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/utils`
+```
+---
 
-        ```ts
-        import { BASE_COLORS } from '@/constants';
+### 📄 src/styles/themes/dark/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** darkColorsTheme, antDarkColorsTheme
+
+```typescript
+import { BASE_COLORS } from '@/constants';
 import { shadeColor } from '@/utils';
 
 export const darkColorsTheme = {
@@ -4361,14 +4808,16 @@ export const antDarkColorsTheme = {
   successBorder: '#79fcc4',
 };
 
-        ### 📄 src/components/language-switcher/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/country/icon-korea.svg, @/assets/images/svg/country/icon-usa.svg, @/components/common/base-dropdown, @/utils/cookie, antd`...
-* 🧩 **Component (Default):** `LanguageSwitcher`
-* ww **Hooks:** `useState, useEffect, useRouter`
+```
+---
 
-        ```typescript
-        import IconKorea from '@/assets/images/svg/country/icon-korea.svg';
+### 📄 src/components/language-switcher/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 8 found
+
+```typescript
+import IconKorea from '@/assets/images/svg/country/icon-korea.svg';
 import IconUSA from '@/assets/images/svg/country/icon-usa.svg';
 import { BaseDropdown } from '@/components/common/base-dropdown';
 import cookies from '@/utils/cookie';
@@ -4434,12 +4883,17 @@ export default function LanguageSwitcher() {
   );
 }
 
-        ### 📄 src/components/language-switcher/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/language-switcher/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** Country
+
+```typescript
+import styled from 'styled-components';
 
 export const Country = styled.a`
   display: flex;
@@ -4466,14 +4920,16 @@ export const Country = styled.a`
   }
 `;
 
-        ### 📄 src/components/cloud-software/index.utils.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/hooks/features/useYoutubeAccount, @/interfaces, @/interfaces/cloud-software, @tanstack/react-query`
-* 🧩 **Component (Default):** `useYoutubeAccount`
-* ww **Hooks:** `useConnectYoutube, useRefreshTotalVideo, useGetListYoutube, useDeleteYoutubeMutate, useYoutubeAccount`
+```
+---
 
-        ```ts
-        import {
+### 📄 src/components/cloud-software/index.utils.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+
+```typescript
+import {
   useConnectYoutube,
   useDeleteYoutubeMutate,
   useGetListYoutube,
@@ -4525,13 +4981,17 @@ export default function useYoutubeAccount(
   };
 }
 
-        ### 📄 src/components/cloud-software/translator/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-arrow-left.svg, @/assets/images/svg/icon-arrow-right.svg, @/assets/images/translator/no-video.png, @/components/common/base-image, @/components/common/step-switch`...
-* ww **Hooks:** `useContext, useTranslateVideo, useTranslation`
+```
+---
 
-        ```typescript
-        import IconArrowLeft from '@/assets/images/svg/icon-arrow-left.svg';
+### 📄 src/components/cloud-software/translator/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 20 found
+> * 🚀 **Exports/Components:** useTranslator
+
+```typescript
+import IconArrowLeft from '@/assets/images/svg/icon-arrow-left.svg';
 import IconArrowRight from '@/assets/images/svg/icon-arrow-right.svg';
 import NoVideo from '@/assets/images/translator/no-video.png';
 import { BaseImage } from '@/components/common/base-image';
@@ -4784,14 +5244,16 @@ const TranslatorComponent = () => {
 
 export default TranslatorComponent;
 
-        ### 📄 src/components/cloud-software/translator/index.utils.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/cloud-software/youtube-accounts, @/constants, @/hooks/features/useTranslate, @/hooks/features/useYoutubeAccount, @/hooks/useFeedback`...
-* ww **Hooks:** `useState, usePublishVideoMutate, useEffect, useAppDispatch, useGetListYoutubeLanguage, useGetListLanguage, useRefreshVideosMutate`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { videosYoutube } from '@/api/cloud-software/youtube-accounts';
+### 📄 src/components/cloud-software/translator/index.utils.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 12 found
+
+```typescript
+import { videosYoutube } from '@/api/cloud-software/youtube-accounts';
 import { NUMBER_CHARACTERS, STEP_TRANSLATE } from '@/constants';
 import {
   useGetListLanguage,
@@ -5454,12 +5916,17 @@ const useTranslateVideo = () => {
 
 export default useTranslateVideo;
 
-        ### 📄 src/components/cloud-software/translator/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/cloud-software/translator/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** ContainerTitle, ContainerTitleLeft, SubTitle, ContainerTitleRight, Title...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
@@ -5585,13 +6052,16 @@ export const SelectedDate = styled.div`
   font-weight: ${FONT_WEIGHT.medium};
 `;
 
-        ### 📄 src/components/cloud-software/translator/components/select-language/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/modals/modal-language-limit, @/interfaces, @/stores/auth/auth.slice, @/stores/hooks, next-i18next`
-* ww **Hooks:** `useAppSelector, useEffect, useMemo, useTranslation`
+```
+---
 
-        ```typescript
-        import { ModalLanguageLimit } from '@/components/modals/modal-language-limit';
+### 📄 src/components/cloud-software/translator/components/select-language/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+
+```typescript
+import { ModalLanguageLimit } from '@/components/modals/modal-language-limit';
 import { LEVEL_USER, LEVEL_USER_LIMIT_LANGUAGE } from '@/interfaces';
 import { selectCurrentUser } from '@/stores/auth/auth.slice';
 import { useAppSelector } from '@/stores/hooks';
@@ -5813,12 +6283,17 @@ const SelectLanguage = (props: IProps) => {
 
 export default SelectLanguage;
 
-        ### 📄 src/components/cloud-software/translator/components/select-language/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-question.svg, @/components/common/selects/base-select, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import IconQS from '@/assets/images/svg/icon-question.svg';
+### 📄 src/components/cloud-software/translator/components/select-language/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** Wrapper, Title, WrapperSelect, SelectTitle, Required...
+
+```typescript
+import IconQS from '@/assets/images/svg/icon-question.svg';
 import { BaseSelect } from '@/components/common/selects/base-select';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
@@ -5879,13 +6354,16 @@ export const IconQuestion = styled(IconQS)`
   cursor: pointer;
 `;
 
-        ### 📄 src/components/cloud-software/translator/components/review-translation/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-loading.svg, @/assets/images/translator/unknow-flag.png, @/constants, @/interfaces/cloud-software, @/utils`...
-* ww **Hooks:** `useState, useEffect, useMemo, useImperativeHandle, useTranslator, useTranslation`
+```
+---
 
-        ```typescript
-        import IconLoading from '@/assets/images/svg/icon-loading.svg';
+### 📄 src/components/cloud-software/translator/components/review-translation/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 11 found
+
+```typescript
+import IconLoading from '@/assets/images/svg/icon-loading.svg';
 import UnknowFlagImage from '@/assets/images/translator/unknow-flag.png';
 import { NUMBER_CHARACTERS } from '@/constants';
 import { ITranslateVideo } from '@/interfaces/cloud-software';
@@ -6203,12 +6681,17 @@ const ReviewTranslation = (props: IProps) => {
 
 export default ReviewTranslation;
 
-        ### 📄 src/components/cloud-software/translator/components/review-translation/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/cloud-software/icon-refresh.svg, @/assets/images/svg/icon-error.svg, @/assets/images/svg/icon-loading.svg, @/components/common/base-button, @/components/common/inputs/base-input`...
+```
+---
 
-        ```ts
-        import IconRefresh from '@/assets/images/svg/cloud-software/icon-refresh.svg';
+### 📄 src/components/cloud-software/translator/components/review-translation/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+> * 🚀 **Exports/Components:** Wrapper, Title, TabList, WrapperTabItem, TabItem...
+
+```typescript
+import IconRefresh from '@/assets/images/svg/cloud-software/icon-refresh.svg';
 import IconError from '@/assets/images/svg/icon-error.svg';
 import IconLoading from '@/assets/images/svg/icon-loading.svg';
 import { BaseButton } from '@/components/common/base-button';
@@ -6402,13 +6885,16 @@ export const Text = styled.div`
   margin-bottom: 1rem;
 `;
 
-        ### 📄 src/components/cloud-software/translator/components/exclude-translation/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @ant-design/icons, next-i18next`
-* ww **Hooks:** `useTranslation`
+```
+---
 
-        ```typescript
-        import { NUMBER_CHARACTERS } from '@/constants';
+### 📄 src/components/cloud-software/translator/components/exclude-translation/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+
+```typescript
+import { NUMBER_CHARACTERS } from '@/constants';
 import { CloseOutlined } from '@ant-design/icons';
 import { useTranslation } from 'next-i18next';
 import React, { useRef } from 'react';
@@ -6569,12 +7055,17 @@ const ExcludeTranslation = (props: IProps) => {
 
 export default ExcludeTranslation;
 
-        ### 📄 src/components/cloud-software/translator/components/exclude-translation/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/inputs/base-input, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/cloud-software/translator/components/exclude-translation/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** Wrapper, Title, Required, WrapperInput, Input...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { BaseInput } from '@/components/common/inputs/base-input';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
@@ -6672,14 +7163,17 @@ export const TextError = styled.div`
   color: #ff0000;
 `;
 
-        ### 📄 src/components/cloud-software/translator/components/select-video/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-search.svg, @/components/common/no-data, @/interfaces/cloud-software, lodash, next-i18next`...
-* wb **Type/Intf:** `IProps`
-* ww **Hooks:** `useEffect, useSelectVideo, useRef, useTranslation`
+```
+---
 
-        ```typescript
-        import SearchIcon from '@/assets/images/svg/icon-search.svg';
+### 📄 src/components/cloud-software/translator/components/select-video/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 8 found
+> * 🛠️ **Types/Interfaces:** export interface IProps
+
+```typescript
+import SearchIcon from '@/assets/images/svg/icon-search.svg';
 import { NoData } from '@/components/common/no-data';
 import { IVideoYoutube } from '@/interfaces/cloud-software';
 import { debounce } from 'lodash';
@@ -6816,14 +7310,16 @@ const SelectVideo = (props: IProps) => {
 
 export default SelectVideo;
 
-        ### 📄 src/components/cloud-software/translator/components/select-video/index.utils.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/translator/no-video.png, @/constants, dayjs, next-i18next, next/link`...
-* 🧩 **Component (Default):** `useSelectVideo`
-* ww **Hooks:** `useMemo, useRouter, useSelectVideo, useTranslation`
+```
+---
 
-        ```typescript
-        import NoVideo from '@/assets/images/translator/no-video.png';
+### 📄 src/components/cloud-software/translator/components/select-video/index.utils.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+
+```typescript
+import NoVideo from '@/assets/images/translator/no-video.png';
 import { DATE_FORMAT, ROUTER_PATH } from '@/constants';
 import dayjs from 'dayjs';
 import { useTranslation } from 'next-i18next';
@@ -6987,12 +7483,17 @@ export default function useSelectVideo(props: IProps) {
   };
 }
 
-        ### 📄 src/components/cloud-software/translator/components/select-video/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/cloud-software/icon-refresh.svg, @/components/common/base-button, @/components/common/base-image, @/components/common/base-table, @/components/common/inputs/base-input`...
+```
+---
 
-        ```ts
-        import IconRefresh from '@/assets/images/svg/cloud-software/icon-refresh.svg';
+### 📄 src/components/cloud-software/translator/components/select-video/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 8 found
+> * 🚀 **Exports/Components:** Action, Image, SelectedAccount, WrapperAccount, Text...
+
+```typescript
+import IconRefresh from '@/assets/images/svg/cloud-software/icon-refresh.svg';
 import { BaseButton } from '@/components/common/base-button';
 import { BaseImage } from '@/components/common/base-image';
 import { BaseTable } from '@/components/common/base-table';
@@ -7132,13 +7633,17 @@ export const TableDescription = styled.div`
   word-break: break-all;
 `;
 
-        ### 📄 src/components/cloud-software/captionizer/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-arrow-left.svg, @/assets/images/svg/icon-arrow-right.svg, @/assets/images/translator/no-video.png, @/components/common/base-image, @/components/common/step-switch`...
-* ww **Hooks:** `useTranslateCaption, useContext, useTranslation`
+```
+---
 
-        ```typescript
-        import IconArrowLeft from '@/assets/images/svg/icon-arrow-left.svg';
+### 📄 src/components/cloud-software/captionizer/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 19 found
+> * 🚀 **Exports/Components:** useTranslator
+
+```typescript
+import IconArrowLeft from '@/assets/images/svg/icon-arrow-left.svg';
 import IconArrowRight from '@/assets/images/svg/icon-arrow-right.svg';
 import NoVideo from '@/assets/images/translator/no-video.png';
 import { BaseImage } from '@/components/common/base-image';
@@ -7391,14 +7896,16 @@ const CaptionComponent = () => {
 
 export default CaptionComponent;
 
-        ### 📄 src/components/cloud-software/captionizer/index.utils.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/cloud-software/youtube-accounts, @/constants, @/hooks/features/useCaptionize, @/hooks/features/useTranslate, @/hooks/features/useYoutubeAccount`...
-* ww **Hooks:** `useState, useAppDispatch, useEffect, useGetListYoutubeLanguage, useGetListLanguage, useRefreshVideosMutate, usePublishCaption`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { videosYoutube } from '@/api/cloud-software/youtube-accounts';
+### 📄 src/components/cloud-software/captionizer/index.utils.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 15 found
+
+```typescript
+import { videosYoutube } from '@/api/cloud-software/youtube-accounts';
 import { STEP_TRANSLATE } from '@/constants';
 import {
   useGetCaptionDetail,
@@ -8019,12 +8526,17 @@ const useTranslateCaption = () => {
 
 export default useTranslateCaption;
 
-        ### 📄 src/components/cloud-software/captionizer/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/cloud-software/captionizer/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** ContainerTitle, ContainerTitleLeft, SubTitle, ContainerTitleRight, Title...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
@@ -8150,13 +8662,17 @@ export const SelectedDate = styled.div`
   font-weight: ${FONT_WEIGHT.medium};
 `;
 
-        ### 📄 src/components/cloud-software/captionizer/action-hook.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/hooks/features/useCaptionize, @/hooks/useFeedback, @/interfaces/cloud-software, react`
-* ww **Hooks:** `useFeedback, usePublishCaptionMutation, useTranslateCaptionMutation`
+```
+---
 
-        ```ts
-        import {
+### 📄 src/components/cloud-software/captionizer/action-hook.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** usePublishCaption, useTransCaption
+
+```typescript
+import {
   usePublishCaptionMutation,
   useTranslateCaptionMutation,
 } from '@/hooks/features/useCaptionize';
@@ -8259,14 +8775,16 @@ export const useTransCaption = () => {
   };
 };
 
-        ### 📄 src/components/cloud-software/captionizer/components/review-translation/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-loading.svg, @/assets/images/translator/unknow-flag.png, @/interfaces/cloud-software, @/utils, next-i18next`...
-* 🧩 **Component (Arrow):** `ReviewTranslation`
-* ww **Hooks:** `useState, useMemo, useTranslator, useTranslation`
+```
+---
 
-        ```typescript
-        import IconLoading from '@/assets/images/svg/icon-loading.svg';
+### 📄 src/components/cloud-software/captionizer/components/review-translation/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 11 found
+
+```typescript
+import IconLoading from '@/assets/images/svg/icon-loading.svg';
 import UnknowFlagImage from '@/assets/images/translator/unknow-flag.png';
 import { ICaptionDetail } from '@/interfaces/cloud-software';
 import { fromLangCodeToCountryCode, sleep } from '@/utils';
@@ -8477,12 +8995,17 @@ const ReviewTranslation: React.FC<IProps> = (props) => {
 
 export default ReviewTranslation;
 
-        ### 📄 src/components/cloud-software/captionizer/components/review-translation/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/cloud-software/icon-refresh.svg, @/assets/images/svg/icon-error.svg, @/assets/images/svg/icon-loading.svg, @/components/common/base-button, @/components/common/inputs/base-input`...
+```
+---
 
-        ```ts
-        import IconRefresh from '@/assets/images/svg/cloud-software/icon-refresh.svg';
+### 📄 src/components/cloud-software/captionizer/components/review-translation/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+> * 🚀 **Exports/Components:** Wrapper, Title, TabList, WrapperTabItem, TabItem...
+
+```typescript
+import IconRefresh from '@/assets/images/svg/cloud-software/icon-refresh.svg';
 import IconError from '@/assets/images/svg/icon-error.svg';
 import IconLoading from '@/assets/images/svg/icon-loading.svg';
 import { BaseButton } from '@/components/common/base-button';
@@ -8681,14 +9204,16 @@ export const Text = styled.div`
   margin-bottom: 1rem;
 `;
 
-        ### 📄 src/components/cloud-software/captionizer/components/exclude-translation/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/interfaces/cloud-software, @ant-design/icons, next-i18next`
-* 🧩 **Component (Arrow):** `ExcludeTranslation`
-* ww **Hooks:** `useTranslation`
+```
+---
 
-        ```typescript
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/cloud-software/captionizer/components/exclude-translation/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { ICaptionDetail } from '@/interfaces/cloud-software';
 import { CloseOutlined } from '@ant-design/icons';
 import { useTranslation } from 'next-i18next';
@@ -8812,12 +9337,17 @@ const ExcludeTranslation: React.FC<IProps> = (props) => {
 
 export default ExcludeTranslation;
 
-        ### 📄 src/components/cloud-software/captionizer/components/exclude-translation/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/cloud-software/captionizer/components/exclude-translation/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Wrapper, Title, WrapperExclusionTag, ExclusionTag, WrapButton...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
@@ -8889,13 +9419,17 @@ export const ReadButton = styled(BaseButton)`
   }
 `;
 
-        ### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces/cloud-software, next-i18next, react-virtualized`
-* ww **Hooks:** `useEffect, useImperativeHandle, useTranslation`
+```
+---
 
-        ```typescript
-        import { ICaptionDetail } from '@/interfaces/cloud-software';
+### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** CaptionContent
+
+```typescript
+import { ICaptionDetail } from '@/interfaces/cloud-software';
 import { useTranslation } from 'next-i18next';
 import React, { useEffect, useImperativeHandle, useState } from 'react';
 import { AutoSizer, CellMeasurer, CellMeasurerCache, List } from 'react-virtualized';
@@ -9001,12 +9535,17 @@ export const CaptionContent = React.forwardRef<any, IProps>((props, ref) => {
   );
 });
 
-        ### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants/theme, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_WEIGHT } from '@/constants/theme';
+### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** WrapCaptionTitle, TimeTitle, ExistCaptionTitle, WrapCaptionItems
+
+```typescript
+import { FONT_WEIGHT } from '@/constants/theme';
 import styled from 'styled-components';
 
 export const WrapCaptionTitle = styled.div`
@@ -9032,13 +9571,17 @@ export const WrapCaptionItems = styled.div`
   padding-bottom: 2rem;
 `;
 
-        ### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/caption-item/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/inputs/base-input, @/interfaces/cloud-software, @/utils, lodash`
-* ww **Hooks:** `useEffect, useImperativeHandle`
+```
+---
 
-        ```typescript
-        import { BaseInput } from '@/components/common/inputs/base-input';
+### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/caption-item/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** CaptionItemFor
+
+```typescript
+import { BaseInput } from '@/components/common/inputs/base-input';
 import { ICaptionDetail } from '@/interfaces/cloud-software';
 import { formatFrame, htmlDecode } from '@/utils';
 import _ from 'lodash';
@@ -9108,12 +9651,17 @@ export const CaptionItemFor = React.forwardRef<any, IProps>((props, ref) => {
   );
 });
 
-        ### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/caption-item/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/inputs/base-input, styled-components`
+```
+---
 
-        ```ts
-        import { BaseInput } from '@/components/common/inputs/base-input';
+### 📄 src/components/cloud-software/captionizer/components/exclude-translation/caption-content/caption-item/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Time, WrapperTextarea, Textarea, Input, CaptionItem...
+
+```typescript
+import { BaseInput } from '@/components/common/inputs/base-input';
 import styled from 'styled-components';
 
 export const Time = styled.div`
@@ -9145,12 +9693,16 @@ export const PseudoMargin = styled.div`
   height: 1.1rem;
 `;
 
-        ### 📄 src/components/cloud-software/components/CardStatistics.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/cloud-software/components/CardStatistics.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+
+```typescript
+import React from 'react';
 
 import * as S from './index.styles';
 
@@ -9196,12 +9748,17 @@ const CardStatistics = ({
 
 export default CardStatistics;
 
-        ### 📄 src/components/cloud-software/components/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/cloud-software/components/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** Card, LeftInsideCard, RightInsideCard, NumberInsideCard, NumberInsideCardLeft...
+
+```typescript
+import styled from 'styled-components';
 
 interface CardProps {
   $bgColor?: string;
@@ -9265,13 +9822,16 @@ export const SubTitleInsideCard = styled.h2`
   line-height: normal;
 `;
 
-        ### 📄 src/components/cloud-software/youtube-account/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/cloud-software/icon-menu.svg, @/assets/images/svg/cloud-software/icon-refresh.svg, @/assets/images/svg/cloud-software/icon-total-video.svg, @/assets/images/svg/cloud-software/icon-translated-captions.svg, @/assets/images/svg/cloud-software/icon-translated-videos.svg`...
-* ww **Hooks:** `useAppDispatch, useEffect, usePagination, useMemo, useGetDetailUserQuery, useGetTotalVideoInfo, useFeedback`
+```
+---
 
-        ```typescript
-        import IconMenu from '@/assets/images/svg/cloud-software/icon-menu.svg';
+### 📄 src/components/cloud-software/youtube-account/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 28 found
+
+```typescript
+import IconMenu from '@/assets/images/svg/cloud-software/icon-menu.svg';
 import IconRefresh from '@/assets/images/svg/cloud-software/icon-refresh.svg';
 import IconTotalVideos from '@/assets/images/svg/cloud-software/icon-total-video.svg';
 import IconTransCaption from '@/assets/images/svg/cloud-software/icon-translated-captions.svg';
@@ -9780,12 +10340,17 @@ const YoutubeAccountComponent = () => {
 
 export default YoutubeAccountComponent;
 
-        ### 📄 src/components/cloud-software/youtube-account/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/base-modal/BaseModal, @/components/common/base-popover, @/constants, next/image`...
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/cloud-software/youtube-account/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** Wrapper, ContainerTitle, ContainerTitleLeft, ContainerTitleRight, Title...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { BaseModal } from '@/components/common/base-modal/BaseModal';
 import { BasePopover } from '@/components/common/base-popover';
 import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
@@ -10062,13 +10627,16 @@ export const Pagination = styled.div`
   justify-content: end;
 `;
 
-        ### 📄 src/components/cloud-software/youtube-account/current-plan/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/my-profile/icon-question-circle.svg, @/components/cloud-software/youtube-account/icon-level, @/constants, @/stores/auth/auth.slice, @/stores/hooks`...
-* ww **Hooks:** `useAppSelector, useAppDispatch, useMemo, useTranslation`
+```
+---
 
-        ```typescript
-        import IconQuestion from '@/assets/images/svg/my-profile/icon-question-circle.svg';
+### 📄 src/components/cloud-software/youtube-account/current-plan/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 11 found
+
+```typescript
+import IconQuestion from '@/assets/images/svg/my-profile/icon-question-circle.svg';
 import { IConLevel } from '@/components/cloud-software/youtube-account/icon-level';
 import { DATE_FORMAT } from '@/constants';
 import { selectCurrentUser } from '@/stores/auth/auth.slice';
@@ -10113,12 +10681,17 @@ const CurrentPlan = () => {
 
 export default CurrentPlan;
 
-        ### 📄 src/components/cloud-software/youtube-account/current-plan/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/cloud-software/youtube-account/current-plan/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** SubTitle, Wrapper
+
+```typescript
+import styled from 'styled-components';
 
 export const SubTitle = styled.h2`
   color: var(--text-main-color);
@@ -10139,13 +10712,17 @@ export const Wrapper = styled.div`
   cursor: pointer;
 `;
 
-        ### 📄 src/components/cloud-software/youtube-account/icon-level/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/my-profile/icon-bronze-large.svg, @/assets/images/svg/my-profile/icon-bronze-middle.svg, @/assets/images/svg/my-profile/icon-bronze.svg, @/assets/images/svg/my-profile/icon-gold-large.svg, @/assets/images/svg/my-profile/icon-gold-middle.svg`...
-* 🧩 **Component (Arrow):** `IConLevel`
+```
+---
 
-        ```typescript
-        import IconBronzeLarge from '@/assets/images/svg/my-profile/icon-bronze-large.svg';
+### 📄 src/components/cloud-software/youtube-account/icon-level/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 11 found
+> * 🚀 **Exports/Components:** IConLevel
+
+```typescript
+import IconBronzeLarge from '@/assets/images/svg/my-profile/icon-bronze-large.svg';
 import IconBronzeMiddle from '@/assets/images/svg/my-profile/icon-bronze-middle.svg';
 import IconBronze from '@/assets/images/svg/my-profile/icon-bronze.svg';
 import IconGoldLarge from '@/assets/images/svg/my-profile/icon-gold-large.svg';
@@ -10192,14 +10769,17 @@ export const IConLevel: React.FC<IProps> = ({ level, size = 'normal' }: IProps) 
   return level ? IconType[level][size] : null;
 };
 
-        ### 📄 src/components/auth/register-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-label, @/components/common/forms/base-form, @/constants, @/constants/regex, next-i18next`...
-* 🧩 **Component (Arrow):** `RegisterForm`
-* ww **Hooks:** `useRegisterForm, useRouter, useTranslation`
+```
+---
 
-        ```typescript
-        import BaseLabel from '@/components/common/base-label';
+### 📄 src/components/auth/register-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 12 found
+> * 🚀 **Exports/Components:** RegisterForm
+
+```typescript
+import BaseLabel from '@/components/common/base-label';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { NUMBER_CHARACTERS, ROUTER_PATH } from '@/constants';
 import { REGEX_EMAIL } from '@/constants/regex';
@@ -10421,13 +11001,16 @@ export const RegisterForm: React.FC = () => {
   );
 };
 
-        ### 📄 src/components/auth/register-form/index.utils.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/hooks/features/useAuth, @/hooks/use-timer, @/hooks/useFeedback, antd`...
-* ww **Hooks:** `useState, useRegisterMutate, useTimer, useResendVerifyMutate, useFeedback, useForm, useTranslation`
+```
+---
 
-        ```ts
-        import { MESSAGES_ERROR } from '@/constants';
+### 📄 src/components/auth/register-form/index.utils.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 8 found
+
+```typescript
+import { MESSAGES_ERROR } from '@/constants';
 import { useRegisterMutate, useResendVerifyMutate } from '@/hooks/features/useAuth';
 import { useTimer } from '@/hooks/use-timer';
 import { useFeedback } from '@/hooks/useFeedback';
@@ -10560,12 +11143,17 @@ const useRegisterForm = () => {
 
 export default useRegisterForm;
 
-        ### 📄 src/components/auth/register-form/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/layouts/auth-layout/index.styles, react-phone-input-2`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
+### 📄 src/components/auth/register-form/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** Title, PhoneNumber
+
+```typescript
+import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import { FormTitle } from '@/layouts/auth-layout/index.styles';
 import PhoneInput from 'react-phone-input-2';
 import styled, { css } from 'styled-components';
@@ -10612,15 +11200,17 @@ export const PhoneNumber = styled(PhoneInput)<{ phoneCodeValid: boolean }>`
   }
 `;
 
-        ### 📄 src/components/auth/login-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/auth, @/components/common/base-label, @/components/common/forms/base-form, @/constants, @/constants/regex`...
-* 🧩 **Component (Arrow):** `LoginForm`
-* ww **Hooks:** `useState, useAppDispatch, useTimer, useResendVerifyMutate, useRouter, useFeedback, useForm`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```typescript
-        import { login } from '@/api/auth';
+### 📄 src/components/auth/login-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 19 found
+> * 🚀 **Exports/Components:** initValues, LoginForm
+
+```typescript
+import { login } from '@/api/auth';
 import BaseLabel from '@/components/common/base-label';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { INVALID_CODE, LIST_COUNTRY_CODE, MESSAGES_ERROR, ROUTER_PATH } from '@/constants';
@@ -10913,12 +11503,17 @@ export const LoginForm: React.FC = () => {
   );
 };
 
-        ### 📄 src/components/auth/login-form/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE } from '@/constants';
+### 📄 src/components/auth/login-form/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** RememberMeText, ForgotPasswordText
+
+```typescript
+import { FONT_SIZE } from '@/constants';
 import styled from 'styled-components';
 
 export const RememberMeText = styled.span`
@@ -10935,14 +11530,16 @@ export const ForgotPasswordText = styled.div`
   margin-bottom: 1rem;
 `;
 
-        ### 📄 src/components/auth/phone-number-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/auth, @/components/common/base-label, @/components/common/forms/base-form, @/constants, @/hooks/use-timer`...
-* ww **Hooks:** `useState, useTimer, useRouter, useFeedback, useForm, useTranslation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```typescript
-        import { verifyForgotPasswordSms } from '@/api/auth';
+### 📄 src/components/auth/phone-number-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 16 found
+
+```typescript
+import { verifyForgotPasswordSms } from '@/api/auth';
 import BaseLabel from '@/components/common/base-label';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { FIREBASE_ERROR, NUMBER_CHARACTERS, ROUTER_PATH } from '@/constants';
@@ -11287,12 +11884,17 @@ const PhoneNumberForm = (props: IProps) => {
 
 export default PhoneNumberForm;
 
-        ### 📄 src/components/auth/phone-number-form/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/inputs/verification-code-input, @/constants, react-phone-input-2`
+```
+---
 
-        ```ts
-        import { VerificationCodeInput } from '@/components/common/inputs/verification-code-input';
+### 📄 src/components/auth/phone-number-form/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** PhoneNumber, VerificationCodeInputWrapper, TextError
+
+```typescript
+import { VerificationCodeInput } from '@/components/common/inputs/verification-code-input';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import PhoneInput from 'react-phone-input-2';
 import styled, { css } from 'styled-components';
@@ -11359,13 +11961,17 @@ export const TextError = styled.div`
   color: #ff0000;
 `;
 
-        ### 📄 src/components/auth/verify-account/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-check-circle.svg, @/constants, @/layouts/auth-layout, next, next-i18next`...
-* ww **Hooks:** `useRouter, useTranslation`
+```
+---
 
-        ```typescript
-        import IconSuccess from '@/assets/images/svg/icon-check-circle.svg';
+### 📄 src/components/auth/verify-account/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 8 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import IconSuccess from '@/assets/images/svg/icon-check-circle.svg';
 import { DEFAULT_LOCALE, ROUTER_PATH } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import * as Auth from '@/layouts/auth-layout/index.styles';
@@ -11406,14 +12012,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 VerifyRegister.layout = AuthLayout;
 export default VerifyRegister;
 
-        ### 📄 src/components/auth/forgot-password-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, next-i18next, next/router`
-* 🧩 **Component (Arrow):** `ForgotPasswordForm`
-* ww **Hooks:** `useRouter, useTranslation`
+```
+---
 
-        ```typescript
-        import { ROUTER_PATH } from '@/constants';
+### 📄 src/components/auth/forgot-password-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+> * 🚀 **Exports/Components:** METHOD_TYPE, ForgotPasswordForm
+
+```typescript
+import { ROUTER_PATH } from '@/constants';
 import * as Auth from '@/layouts/auth-layout/index.styles';
 import { Radio } from 'antd';
 import { useTranslation } from 'next-i18next';
@@ -11480,12 +12089,17 @@ export const ForgotPasswordForm: React.FC = () => {
   );
 };
 
-        ### 📄 src/components/auth/forgot-password-form/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-radio, styled-components`
+```
+---
 
-        ```ts
-        import { BaseRadio } from '@/components/common/base-radio';
+### 📄 src/components/auth/forgot-password-form/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** RadioSelect, Space
+
+```typescript
+import { BaseRadio } from '@/components/common/base-radio';
 import styled from 'styled-components';
 
 export const RadioSelect = styled(BaseRadio.Group)``;
@@ -11496,13 +12110,16 @@ export const Space = styled.div`
   gap: 1rem;
 `;
 
-        ### 📄 src/components/auth/email-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-label, @/components/common/forms/base-form, @/constants, @/constants/regex, @/hooks/features/useAuth`...
-* ww **Hooks:** `useState, useTimer, useRouter, useFeedback, useForgotPasswordMutate, useForm, useTranslation`
+```
+---
 
-        ```typescript
-        import BaseLabel from '@/components/common/base-label';
+### 📄 src/components/auth/email-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 14 found
+
+```typescript
+import BaseLabel from '@/components/common/base-label';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { ROUTER_PATH } from '@/constants';
 import { REGEX_EMAIL } from '@/constants/regex';
@@ -11650,12 +12267,16 @@ const EmailForm = (props: IProps) => {
 
 export default EmailForm;
 
-        ### 📄 src/components/auth/verify-error/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-triangle-warning.svg, react`
+```
+---
 
-        ```typescript
-        import IconWarning from '@/assets/images/svg/icon-triangle-warning.svg';
+### 📄 src/components/auth/verify-error/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+
+```typescript
+import IconWarning from '@/assets/images/svg/icon-triangle-warning.svg';
 import * as Auth from '@/layouts/auth-layout/index.styles';
 import React from 'react';
 
@@ -11681,14 +12302,17 @@ const VerifyError = (props: IProps) => {
 };
 export default VerifyError;
 
-        ### 📄 src/components/auth/new-password-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-label, @/components/common/forms/base-form, @/constants, @/hooks/features/useAuth, @/hooks/useFeedback`...
-* 🧩 **Component (Arrow):** `NewPasswordForm`
-* ww **Hooks:** `useRouter, useFeedback, useResetPasswordMutate, useForm, useTranslation`
+```
+---
 
-        ```typescript
-        import BaseLabel from '@/components/common/base-label';
+### 📄 src/components/auth/new-password-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 11 found
+> * 🚀 **Exports/Components:** NewPasswordForm
+
+```typescript
+import BaseLabel from '@/components/common/base-label';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { ROUTER_PATH } from '@/constants';
 import { useResetPasswordMutate } from '@/hooks/features/useAuth';
@@ -11823,14 +12447,16 @@ export const NewPasswordForm: React.FC = () => {
   );
 };
 
-        ### 📄 src/components/modals/modal-plan-overview/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/supcription-plan, @/assets/images/svg/cloud-software/icon-info.svg, @/assets/images/svg/my-profile/icon-close-big.svg, @/components/common/base-modal/BaseModal, @/components/common/base-plan`...
-* ww **Hooks:** `useState, useAppDispatch, useMemo, useChangePlan, useRouter, usePaymentOrder, useFeedback`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```typescript
-        import { getOrderDetail } from '@/api/supcription-plan';
+### 📄 src/components/modals/modal-plan-overview/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 26 found
+
+```typescript
+import { getOrderDetail } from '@/api/supcription-plan';
 import IconInfo from '@/assets/images/svg/cloud-software/icon-info.svg';
 import IconClose from '@/assets/images/svg/my-profile/icon-close-big.svg';
 import { BaseModal } from '@/components/common/base-modal/BaseModal';
@@ -12353,12 +12979,17 @@ const ModalPlanOverview = () => {
 
 export default ModalPlanOverview;
 
-        ### 📄 src/components/modals/modal-plan-overview/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-modal/BaseModal, antd, styled-components`
+```
+---
 
-        ```ts
-        import { BaseModal } from '@/components/common/base-modal/BaseModal';
+### 📄 src/components/modals/modal-plan-overview/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** ModalPlan, Close, Header, Title, SubTitle...
+
+```typescript
+import { BaseModal } from '@/components/common/base-modal/BaseModal';
 import { Col, Row } from 'antd';
 import styled from 'styled-components';
 
@@ -12445,13 +13076,16 @@ export const Restart = styled.span`
   cursor: pointer;
 `;
 
-        ### 📄 src/components/modals/modal-plan-overview/cancel/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/interfaces/plan-overview, @/stores/auth/auth.slice, @/stores/hooks, dayjs`...
-* ww **Hooks:** `useAppSelector, useMemo, useTranslation`
+```
+---
 
-        ```typescript
-        import { DATE_FORMAT } from '@/constants';
+### 📄 src/components/modals/modal-plan-overview/cancel/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 8 found
+
+```typescript
+import { DATE_FORMAT } from '@/constants';
 import { InfoPlan } from '@/interfaces/plan-overview';
 import { selectCurrentUser } from '@/stores/auth/auth.slice';
 import { useAppSelector } from '@/stores/hooks';
@@ -12522,12 +13156,17 @@ const CancelPlanModal = ({ currentPlanInfo, onFinish, onKeep, loadingBtn }: IPro
 
 export default CancelPlanModal;
 
-        ### 📄 src/components/modals/modal-plan-overview/cancel/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-plan-overview/cancel/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Wrapper, Title, ButtonGroup, Button, Card...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div``;
@@ -12591,13 +13230,16 @@ export const PlanData = styled.div`
   justify-content: space-between;
 `;
 
-        ### 📄 src/components/modals/modal-plan-overview/checkout/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-back-circle.svg, @/assets/images/svg/my-profile/icon-paypal.svg, @/constants, @/interfaces, @/interfaces/plan-overview`...
-* ww **Hooks:** `useAppSelector, useTranslation`
+```
+---
 
-        ```typescript
-        import IconBack from '@/assets/images/svg/icon-back-circle.svg';
+### 📄 src/components/modals/modal-plan-overview/checkout/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 13 found
+
+```typescript
+import IconBack from '@/assets/images/svg/icon-back-circle.svg';
 import IconPaypal from '@/assets/images/svg/my-profile/icon-paypal.svg';
 import { DATE_FORMAT } from '@/constants';
 import { TYPE_PURCHARE_PLAN } from '@/interfaces';
@@ -12741,12 +13383,17 @@ const Checkout = ({
 
 export default Checkout;
 
-        ### 📄 src/components/modals/modal-plan-overview/checkout/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/modals/modal-plan-overview/checkout/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** Wrapper, Header, Title, Body, Card...
+
+```typescript
+import styled from 'styled-components';
 
 export const Wrapper = styled.div``;
 
@@ -12860,13 +13507,16 @@ export const CardDesc = styled.p`
   }
 `;
 
-        ### 📄 src/components/modals/modal-plan-overview/checkout/payment-method/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/plugins/paypal, @paypal/react-paypal-js, @paypal/react-paypal-js, next-i18next`
-* ww **Hooks:** `useState, useEffect, useTranslation, useImperativeHandle, usePayPalCardFields`
+```
+---
 
-        ```typescript
-        import { paypalConfig } from '@/plugins/paypal';
+### 📄 src/components/modals/modal-plan-overview/checkout/payment-method/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+
+```typescript
+import { paypalConfig } from '@/plugins/paypal';
 import type { CardFieldsOnApproveData, OnApproveData } from '@paypal/paypal-js';
 import { PayPalScriptProvider, ReactPayPalScriptOptions } from '@paypal/react-paypal-js';
 import {
@@ -13047,12 +13697,17 @@ const PaymentMethod = (props: IPaymentProps) => {
 
 export default PaymentMethod;
 
-        ### 📄 src/components/modals/modal-plan-overview/checkout/payment-method/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @paypal/react-paypal-js, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-plan-overview/checkout/payment-method/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** ButtonPay, WrapperDivide, DivideText, Divide, Container...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import {
   PayPalCVVField,
   PayPalExpiryField,
@@ -13163,13 +13818,16 @@ export const TextError = styled.div`
   margin: 6px 0px;
 `;
 
-        ### 📄 src/components/modals/modal-plan-overview/downgrage/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/cloud-software/index.utils, @/components/common/base-checkbox, @/constants, @/hooks/usePagination, @/interfaces`...
-* ww **Hooks:** `useState, useAppDispatch, useEffect, usePagination, useMemo, useRef, useYoutubeAccount`
+```
+---
 
-        ```typescript
-        import useYoutubeAccount from '@/components/cloud-software/index.utils';
+### 📄 src/components/modals/modal-plan-overview/downgrage/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 15 found
+
+```typescript
+import useYoutubeAccount from '@/components/cloud-software/index.utils';
 import { BaseCheckbox } from '@/components/common/base-checkbox';
 import { DATE_FORMAT, RANK_NAME } from '@/constants';
 import { usePagination } from '@/hooks/usePagination';
@@ -13403,12 +14061,17 @@ const DownGradePlan = ({
 
 export default DownGradePlan;
 
-        ### 📄 src/components/modals/modal-plan-overview/downgrage/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-plan-overview/downgrage/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Wrapper, Title, AccoutSelectWrapper, CheckboxWrapper, Description...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -13505,13 +14168,16 @@ export const PlanData = styled.div`
   justify-content: space-between;
 `;
 
-        ### 📄 src/components/modals/modal-confirm-plan/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/stores/auth/auth.slice, @/stores/hooks, dayjs, next-i18next`...
-* ww **Hooks:** `useAppSelector, useMemo, useTranslation`
+```
+---
 
-        ```typescript
-        import { DATE_FORMAT, TType, TypeConfirm } from '@/constants';
+### 📄 src/components/modals/modal-confirm-plan/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+
+```typescript
+import { DATE_FORMAT, TType, TypeConfirm } from '@/constants';
 import { selectCurrentUser } from '@/stores/auth/auth.slice';
 import { useAppSelector } from '@/stores/hooks';
 import dayjs from 'dayjs';
@@ -13611,13 +14277,16 @@ const ModalPlanConfirm = ({ typeConfirm, isOpen, onOK }: IProps) => {
 
 export default ModalPlanConfirm;
 
-        ### 📄 src/components/modals/modal-route-change/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/modals/modal-confirm, @/constants, @/stores/auth/auth.slice, @/stores/hooks, @/stores/progress/progress.slice`...
-* ww **Hooks:** `useState, useAppDispatch, useEffect, useMemo, useRouter, useAppSelector, useTranslation`
+```
+---
 
-        ```typescript
-        import ModalConfirm from '@/components/modals/modal-confirm';
+### 📄 src/components/modals/modal-route-change/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 10 found
+
+```typescript
+import ModalConfirm from '@/components/modals/modal-confirm';
 import { TType } from '@/constants';
 import { selectCurrentUser } from '@/stores/auth/auth.slice';
 import { useAppDispatch, useAppSelector } from '@/stores/hooks';
@@ -13723,12 +14392,17 @@ const RouteChangeWrapper = ({ children }: PropsWithChildren) => {
 
 export default RouteChangeWrapper;
 
-        ### 📄 src/components/modals/modal-route-change/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/modals/modal-route-change/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** ModalDesc
+
+```typescript
+import styled from 'styled-components';
 
 export const ModalDesc = styled.div`
   color: var(--text-main-color);
@@ -13741,13 +14415,16 @@ export const ModalDesc = styled.div`
   white-space: break-spaces;
 `;
 
-        ### 📄 src/components/modals/modal-finish-update/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/modals/success.svg, @/components/common/base-modal/BaseModal, next-i18next, react`
-* ww **Hooks:** `useTranslation`
+```
+---
 
-        ```typescript
-        import IconSuccess from '@/assets/images/svg/modals/success.svg';
+### 📄 src/components/modals/modal-finish-update/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+
+```typescript
+import IconSuccess from '@/assets/images/svg/modals/success.svg';
 import { BaseModal } from '@/components/common/base-modal/BaseModal';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
@@ -13828,12 +14505,17 @@ const ModalFinishUpdate = ({ isOpen, text, subText, onClose, videoId }: ModalFin
 
 export default ModalFinishUpdate;
 
-        ### 📄 src/components/modals/modal-finish-update/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-finish-update/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Title, Icon, Text, SubTextItem, SubText...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
@@ -13900,12 +14582,16 @@ export const Link = styled.a`
   text-decoration: underline;
 `;
 
-        ### 📄 src/components/modals/modal-confirm/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/modals/error.svg, @/assets/images/svg/modals/reminder.svg, @/assets/images/svg/modals/sad-face.svg, @/assets/images/svg/modals/success.svg, @/assets/images/svg/modals/warning.svg`...
+```
+---
 
-        ```typescript
-        import IconError from '@/assets/images/svg/modals/error.svg';
+### 📄 src/components/modals/modal-confirm/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+
+```typescript
+import IconError from '@/assets/images/svg/modals/error.svg';
 import IconReminder from '@/assets/images/svg/modals/reminder.svg';
 import IconSad from '@/assets/images/svg/modals/sad-face.svg';
 import IconSuccess from '@/assets/images/svg/modals/success.svg';
@@ -14033,12 +14719,17 @@ const ModalConfirm = ({
 
 export default ModalConfirm;
 
-        ### 📄 src/components/modals/modal-confirm/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-confirm/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Title, Icon, Content, ButtonWrapper, Button
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
@@ -14075,14 +14766,17 @@ export const Button = styled(BaseButton)<{ bg: string; color: string; border: st
   min-width: 150px;
 `;
 
-        ### 📄 src/components/modals/modal-language-limit/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/cloud-software/youtube-account/icon-level, @/components/common/base-modal/BaseModal, @/interfaces, @/stores/auth/auth.slice, @/stores/hooks`...
-* 🧩 **Component (Arrow):** `ModalLanguageLimit`
-* ww **Hooks:** `useAppSelector, useAppDispatch, useTranslation`
+```
+---
 
-        ```typescript
-        import { IConLevel } from '@/components/cloud-software/youtube-account/icon-level';
+### 📄 src/components/modals/modal-language-limit/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+> * 🚀 **Exports/Components:** ModalLanguageLimit
+
+```typescript
+import { IConLevel } from '@/components/cloud-software/youtube-account/icon-level';
 import { BaseModal } from '@/components/common/base-modal/BaseModal';
 import { LEVEL_USER, LEVEL_USER_LIMIT_LANGUAGE } from '@/interfaces';
 import { selectCurrentUser } from '@/stores/auth/auth.slice';
@@ -14211,12 +14905,17 @@ export const ModalLanguageLimit: React.FC<IProps> = (props) => {
   );
 };
 
-        ### 📄 src/components/modals/modal-language-limit/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-language-limit/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** PopupContent, Title, WrapSubtitle, SubtitleText, SubtitleTextBold...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
@@ -14259,14 +14958,16 @@ export const ActionButton = styled(BaseButton)`
   width: 190px !important;
 `;
 
-        ### 📄 src/components/modals/modal-reminder/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/supcription-plan, @/components/modals/modal-confirm, @/components/modals/modal-plan-overview, @/components/modals/modal-plan-overview/checkout, @/constants`...
-* ww **Hooks:** `useState, useAppDispatch, useMemo, usePaymentOrder, useFeedback, useCallback, usePaymentCapture`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```typescript
-        import { getOrderDetail } from '@/api/supcription-plan';
+### 📄 src/components/modals/modal-reminder/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 18 found
+
+```typescript
+import { getOrderDetail } from '@/api/supcription-plan';
 import ModalConfirm from '@/components/modals/modal-confirm';
 import ModalPlanOverview from '@/components/modals/modal-plan-overview';
 import Checkout from '@/components/modals/modal-plan-overview/checkout';
@@ -14499,12 +15200,17 @@ const ReminderModal = () => {
 
 export default ReminderModal;
 
-        ### 📄 src/components/modals/modal-reminder/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/base-modal/BaseModal, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-reminder/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** ButtonGroup, Button, PlanDescription, CheckoutModal
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { BaseModal } from '@/components/common/base-modal/BaseModal';
 import styled from 'styled-components';
 
@@ -14540,12 +15246,16 @@ export const CheckoutModal = styled(BaseModal)`
   }
 `;
 
-        ### 📄 src/components/modals/modal-loading/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-loading.svg, @/components/common/base-modal/BaseModal, react`
+```
+---
 
-        ```typescript
-        import IconLoading from '@/assets/images/svg/icon-loading.svg';
+### 📄 src/components/modals/modal-loading/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+
+```typescript
+import IconLoading from '@/assets/images/svg/icon-loading.svg';
 import { BaseModal } from '@/components/common/base-modal/BaseModal';
 import React from 'react';
 
@@ -14571,12 +15281,17 @@ const ModalLoading = ({ isOpen, title, desc }: ModalLoadingProps) => {
 
 export default ModalLoading;
 
-        ### 📄 src/components/modals/modal-loading/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_WEIGHT } from '@/constants';
+### 📄 src/components/modals/modal-loading/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Title, Icon, Text
+
+```typescript
+import { FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
 export const Title = styled.div`
@@ -14598,14 +15313,16 @@ export const Text = styled.div`
   font-weight: ${FONT_WEIGHT.medium};
 `;
 
-        ### 📄 src/components/modals/modal-plan/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/supcription-plan, @/components/modals/modal-confirm, @/components/modals/modal-plan-overview, @/components/modals/modal-plan-overview/checkout, @/constants`...
-* ww **Hooks:** `useState, useAppDispatch, useMemo, usePaymentOrder, useFeedback, useCallback, usePaymentCapture`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```typescript
-        import { getOrderDetail } from '@/api/supcription-plan';
+### 📄 src/components/modals/modal-plan/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 18 found
+
+```typescript
+import { getOrderDetail } from '@/api/supcription-plan';
 import ModalConfirm from '@/components/modals/modal-confirm';
 import ModalPlanOverview from '@/components/modals/modal-plan-overview';
 import Checkout from '@/components/modals/modal-plan-overview/checkout';
@@ -14839,12 +15556,17 @@ const PlanModal = () => {
 
 export default PlanModal;
 
-        ### 📄 src/components/modals/modal-plan/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/base-modal/BaseModal, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/modals/modal-plan/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** ButtonGroup, Button, Note, Text, PlanDescription...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { BaseModal } from '@/components/common/base-modal/BaseModal';
 import styled from 'styled-components';
 
@@ -14890,14 +15612,16 @@ export const CheckoutModal = styled(BaseModal)`
   }
 `;
 
-        ### 📄 src/components/dashboard/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/users, @/assets/images/dashboard/coming-soon.png, @/assets/images/dashboard/image1.png, @/assets/images/dashboard/image2.png, @/assets/images/dashboard/image3.png`...
-* ww **Hooks:** `useAppDispatch, useEffect, useRouter, useAppSelector, useTranslation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```typescript
-        import { getDetailUser } from '@/api/users';
+### 📄 src/components/dashboard/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 35 found
+
+```typescript
+import { getDetailUser } from '@/api/users';
 import ComingSoon from '@/assets/images/dashboard/coming-soon.png';
 import Image1 from '@/assets/images/dashboard/image1.png';
 import Image2 from '@/assets/images/dashboard/image2.png';
@@ -15384,12 +16108,17 @@ const DashBoard = () => {
 
 export default DashBoard;
 
-        ### 📄 src/components/dashboard/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/dashboard/slide-bg.png, @/constants, styled-components, swiper/react`
+```
+---
 
-        ```ts
-        import slideBackground from '@/assets/images/dashboard/slide-bg.png';
+### 📄 src/components/dashboard/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** LayoutMaster, WrapperSlideContainer, SwiperContainer, Image, WrapperHeader...
+
+```typescript
+import slideBackground from '@/assets/images/dashboard/slide-bg.png';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 import { Swiper } from 'swiper/react';
@@ -15858,21 +16587,30 @@ export const Copyright = styled.div`
   width: 440px;
 `;
 
-        ### 📄 src/components/common/base-autocomplete/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { AutoComplete as BaseAutoComplete } from 'antd';
+### 📄 src/components/common/base-autocomplete/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { AutoComplete as BaseAutoComplete } from 'antd';
 export type { AutoCompleteProps as BaseAutoCompleteProps } from 'antd';
 
-        ### 📄 src/components/common/base-badge/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/utils, antd, react`
-* wb **Type/Intf:** `BaseBadgeProps`
+```
+---
 
-        ```typescript
-        import { mapBadgeStatus } from '@/utils';
+### 📄 src/components/common/base-badge/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export type BaseBadgeProps = BadgeProps;
+> * 🚀 **Exports/Components:** BaseBadge
+
+```typescript
+import { mapBadgeStatus } from '@/utils';
 import { Badge, BadgeProps } from 'antd';
 import React from 'react';
 
@@ -15896,12 +16634,17 @@ export const BaseBadge: IBaseBadge = ({ status, children, count, ...props }) => 
 
 BaseBadge.Ribbon = Badge.Ribbon;
 
-        ### 📄 src/components/common/base-badge/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/utils, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE } from '@/constants';
+### 📄 src/components/common/base-badge/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** Badge
+
+```typescript
+import { FONT_SIZE } from '@/constants';
 import { defineColorBySeverity } from '@/utils';
 import { Badge as AntBadge } from 'antd';
 import styled from 'styled-components';
@@ -15923,21 +16666,29 @@ export const Badge = styled(AntBadge)<BadgeProps>`
   }
 `;
 
-        ### 📄 src/components/common/base-tooltip/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Tooltip as BaseTooltip } from 'antd';
+### 📄 src/components/common/base-tooltip/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Tooltip as BaseTooltip } from 'antd';
 export type { TooltipProps as BaseTooltipProps } from 'antd';
 
-        ### 📄 src/components/common/base-plan/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/cloud-software/icon-cup.svg, @/assets/images/svg/my-profile/icon-checked.svg, @/assets/images/svg/my-profile/icon-fire.svg, @/components/cloud-software/youtube-account/icon-level, @/interfaces`...
-* ww **Hooks:** `useAppSelector, useTranslation`
+```
+---
 
-        ```typescript
-        import IconCup from '@/assets/images/svg/cloud-software/icon-cup.svg';
+### 📄 src/components/common/base-plan/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 12 found
+> * 🚀 **Exports/Components:** BaseCardPlan
+
+```typescript
+import IconCup from '@/assets/images/svg/cloud-software/icon-cup.svg';
 import IconChecked from '@/assets/images/svg/my-profile/icon-checked.svg';
 import IconFire from '@/assets/images/svg/my-profile/icon-fire.svg';
 import { IConLevel } from '@/components/cloud-software/youtube-account/icon-level';
@@ -16047,12 +16798,17 @@ export const BaseCardPlan = ({
   );
 };
 
-        ### 📄 src/components/common/base-plan/index.styles.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        import styled, { css } from 'styled-components';
+### 📄 src/components/common/base-plan/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Container, MostPopular, Card, ContainerLevel, Level...
+
+```typescript
+import styled, { css } from 'styled-components';
 
 import { BaseButton } from '../base-button';
 
@@ -16254,13 +17010,18 @@ export const InfoWrapper = styled.div`
   margin-top: 8px;
 `;
 
-        ### 📄 src/components/common/base-checkbox/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseCheckboxProps`
+```
+---
 
-        ```typescript
-        import { CheckboxProps } from 'antd';
+### 📄 src/components/common/base-checkbox/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseCheckboxProps = CheckboxProps;
+> * 🚀 **Exports/Components:** BaseCheckbox
+
+```typescript
+import { CheckboxProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -16282,12 +17043,17 @@ export const BaseCheckbox = Checkbox as IBaseCheckbox;
 
 BaseCheckbox.Group = S.CheckboxGroup;
 
-        ### 📄 src/components/common/base-checkbox/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Checkbox as AntdCheckbox } from 'antd';
+### 📄 src/components/common/base-checkbox/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Checkbox, CheckboxGroup
+
+```typescript
+import { Checkbox as AntdCheckbox } from 'antd';
 import styled from 'styled-components';
 
 const { Group } = AntdCheckbox;
@@ -16322,14 +17088,18 @@ export const CheckboxGroup = styled(Group)`
   }
 `;
 
-        ### 📄 src/components/common/base-hashtag/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `IHashTag`
-* 🧩 **Component (Arrow):** `BaseHashTag`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/base-hashtag/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🛠️ **Types/Interfaces:** export interface IHashTag
+> * 🚀 **Exports/Components:** BaseHashTag
+
+```typescript
+import React from 'react';
 
 import * as S from './index.styles';
 
@@ -16374,12 +17144,17 @@ export const BaseHashTag: React.FC<BaseHashTagProps> = ({
   );
 };
 
-        ### 📄 src/components/common/base-hashtag/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @ant-design/icons, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE } from '@/constants';
+### 📄 src/components/common/base-hashtag/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** RemoveTagWrapper, RemoveTagIcon, TagWrapper
+
+```typescript
+import { FONT_SIZE } from '@/constants';
 import { CloseOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
@@ -16406,12 +17181,17 @@ export const TagWrapper = styled.span`
   font-size: ${FONT_SIZE.xs};
 `;
 
-        ### 📄 src/components/common/base-carousel/index.tsx
-        > **Context Summary**
-        * ww **Hooks:** `useEffect, useCallback, useRef`
+```
+---
 
-        ```typescript
-        // @ts-nocheck
+### 📄 src/components/common/base-carousel/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** BaseCarousel
+
+```typescript
+// @ts-nocheck
 import React, { useCallback, useEffect, useRef } from 'react';
 import Slider, { Settings } from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16495,13 +17275,17 @@ export const BaseCarousel = React.forwardRef<Slider, Settings>(
   }
 );
 
-        ### 📄 src/components/common/base-carousel/carousel-arrow/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces, react, react-slick`
-* 🧩 **Component (Arrow):** `CarouselArrow`
+```
+---
 
-        ```typescript
-        import { WithChildrenProps } from '@/interfaces';
+### 📄 src/components/common/base-carousel/carousel-arrow/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** CarouselArrow
+
+```typescript
+import { WithChildrenProps } from '@/interfaces';
 import React from 'react';
 import { CustomArrowProps } from 'react-slick';
 
@@ -16514,12 +17298,17 @@ export const CarouselArrow: React.FC<WithChildrenProps<CustomArrowProps>> = ({
   return <S.ArrowWrapper {...props}>{children}</S.ArrowWrapper>;
 };
 
-        ### 📄 src/components/common/base-carousel/carousel-arrow/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react-slick, styled-components`
+```
+---
 
-        ```ts
-        import { CustomArrowProps } from 'react-slick';
+### 📄 src/components/common/base-carousel/carousel-arrow/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** ArrowWrapper
+
+```typescript
+import { CustomArrowProps } from 'react-slick';
 import styled from 'styled-components';
 
 export const ArrowWrapper = styled.div.withConfig({
@@ -16539,13 +17328,18 @@ export const ArrowWrapper = styled.div.withConfig({
   }
 `;
 
-        ### 📄 src/components/common/base-collapse/base-collapse.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseCollapseProps`
+```
+---
 
-        ```typescript
-        import { Collapse as AntdCollapse, CollapseProps } from 'antd';
+### 📄 src/components/common/base-collapse/base-collapse.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🛠️ **Types/Interfaces:** export type BaseCollapseProps = CollapseProps;
+> * 🚀 **Exports/Components:** BaseCollapse
+
+```typescript
+import { Collapse as AntdCollapse, CollapseProps } from 'antd';
 import React from 'react';
 
 export type BaseCollapseProps = CollapseProps;
@@ -16560,13 +17354,17 @@ export const BaseCollapse: IBaseCollapse = (props) => {
 
 BaseCollapse.Panel = AntdCollapse.Panel;
 
-        ### 📄 src/components/common/base-modal/BaseModal.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, react`
-* 🧩 **Component (Arrow):** `BaseModal`
+```
+---
 
-        ```typescript
-        import { modalSizes } from '@/constants';
+### 📄 src/components/common/base-modal/BaseModal.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** BaseModal
+
+```typescript
+import { modalSizes } from '@/constants';
 import { Modal, ModalProps } from 'antd';
 import React from 'react';
 
@@ -16584,21 +17382,28 @@ export const BaseModal: React.FC<BaseModalProps> = ({ size = 'medium', children,
   );
 };
 
-        ### 📄 src/components/common/base-space/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Space as BaseSpace } from 'antd';
+### 📄 src/components/common/base-space/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Space as BaseSpace } from 'antd';
 export type { SpaceProps as BaseSpaceProps } from 'antd';
 
-        ### 📄 src/components/common/container-wrapper/index.tsx
-        > **Context Summary**
-        * 🧩 **Component (Arrow):** `ContainerWrapper`
-* ww **Hooks:** `useState, useEffect`
+```
+---
 
-        ```typescript
-        import React, { ReactNode, useEffect, useState } from 'react';
+### 📄 src/components/common/container-wrapper/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+
+```typescript
+import React, { ReactNode, useEffect, useState } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -16616,22 +17421,30 @@ const ContainerWrapper: React.FC<Props> = ({ children }) => {
 
 export default ContainerWrapper;
 
-        ### 📄 src/components/common/base-skeleton/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Skeleton as BaseSkeleton } from 'antd';
+### 📄 src/components/common/base-skeleton/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Skeleton as BaseSkeleton } from 'antd';
 export type { SkeletonProps as BaseSkeletonProps } from 'antd';
 
-        ### 📄 src/components/common/forms/base-buttons-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/forms/base-form, @/components/common/forms/components/base-buttons-group, @/components/common/forms/components/base-form-item, @/components/common/forms/components/base-form-list, @/components/common/forms/components/base-form-title`...
-* wb **Type/Intf:** `BaseButtonsFormProps`
-* ww **Hooks:** `useForm`
+```
+---
 
-        ```typescript
-        import { BaseForm, BaseFormProps, IBaseForm } from '@/components/common/forms/base-form';
+### 📄 src/components/common/forms/base-buttons-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🛠️ **Types/Interfaces:** export interface BaseButtonsFormProps extends BaseFormProps
+> * 🚀 **Exports/Components:** BaseButtonsForm
+
+```typescript
+import { BaseForm, BaseFormProps, IBaseForm } from '@/components/common/forms/base-form';
 import { BaseButtonsGroup } from '@/components/common/forms/components/base-buttons-group';
 import { BaseFormItem } from '@/components/common/forms/components/base-form-item';
 import { BaseFormList } from '@/components/common/forms/components/base-form-list';
@@ -16676,16 +17489,18 @@ BaseButtonsForm.List = BaseFormList;
 BaseButtonsForm.useForm = BaseForm.useForm;
 BaseButtonsForm.Provider = BaseForm.Provider;
 
-        ### 📄 src/components/common/forms/base-form/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/forms/components/base-form-item, @/components/common/forms/components/base-form-list, @/components/common/forms/components/base-form-title, antd`
-* wb **Type/Intf:** `BaseFormProps`
-* wb **Type/Intf:** `BaseFormInstance`
-* wb **Type/Intf:** `IBaseForm`
-* ww **Hooks:** `useFeedback`
+```
+---
 
-        ```typescript
-        import { BaseFormItem } from '@/components/common/forms/components/base-form-item';
+### 📄 src/components/common/forms/base-form/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🛠️ **Types/Interfaces:** export type BaseFormProps = Omit<ComponentProps<typeof Form>, 'onFinish'> &, export type BaseFormInstance = FormInstance;, export interface IBaseForm<T> extends React.FC<T>
+> * 🚀 **Exports/Components:** BaseForm
+
+```typescript
+import { BaseFormItem } from '@/components/common/forms/components/base-form-item';
 import { BaseFormList } from '@/components/common/forms/components/base-form-list';
 import { BaseFormTitle } from '@/components/common/forms/components/base-form-title';
 // import { useFeedback } from '@/hooks/useFeedback';
@@ -16730,12 +17545,17 @@ BaseForm.List = BaseFormList;
 BaseForm.useForm = Form.useForm;
 BaseForm.Provider = Form.Provider;
 
-        ### 📄 src/components/common/forms/components/base-form-title/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-typography, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseTypography } from '@/components/common/base-typography';
+### 📄 src/components/common/forms/components/base-form-title/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** BaseFormTitle
+
+```typescript
+import { BaseTypography } from '@/components/common/base-typography';
 import { media } from '@/constants';
 import styled from 'styled-components';
 
@@ -16749,13 +17569,17 @@ export const BaseFormTitle = styled(BaseTypography.Text)`
   }
 `;
 
-        ### 📄 src/components/common/forms/components/base-buttons-group/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/base-col, @/components/common/base-row, react`
-* 🧩 **Component (Arrow):** `BaseButtonsGroup`
+```
+---
 
-        ```typescript
-        import { BaseButton, BaseButtonProps } from '@/components/common/base-button';
+### 📄 src/components/common/forms/components/base-buttons-group/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** BaseButtonsGroup
+
+```typescript
+import { BaseButton, BaseButtonProps } from '@/components/common/base-button';
 import { BaseCol } from '@/components/common/base-col';
 import { BaseRow } from '@/components/common/base-row';
 import React from 'react';
@@ -16788,25 +17612,35 @@ export const BaseButtonsGroup: React.FC<BaseButtonsGroupProps> = ({
   );
 };
 
-        ### 📄 src/components/common/forms/components/base-buttons-group/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/common/forms/components/base-buttons-group/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Btn
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import styled from 'styled-components';
 
 export const Btn = styled(BaseButton)`
   width: 100%;
 `;
 
-        ### 📄 src/components/common/forms/components/base-form-item/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, react`
-* wb **Type/Intf:** `BaseFormItemProps`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, media } from '@/constants';
+### 📄 src/components/common/forms/components/base-form-item/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export type BaseFormItemProps = FormItemProps;
+> * 🚀 **Exports/Components:** BaseFormItem
+
+```typescript
+import { FONT_SIZE, media } from '@/constants';
 import { Form, FormItemProps } from 'antd';
 import React from 'react';
 import styled, { css } from 'styled-components';
@@ -16934,48 +17768,68 @@ export const BaseFormItem = styled(Form.Item as React.FC<FormItemProps>)<Interna
   }
 `;
 
-        ### 📄 src/components/common/forms/components/base-form-list/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Form } from 'antd';
+### 📄 src/components/common/forms/components/base-form-list/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** BaseFormList
+
+```typescript
+import { Form } from 'antd';
 import styled from 'styled-components';
 
 export const BaseFormList = styled(Form.List)``;
 
-        ### 📄 src/components/common/base-typography/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Typography as BaseTypography } from 'antd';
+### 📄 src/components/common/base-typography/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Typography as BaseTypography } from 'antd';
 export type { TypographyProps as BaseTypographyProps } from 'antd';
 
-        ### 📄 src/components/common/base-spin/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Spin as BaseSpin } from 'antd';
+### 📄 src/components/common/base-spin/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Spin as BaseSpin } from 'antd';
 export type { SpinProps as BaseSpinProps } from 'antd';
 
-        ### 📄 src/components/common/base-cascader/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Cascader as BaseCascader } from 'antd';
+### 📄 src/components/common/base-cascader/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Cascader as BaseCascader } from 'antd';
 export type { CascaderProps as BaseCascaderProps } from 'antd';
 
-        ### 📄 src/components/common/base-loading/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-spinner/global-spinner, @/styles/themes/theme-variables, react, styled-components`
-* 🧩 **Component (Arrow):** `BaseLoading`
-* ww **Hooks:** `useAppSelector`
+```
+---
 
-        ```typescript
-        import { GlobalSpinner } from '@/components/common/base-spinner/global-spinner';
+### 📄 src/components/common/base-loading/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** BaseLoading
+
+```typescript
+import { GlobalSpinner } from '@/components/common/base-spinner/global-spinner';
 // import { useAppSelector } from "@/hooks/reduxHooks";
 import { themeObject } from '@/styles/themes/theme-variables';
 import React from 'react';
@@ -17006,14 +17860,18 @@ const SpinnerContainer = styled.div`
   justify-content: center;
 `;
 
-        ### 📄 src/components/common/base-result/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseResultProps`
-* 🧩 **Component (Arrow):** `BaseResult`
+```
+---
 
-        ```typescript
-        import { ResultProps } from 'antd';
+### 📄 src/components/common/base-result/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseResultProps = ResultProps;
+> * 🚀 **Exports/Components:** BaseResult
+
+```typescript
+import { ResultProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -17024,12 +17882,17 @@ export const BaseResult: React.FC<BaseResultProps> = (props) => {
   return <S.Result {...props} />;
 };
 
-        ### 📄 src/components/common/base-result/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Result as AntResult } from 'antd';
+### 📄 src/components/common/base-result/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Result
+
+```typescript
+import { Result as AntResult } from 'antd';
 import styled from 'styled-components';
 
 export const Result = styled(AntResult)`
@@ -17038,13 +17901,17 @@ export const Result = styled(AntResult)`
   }
 `;
 
-        ### 📄 src/components/common/not-found/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `assets/images/nothing-found.webp, react`
-* 🧩 **Component (Arrow):** `NotFound`
+```
+---
 
-        ```typescript
-        import notFoundImg from 'assets/images/nothing-found.webp';
+### 📄 src/components/common/not-found/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** NotFound
+
+```typescript
+import notFoundImg from 'assets/images/nothing-found.webp';
 import React from 'react';
 
 import { BaseImage } from '../base-image';
@@ -17061,12 +17928,17 @@ export const NotFound: React.FC = () => {
   );
 };
 
-        ### 📄 src/components/common/not-found/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/common/not-found/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** NotFoundWrapper, ImgWrapper, Text
+
+```typescript
+import styled from 'styled-components';
 
 import { BaseTypography } from '../base-typography';
 
@@ -17085,14 +17957,18 @@ export const Text = styled(BaseTypography.Text)`
   font-size: 1.125rem;
 `;
 
-        ### 📄 src/components/common/base-tabs/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseTabsProps`
-* 🧩 **Component (Arrow):** `BaseTabs`
+```
+---
 
-        ```typescript
-        import { TabsProps } from 'antd';
+### 📄 src/components/common/base-tabs/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseTabsProps = TabsProps;
+> * 🚀 **Exports/Components:** BaseTabs
+
+```typescript
+import { TabsProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -17103,12 +17979,17 @@ export const BaseTabs: React.FC<BaseTabsProps> = ({ children, ...props }) => {
   return <S.Tabs {...props}>{children}</S.Tabs>;
 };
 
-        ### 📄 src/components/common/base-tabs/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Tabs as AntdTabs } from 'antd';
+### 📄 src/components/common/base-tabs/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Tabs
+
+```typescript
+import { Tabs as AntdTabs } from 'antd';
 import styled from 'styled-components';
 
 export const Tabs = styled(AntdTabs)`
@@ -17126,14 +18007,18 @@ export const Tabs = styled(AntdTabs)`
   }
 `;
 
-        ### 📄 src/components/common/base-breadcrumb/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `BaseBreadcrumbItemType`
-* wb **Type/Intf:** `BaseBreadcrumbProps`
+```
+---
 
-        ```typescript
-        import type { BreadcrumbProps } from 'antd';
+### 📄 src/components/common/base-breadcrumb/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export type BaseBreadcrumbItemType = BreadcrumbItemType;, export type BaseBreadcrumbProps = BreadcrumbProps;
+> * 🚀 **Exports/Components:** BaseBreadcrumb
+
+```typescript
+import type { BreadcrumbProps } from 'antd';
 import type { BreadcrumbItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import { FC } from 'react';
 
@@ -17147,12 +18032,17 @@ export const BaseBreadcrumb: FC<BaseBreadcrumbProps> = (props) => {
   return <S.Breadcrumb {...props} />;
 };
 
-        ### 📄 src/components/common/base-breadcrumb/index.styles.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```typescript
-        import { Breadcrumb as AntBreadcrumb } from 'antd';
+### 📄 src/components/common/base-breadcrumb/index.styles.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Breadcrumb
+
+```typescript
+import { Breadcrumb as AntBreadcrumb } from 'antd';
 import styled from 'styled-components';
 
 export const Breadcrumb = styled(AntBreadcrumb)`
@@ -17165,12 +18055,16 @@ export const Breadcrumb = styled(AntBreadcrumb)`
   }
 `;
 
-        ### 📄 src/components/common/base-calendar/index.tsx
-        > **Context Summary**
-        * wb **Type/Intf:** `BaseCalendarProps`
+```
+---
 
-        ```typescript
-        // import type { CalendarProps } from 'antd';
+### 📄 src/components/common/base-calendar/index.tsx
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```typescript
+// import type { CalendarProps } from 'antd';
 // import type { Dayjs } from 'dayjs';
 // import { FC } from 'react';
 
@@ -17182,12 +18076,17 @@ export const Breadcrumb = styled(AntBreadcrumb)`
 //   return <S.Calendar {...props} />;
 // };
 
-        ### 📄 src/components/common/base-calendar/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_WEIGHT } from '@/constants';
+### 📄 src/components/common/base-calendar/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Calendar
+
+```typescript
+import { FONT_WEIGHT } from '@/constants';
 import { Calendar as AntCalendar } from 'antd';
 import styled from 'styled-components';
 
@@ -17197,14 +18096,18 @@ export const Calendar = styled(AntCalendar)`
   }
 `;
 
-        ### 📄 src/components/common/base-rate/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseRateProps`
-* 🧩 **Component (Arrow):** `BaseRate`
+```
+---
 
-        ```typescript
-        import { RateProps } from 'antd';
+### 📄 src/components/common/base-rate/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseRateProps = RateProps;
+> * 🚀 **Exports/Components:** BaseRate
+
+```typescript
+import { RateProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -17215,12 +18118,17 @@ export const BaseRate: React.FC<BaseRateProps> = (props) => {
   return <S.Rate {...props} />;
 };
 
-        ### 📄 src/components/common/base-rate/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE } from '@/constants';
+### 📄 src/components/common/base-rate/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Rate
+
+```typescript
+import { FONT_SIZE } from '@/constants';
 import { Rate as AntdRate } from 'antd';
 import styled from 'styled-components';
 
@@ -17228,21 +18136,30 @@ export const Rate = styled(AntdRate)`
   font-size: ${FONT_SIZE.lg};
 `;
 
-        ### 📄 src/components/common/base-layout/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Layout as BaseLayout } from 'antd';
+### 📄 src/components/common/base-layout/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Layout as BaseLayout } from 'antd';
 export type { LayoutProps as BaseLayoutProps } from 'antd';
 
-        ### 📄 src/components/common/selects/base-select/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces, antd, antd/lib/select`
-* wb **Type/Intf:** `BaseSelectProps`
+```
+---
 
-        ```typescript
-        import { Dimension } from '@/interfaces';
+### 📄 src/components/common/selects/base-select/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🛠️ **Types/Interfaces:** export interface BaseSelectProps extends ComponentProps<typeof AntSelect>
+> * 🚀 **Exports/Components:** {, BaseSelect
+
+```typescript
+import { Dimension } from '@/interfaces';
 import { Select as AntSelect } from 'antd';
 import { RefSelectProps } from 'antd/lib/select';
 import React, { ComponentProps } from 'react';
@@ -17273,13 +18190,18 @@ export const BaseSelect = React.forwardRef<RefSelectProps, BaseSelectProps>(
   )
 );
 
-        ### 📄 src/components/common/selects/base-select/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/interfaces, @/utils, antd, styled-components`
-* wb **Type/Intf:** `InternalSelectProps`
+```
+---
 
-        ```ts
-        import { BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT } from '@/constants';
+### 📄 src/components/common/selects/base-select/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🛠️ **Types/Interfaces:** export interface InternalSelectProps
+> * 🚀 **Exports/Components:** Select
+
+```typescript
+import { BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import { Dimension } from '@/interfaces';
 import { normalizeProp } from '@/utils';
 import { Select as AntSelect } from 'antd';
@@ -17330,14 +18252,17 @@ export const Select = styled(AntSelect)<InternalSelectProps>`
   }
 `;
 
-        ### 📄 src/components/common/selects/month-select/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/utils`
-* 🧩 **Component (Arrow):** `MonthSelect`
-* ww **Hooks:** `useMemo`
+```
+---
 
-        ```typescript
-        import { Dates } from '@/utils';
+### 📄 src/components/common/selects/month-select/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** MonthSelect
+
+```typescript
+import { Dates } from '@/utils';
 import React, { useMemo } from 'react';
 
 import { BaseSelect, BaseSelectProps, Option } from '../base-select';
@@ -17362,14 +18287,18 @@ export const MonthSelect: React.FC<BaseSelectProps> = ({ className, ...props }) 
   );
 };
 
-        ### 📄 src/components/common/base-progress/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseProgressProps`
-* 🧩 **Component (Arrow):** `BaseProgress`
+```
+---
 
-        ```typescript
-        import { Progress, ProgressProps } from 'antd';
+### 📄 src/components/common/base-progress/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🛠️ **Types/Interfaces:** export type BaseProgressProps = ProgressProps;
+> * 🚀 **Exports/Components:** BaseProgress
+
+```typescript
+import { Progress, ProgressProps } from 'antd';
 import React from 'react';
 
 export type BaseProgressProps = ProgressProps;
@@ -17378,13 +18307,17 @@ export const BaseProgress: React.FC<ProgressProps> = (props) => {
   return <Progress {...props} />;
 };
 
-        ### 📄 src/components/common/base-dropdown/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* 🧩 **Component (Arrow):** `BaseDropdown`
+```
+---
 
-        ```typescript
-        import { Dropdown, DropdownProps } from 'antd';
+### 📄 src/components/common/base-dropdown/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** BaseDropdown
+
+```typescript
+import { Dropdown, DropdownProps } from 'antd';
 import React from 'react';
 
 export const BaseDropdown: React.FC<DropdownProps> = ({ children, ...props }) => {
@@ -17395,15 +18328,18 @@ export const BaseDropdown: React.FC<DropdownProps> = ({ children, ...props }) =>
   );
 };
 
-        ### 📄 src/components/common/base-card/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/hooks/useResponsive, antd, react`
-* wb **Type/Intf:** `BaseCardProps`
-* 🧩 **Component (Arrow):** `BaseCard`
-* ww **Hooks:** `useResponsive`
+```
+---
 
-        ```typescript
-        import { defaultPaddings } from '@/constants';
+### 📄 src/components/common/base-card/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🛠️ **Types/Interfaces:** export interface BaseCardProps extends CardProps
+> * 🚀 **Exports/Components:** BaseCard
+
+```typescript
+import { defaultPaddings } from '@/constants';
 import { useResponsive } from '@/hooks/useResponsive';
 import { CardProps } from 'antd';
 import React from 'react';
@@ -17446,12 +18382,17 @@ export const BaseCard: React.FC<BaseCardProps> = ({
   );
 };
 
-        ### 📄 src/components/common/base-card/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/utils, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
+### 📄 src/components/common/base-card/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** Card
+
+```typescript
+import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
 import { normalizeProp } from '@/utils';
 import { Card as AntCard } from 'antd';
 import styled from 'styled-components';
@@ -17507,14 +18448,18 @@ export const Card = styled(AntCard)<CardInternalProps>`
   }
 `;
 
-        ### 📄 src/components/common/base-steps/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseStepsProps`
-* 🧩 **Component (Arrow):** `BaseSteps`
+```
+---
 
-        ```typescript
-        import { StepsProps } from 'antd';
+### 📄 src/components/common/base-steps/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseStepsProps = StepsProps;
+> * 🚀 **Exports/Components:** BaseSteps
+
+```typescript
+import { StepsProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -17525,12 +18470,17 @@ export const BaseSteps: React.FC<BaseStepsProps> = ({ children, ...otherProps })
   return <S.Steps {...otherProps}>{children}</S.Steps>;
 };
 
-        ### 📄 src/components/common/base-steps/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
+### 📄 src/components/common/base-steps/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Steps
+
+```typescript
+import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
 import { Steps as AntdSteps } from 'antd';
 import styled from 'styled-components';
 
@@ -17598,14 +18548,17 @@ export const Steps = styled(AntdSteps)`
   }
 `;
 
-        ### 📄 src/components/common/base-spinner/global-spinner.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/utils, styled-components`
-* 🧩 **Component (Arrow):** `SpinnerOriginal`
-* ww **Hooks:** `useMemo`
+```
+---
 
-        ```typescript
-        import { hexToHSL } from '@/utils';
+### 📄 src/components/common/base-spinner/global-spinner.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** GlobalSpinner
+
+```typescript
+import { hexToHSL } from '@/utils';
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
@@ -17913,12 +18866,16 @@ export const GlobalSpinner = styled(SpinnerOriginal)<GlobalSpinnerProps>`
   }
 `;
 
-        ### 📄 src/components/common/error-boundary/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/error-boundary/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+
+```typescript
+import React from 'react';
 
 import { BaseTypography } from '../base-typography';
 import * as S from './index.style';
@@ -17966,12 +18923,17 @@ class ErrorBoundary extends React.Component<any, State> {
 
 export default ErrorBoundary;
 
-        ### 📄 src/components/common/error-boundary/index.style.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BASE_COLORS } from '@/constants';
+### 📄 src/components/common/error-boundary/index.style.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** wrapper, reloadBtn
+
+```typescript
+import { BASE_COLORS } from '@/constants';
 import { styled } from 'styled-components';
 
 import { BaseButton } from '../base-button';
@@ -17996,13 +18958,18 @@ export const reloadBtn = styled(BaseButton)`
   color: ${BASE_COLORS.white} !important;
 `;
 
-        ### 📄 src/components/common/base-table/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseTableProps`
+```
+---
 
-        ```typescript
-        import { TableProps } from 'antd';
+### 📄 src/components/common/base-table/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseTableProps<T extends AnyRecord> = TableProps<T>;
+> * 🚀 **Exports/Components:** BaseTable
+
+```typescript
+import { TableProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -18016,12 +18983,17 @@ export const BaseTable = <T extends AnyRecord>(props: BaseTableProps<T>): React.
   return <S.Table {...props} />;
 };
 
-        ### 📄 src/components/common/base-table/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE } from '@/constants';
+### 📄 src/components/common/base-table/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Table
+
+```typescript
+import { FONT_SIZE } from '@/constants';
 import { Table as AntdTable } from 'antd';
 import styled from 'styled-components';
 
@@ -18131,13 +19103,17 @@ export const Table = styled(AntdTable)`
   }
 ` as typeof AntdTable;
 
-        ### 📄 src/components/common/base-status/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* 🧩 **Component (Arrow):** `Status`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/base-status/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Status
+
+```typescript
+import React from 'react';
 
 import * as S from './index.styles';
 
@@ -18150,12 +19126,17 @@ export const Status: React.FC<StatusProps> = ({ color, text }) => (
   <S.StatusTag color={color}>{text}</S.StatusTag>
 );
 
-        ### 📄 src/components/common/base-status/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-tag, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseTag } from '@/components/common/base-tag';
+### 📄 src/components/common/base-status/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** StatusTag
+
+```typescript
+import { BaseTag } from '@/components/common/base-tag';
 import { media } from '@/constants';
 import styled from 'styled-components';
 
@@ -18172,14 +19153,18 @@ export const StatusTag = styled(BaseTag)`
   }
 `;
 
-        ### 📄 src/components/common/base-notification/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@ant-design/icons, react`
-* wb **Type/Intf:** `NotificationType`
-* 🧩 **Component (Arrow):** `BaseNotification`
+```
+---
 
-        ```typescript
-        import {
+### 📄 src/components/common/base-notification/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export type NotificationType = 'info' | 'mention' | 'success' | 'warning' | 'error';
+> * 🚀 **Exports/Components:** BaseNotification
+
+```typescript
+import {
   CheckCircleFilled,
   ExclamationCircleFilled,
   InfoCircleFilled,
@@ -18234,12 +19219,17 @@ export const BaseNotification: React.FC<BaseNotificationProps> = ({
   );
 };
 
-        ### 📄 src/components/common/base-notification/index.styles.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        import styled, { css } from 'styled-components';
+### 📄 src/components/common/base-notification/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** NotificationIcon, Title, Description, SpaceWrapper
+
+```typescript
+import styled, { css } from 'styled-components';
 
 import { NotificationType } from '.';
 import { BaseAvatar } from '../base-avatar';
@@ -18289,14 +19279,18 @@ export const SpaceWrapper = styled(BaseSpace)<SpacewWrapperProps>`
   }
 `;
 
-        ### 📄 src/components/common/calendar-switch/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@ant-design/icons, react`
-* wb **Type/Intf:** `CalendarSwitchProps`
-* 🧩 **Component (Arrow):** `CalendarSwitch`
+```
+---
 
-        ```typescript
-        import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+### 📄 src/components/common/calendar-switch/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export interface CalendarSwitchProps
+> * 🚀 **Exports/Components:** CalendarSwitch
+
+```typescript
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import React from 'react';
 
 import { BaseButton } from '../base-button';
@@ -18333,12 +19327,17 @@ export const CalendarSwitch: React.FC<CalendarSwitchProps> = ({
   );
 };
 
-        ### 📄 src/components/common/calendar-switch/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, media } from '@/constants';
+### 📄 src/components/common/calendar-switch/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** CalendarSwitch, Text, ButtonGroup
+
+```typescript
+import { FONT_SIZE, media } from '@/constants';
 import styled from 'styled-components';
 
 import { BaseTypography } from '../base-typography';
@@ -18365,14 +19364,18 @@ export const ButtonGroup = styled.div`
   }
 `;
 
-        ### 📄 src/components/common/base-slider/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseSliderProps`
-* 🧩 **Component (Arrow):** `BaseSlider`
+```
+---
 
-        ```typescript
-        import { SliderSingleProps } from 'antd';
+### 📄 src/components/common/base-slider/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseSliderProps = SliderSingleProps;
+> * 🚀 **Exports/Components:** BaseSlider
+
+```typescript
+import { SliderSingleProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -18383,12 +19386,17 @@ export const BaseSlider: React.FC<SliderSingleProps> = (props) => {
   return <S.Slider {...props} />;
 };
 
-        ### 📄 src/components/common/base-slider/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Slider as AntdSlider } from 'antd';
+### 📄 src/components/common/base-slider/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Slider
+
+```typescript
+import { Slider as AntdSlider } from 'antd';
 import styled from 'styled-components';
 
 export const Slider = styled(AntdSlider)`
@@ -18405,14 +19413,17 @@ export const Slider = styled(AntdSlider)`
   }
 `;
 
-        ### 📄 src/components/common/no-data/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-no-data.svg, next-i18next, react`
-* 🧩 **Component (Arrow):** `NoData`
-* ww **Hooks:** `useTranslation`
+```
+---
 
-        ```typescript
-        import IconNoData from '@/assets/images/svg/icon-no-data.svg';
+### 📄 src/components/common/no-data/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** NoData
+
+```typescript
+import IconNoData from '@/assets/images/svg/icon-no-data.svg';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
@@ -18437,12 +19448,17 @@ export const NoData: React.FC<IProps> = (props) => {
   );
 };
 
-        ### 📄 src/components/common/no-data/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/common/no-data/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** NotFoundWrapper, ImgWrapper, Text, SubText
+
+```typescript
+import styled from 'styled-components';
 
 import { BaseTypography } from '../base-typography';
 
@@ -18475,13 +19491,16 @@ export const SubText = styled(BaseTypography.Text)`
   line-height: normal;
 `;
 
-        ### 📄 src/components/common/seo-header/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `next/head, next/router`
-* ww **Hooks:** `useRouter`
+```
+---
 
-        ```typescript
-        import Head from 'next/head';
+### 📄 src/components/common/seo-header/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+
+```typescript
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 interface MetaProps {
@@ -18629,13 +19648,18 @@ const favicons = [
 
 export default SeoHead;
 
-        ### 📄 src/components/common/base-button/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseButtonProps`
+```
+---
 
-        ```typescript
-        import type { Severity } from '@/interfaces';
+### 📄 src/components/common/base-button/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export interface BaseButtonProps extends AntButtonProps
+> * 🚀 **Exports/Components:** {, BaseButton
+
+```typescript
+import type { Severity } from '@/interfaces';
 import { ButtonProps as AntButtonProps, Button as AntdButton } from 'antd';
 import React from 'react';
 
@@ -18657,12 +19681,17 @@ export const BaseButton = React.forwardRef<HTMLElement, BaseButtonProps>(
   )
 );
 
-        ### 📄 src/components/common/base-button/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/interfaces, @/utils, antd`
+```
+---
 
-        ```ts
-        import { FONT_WEIGHT } from '@/constants';
+### 📄 src/components/common/base-button/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** Button
+
+```typescript
+import { FONT_WEIGHT } from '@/constants';
 import { Severity } from '@/interfaces';
 import { defineColorBySeverity } from '@/utils';
 import { Button as AntButton } from 'antd';
@@ -18784,22 +19813,30 @@ export const Button = styled(AntButton)<BtnProps>`
     `}
 `;
 
-        ### 📄 src/components/common/base-image/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Image as BaseImage } from 'antd';
+### 📄 src/components/common/base-image/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Image as BaseImage } from 'antd';
 export type { ImageProps as BaseImageProps } from 'antd';
 
-        ### 📄 src/components/common/base-pagination/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BasePaginationProps`
-* 🧩 **Component (Arrow):** `BasePagination`
+```
+---
 
-        ```typescript
-        import { ConfigProvider, PaginationProps } from 'antd';
+### 📄 src/components/common/base-pagination/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BasePaginationProps = PaginationProps;
+> * 🚀 **Exports/Components:** BasePagination
+
+```typescript
+import { ConfigProvider, PaginationProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -18816,12 +19853,17 @@ export const BasePagination: React.FC<BasePaginationProps> = (props) => (
   </ConfigProvider>
 );
 
-        ### 📄 src/components/common/base-pagination/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd`
+```
+---
 
-        ```ts
-        import { Pagination as AntdPagination } from 'antd';
+### 📄 src/components/common/base-pagination/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Pagination
+
+```typescript
+import { Pagination as AntdPagination } from 'antd';
 import styled, { css } from 'styled-components';
 
 export const Pagination = styled(AntdPagination)`
@@ -18884,21 +19926,30 @@ export const Pagination = styled(AntdPagination)`
   }
 `;
 
-        ### 📄 src/components/common/base-popover/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Popover as BasePopover } from 'antd';
+### 📄 src/components/common/base-popover/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Popover as BasePopover } from 'antd';
 export type { PopoverProps as BasePopoverProps } from 'antd';
 
-        ### 📄 src/components/common/date-picker/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd`
-* wb **Type/Intf:** `BaseDatePickerProps`
+```
+---
 
-        ```typescript
-        /* eslint-disable */
+### 📄 src/components/common/date-picker/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseDatePickerProps = DatePickerProps;
+> * 🚀 **Exports/Components:** BaseDatePicker
+
+```typescript
+/* eslint-disable */
 import { DatePickerProps } from 'antd';
 import React, { Ref } from 'react';
 
@@ -18923,14 +19974,17 @@ export const BaseDatePicker = DatePicker as IBaseDatePicker;
 BaseDatePicker.RangePicker = S.RangePicker;
 BaseDatePicker.TimePicker = S.TimePicker;
 
-        ### 📄 src/components/common/date-picker/TimeRangePicker.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/date-picker, @/utils`
-* 🧩 **Component (Arrow):** `TimeRangePicker`
-* ww **Hooks:** `useMemo`
+```
+---
 
-        ```typescript
-        import { BaseDatePicker } from '@/components/common/date-picker';
+### 📄 src/components/common/date-picker/TimeRangePicker.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** TimeRangePicker
+
+```typescript
+import { BaseDatePicker } from '@/components/common/date-picker';
 import { AppDate, Dates } from '@/utils';
 import React, { useMemo } from 'react';
 
@@ -18968,12 +20022,17 @@ export const TimeRangePicker: React.FC<TimePickerProps> = ({ timeRange, setTimeR
   );
 };
 
-        ### 📄 src/components/common/date-picker/index.styled.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd`
+```
+---
 
-        ```typescript
-        import { DatePicker as AntDatePicker } from 'antd';
+### 📄 src/components/common/date-picker/index.styled.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** DatePicker, RangePicker, TimePicker
+
+```typescript
+import { DatePicker as AntDatePicker } from 'antd';
 import styled, { css } from 'styled-components';
 
 const datePickerSizes = css`
@@ -18999,12 +20058,16 @@ export const TimePicker = styled(AntDatePicker.TimePicker)`
   ${datePickerSizes}
 `;
 
-        ### 📄 src/components/common/base-label/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        import * as S from './index.styles';
+### 📄 src/components/common/base-label/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+
+```typescript
+import * as S from './index.styles';
 
 const BaseLabel = ({ label, required }: { label: string; required?: boolean }) => {
   return (
@@ -19016,12 +20079,17 @@ const BaseLabel = ({ label, required }: { label: string; required?: boolean }) =
 
 export default BaseLabel;
 
-        ### 📄 src/components/common/base-label/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE } from '@/constants';
+### 📄 src/components/common/base-label/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Label, Required
+
+```typescript
+import { FONT_SIZE } from '@/constants';
 import styled from 'styled-components';
 
 export const Label = styled.span`
@@ -19032,13 +20100,18 @@ export const Required = styled.span`
   color: #ff0000;
 `;
 
-        ### 📄 src/components/common/base-row/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `BaseRowProps`
+```
+---
 
-        ```typescript
-        import type { RowProps } from 'antd';
+### 📄 src/components/common/base-row/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseRowProps = RowProps;
+> * 🚀 **Exports/Components:** BaseRow
+
+```typescript
+import type { RowProps } from 'antd';
 import { forwardRef } from 'react';
 
 import * as S from './index.styles';
@@ -19050,26 +20123,35 @@ export const BaseRow = forwardRef<HTMLDivElement, BaseRowProps>((props, ref) => 
   <S.Row ref={ref} {...props} />
 ));
 
-        ### 📄 src/components/common/base-row/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Row as AntRow } from 'antd';
+### 📄 src/components/common/base-row/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Row
+
+```typescript
+import { Row as AntRow } from 'antd';
 import styled from 'styled-components';
 
 export const Row = styled(AntRow)`
   font-size: unset;
 `;
 
-        ### 📄 src/components/common/base-switch/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseSwitchProps`
-* 🧩 **Component (Arrow):** `BaseSwitch`
+```
+---
 
-        ```typescript
-        import { SwitchProps } from 'antd';
+### 📄 src/components/common/base-switch/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseSwitchProps = SwitchProps;
+> * 🚀 **Exports/Components:** BaseSwitch
+
+```typescript
+import { SwitchProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -19080,12 +20162,17 @@ export const BaseSwitch: React.FC<SwitchProps> = (props) => {
   return <S.Switch {...props} />;
 };
 
-        ### 📄 src/components/common/base-switch/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Switch as AntdSwitch } from 'antd';
+### 📄 src/components/common/base-switch/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Switch
+
+```typescript
+import { Switch as AntdSwitch } from 'antd';
 import styled from 'styled-components';
 
 export const Switch = styled(AntdSwitch)`
@@ -19099,13 +20186,18 @@ export const Switch = styled(AntdSwitch)`
   }
 `;
 
-        ### 📄 src/components/common/base-avatar/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseAvatarProps`
+```
+---
 
-        ```typescript
-        import { Avatar, AvatarProps } from 'antd';
+### 📄 src/components/common/base-avatar/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🛠️ **Types/Interfaces:** export type BaseAvatarProps = AvatarProps;
+> * 🚀 **Exports/Components:** BaseAvatar
+
+```typescript
+import { Avatar, AvatarProps } from 'antd';
 import React from 'react';
 
 export type BaseAvatarProps = AvatarProps;
@@ -19120,13 +20212,17 @@ export const BaseAvatar: IBaseAvatar = (props) => {
 
 BaseAvatar.Group = Avatar.Group;
 
-        ### 📄 src/components/common/base-burger/BurgerIcon.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* 🧩 **Component (Arrow):** `Burger`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/base-burger/BurgerIcon.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Burger, BurgerIcon
+
+```typescript
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 interface BurgerProps {
@@ -19192,22 +20288,30 @@ export const BurgerIcon = styled(Burger)<{ isCross: boolean }>`
   }
 `;
 
-        ### 📄 src/components/common/base-divider/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Divider as BaseDivider } from 'antd';
+### 📄 src/components/common/base-divider/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Divider as BaseDivider } from 'antd';
 export type { DividerProps as BaseDividerProps } from 'antd';
 
-        ### 📄 src/components/common/base-alert/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `BaseAlertProps`
-* 🧩 **Component (Arrow):** `BaseAlert`
+```
+---
 
-        ```typescript
-        import type { AlertProps } from 'antd';
+### 📄 src/components/common/base-alert/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseAlertProps = AlertProps;
+> * 🚀 **Exports/Components:** BaseAlert
+
+```typescript
+import type { AlertProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -19218,12 +20322,17 @@ export const BaseAlert: React.FC<BaseAlertProps> = (props) => {
   return <S.Alert {...props} />;
 };
 
-        ### 📄 src/components/common/base-alert/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Alert as AntAlert } from 'antd';
+### 📄 src/components/common/base-alert/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Alert
+
+```typescript
+import { Alert as AntAlert } from 'antd';
 import styled from 'styled-components';
 
 export const Alert = styled(AntAlert)`
@@ -19236,14 +20345,18 @@ export const Alert = styled(AntAlert)`
   }
 `;
 
-        ### 📄 src/components/common/base-article/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/utils, react`
-* wb **Type/Intf:** `BaseArticleProps`
-* 🧩 **Component (Arrow):** `BaseArticle`
+```
+---
 
-        ```typescript
-        import { Dates } from '@/utils';
+### 📄 src/components/common/base-article/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🛠️ **Types/Interfaces:** export interface BaseArticleProps
+> * 🚀 **Exports/Components:** BaseArticle
+
+```typescript
+import { Dates } from '@/utils';
 import React from 'react';
 
 import { BaseAvatar } from '../base-avatar';
@@ -19300,12 +20413,17 @@ export const BaseArticle: React.FC<BaseArticleProps> = ({
   );
 };
 
-        ### 📄 src/components/common/base-article/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
+### 📄 src/components/common/base-article/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Header, AuthorWrapper, Wrapper, Author, InfoWrapper...
+
+```typescript
+import { BORDER_RADIUS, FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
 import styled from 'styled-components';
 
 import { BaseTypography } from '../base-typography';
@@ -19409,13 +20527,18 @@ export const TagsWrapper = styled.div`
   padding: 0 1.25rem 1.25rem;
 `;
 
-        ### 📄 src/components/common/base-col/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `BaseColProps`
+```
+---
 
-        ```typescript
-        import type { ColProps } from 'antd';
+### 📄 src/components/common/base-col/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseColProps = ColProps;
+> * 🚀 **Exports/Components:** BaseCol
+
+```typescript
+import type { ColProps } from 'antd';
 import { forwardRef } from 'react';
 
 import * as S from './index.styles';
@@ -19427,48 +20550,70 @@ export const BaseCol = forwardRef<HTMLDivElement, BaseColProps>((props, ref) => 
   <S.Col ref={ref} {...props} />
 ));
 
-        ### 📄 src/components/common/base-col/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Col as AntCol } from 'antd';
+### 📄 src/components/common/base-col/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Col
+
+```typescript
+import { Col as AntCol } from 'antd';
 import styled from 'styled-components';
 
 export const Col = styled(AntCol)`
   font-size: unset;
 `;
 
-        ### 📄 src/components/common/base-popconfirm/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Popconfirm as BasePopconfirm } from 'antd';
+### 📄 src/components/common/base-popconfirm/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Popconfirm as BasePopconfirm } from 'antd';
 export type { PopconfirmProps as BasePopconfirmProps } from 'antd';
 
-        ### 📄 src/components/common/base-empty/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Empty as BaseEmpty } from 'antd';
+### 📄 src/components/common/base-empty/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Empty as BaseEmpty } from 'antd';
 export type { EmptyProps as BaseEmptyProps } from 'antd';
 
-        ### 📄 src/components/common/base-tag/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Tag as BaseTag } from 'antd';
+### 📄 src/components/common/base-tag/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Tag as BaseTag } from 'antd';
 export type { TagProps as BaseTagProps } from 'antd';
 
-        ### 📄 src/components/common/overlay/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        import styled, { css } from 'styled-components';
+### 📄 src/components/common/overlay/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** Overlay
+
+```typescript
+import styled, { css } from 'styled-components';
 
 interface OverlayProps {
   show: boolean;
@@ -19488,13 +20633,18 @@ export const Overlay = styled.div<OverlayProps>`
     `}
 `;
 
-        ### 📄 src/components/common/base-radio/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseRadioProps`
+```
+---
 
-        ```typescript
-        import { Radio, RadioProps } from 'antd';
+### 📄 src/components/common/base-radio/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseRadioProps = RadioProps;
+> * 🚀 **Exports/Components:** BaseRadio
+
+```typescript
+import { Radio, RadioProps } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -19513,12 +20663,17 @@ export const BaseRadio: IBaseRadio = (props) => {
 BaseRadio.Group = Radio.Group;
 BaseRadio.Button = S.RadioButton;
 
-        ### 📄 src/components/common/base-radio/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { Radio as AntdRadio } from 'antd';
+### 📄 src/components/common/base-radio/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Radio, RadioButton
+
+```typescript
+import { Radio as AntdRadio } from 'antd';
 import styled from 'styled-components';
 
 export const Radio = styled(AntdRadio)`
@@ -19560,14 +20715,18 @@ export const RadioButton = styled(AntdRadio.Button)`
   }
 `;
 
-        ### 📄 src/components/common/base-feed/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react, react-infinite-scroll-component`
-* wb **Type/Intf:** `BaseFeedProps`
-* 🧩 **Component (Arrow):** `BaseFeed`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/base-feed/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export interface BaseFeedProps
+> * 🚀 **Exports/Components:** BaseFeed
+
+```typescript
+import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { BaseSpin } from '../base-spin';
@@ -19604,12 +20763,17 @@ export const BaseFeed: React.FC<BaseFeedProps> = ({
   );
 };
 
-        ### 📄 src/components/common/base-feed/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { media } from '@/constants';
+### 📄 src/components/common/base-feed/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** NewsWrapper, SpinnerWrapper
+
+```typescript
+import { media } from '@/constants';
 import styled from 'styled-components';
 
 export const NewsWrapper = styled.div`
@@ -19636,21 +20800,30 @@ export const SpinnerWrapper = styled.div`
   margin-top: 2rem;
 `;
 
-        ### 📄 src/components/common/base-upload/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { Upload as BaseUpload } from 'antd';
+### 📄 src/components/common/base-upload/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { Upload as BaseUpload } from 'antd';
 export type { UploadProps as BaseUploadProps } from 'antd';
 
-        ### 📄 src/components/common/base-menu/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `BaseMenuProps`
+```
+---
 
-        ```typescript
-        import type { MenuProps } from 'antd';
+### 📄 src/components/common/base-menu/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseMenuProps = MenuProps;
+> * 🚀 **Exports/Components:** BaseMenu
+
+```typescript
+import type { MenuProps } from 'antd';
 import { FC } from 'react';
 
 import * as S from './index.styles';
@@ -19661,12 +20834,17 @@ export const BaseMenu: FC<BaseMenuProps> = (props) => {
   return <S.Menu {...props} />;
 };
 
-        ### 📄 src/components/common/base-menu/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE } from '@/constants';
+### 📄 src/components/common/base-menu/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Menu
+
+```typescript
+import { FONT_SIZE } from '@/constants';
 import { Menu as AntMenu } from 'antd';
 import styled from 'styled-components';
 
@@ -19692,22 +20870,29 @@ export const Menu = styled(AntMenu)`
   }
 `;
 
-        ### 📄 src/components/common/base-list/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        export { List as BaseList } from 'antd';
+### 📄 src/components/common/base-list/index.tsx
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export type
+
+```typescript
+export { List as BaseList } from 'antd';
 export type { ListProps as BaseListProps } from 'antd';
 
-        ### 📄 src/components/common/step-switch/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-step.svg, @ant-design/icons, antd, react`
-* 🧩 **Component (Arrow):** `CustomStep`
-* 🧩 **Component (Arrow):** `StepSwitch`
+```
+---
 
-        ```typescript
-        import IconStep from '@/assets/images/svg/icon-step.svg';
+### 📄 src/components/common/step-switch/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** StepSwitch
+
+```typescript
+import IconStep from '@/assets/images/svg/icon-step.svg';
 import { CheckCircleFilled } from '@ant-design/icons';
 import { Radio } from 'antd';
 import React from 'react';
@@ -19757,12 +20942,17 @@ export const StepSwitch: React.FC<StepSwitchProps> = ({ steps, current }) => {
   return <S.WrapperStep current={current} items={items} />;
 };
 
-        ### 📄 src/components/common/step-switch/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-steps`
+```
+---
 
-        ```ts
-        import { BaseSteps } from '@/components/common/base-steps';
+### 📄 src/components/common/step-switch/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** WrapperStep, StepItem, StepTitle
+
+```typescript
+import { BaseSteps } from '@/components/common/base-steps';
 import styled, { css } from 'styled-components';
 
 export const WrapperStep = styled(BaseSteps)`
@@ -19829,14 +21019,17 @@ export const StepTitle = styled.div`
   margin: 3px 0;
 `;
 
-        ### 📄 src/components/common/inputs/openurl-input/OpenURLInput.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/constants, @ant-design/icons`
-* 🧩 **Component (Arrow):** `OpenURLInput`
-* ww **Hooks:** `useMemo`
+```
+---
 
-        ```typescript
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/common/inputs/openurl-input/OpenURLInput.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** OpenURLInput
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { websitePattern } from '@/constants';
 import { FileTextOutlined } from '@ant-design/icons';
 import React, { useMemo } from 'react';
@@ -19876,13 +21069,18 @@ export const OpenURLInput: React.FC<OpenURLInputProps> = ({
   );
 };
 
-        ### 📄 src/components/common/inputs/masked-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `MaskedInputProps`
+```
+---
 
-        ```typescript
-        import type { InputRef } from 'antd';
+### 📄 src/components/common/inputs/masked-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🛠️ **Types/Interfaces:** export type MaskedInputProps = ComponentPropsWithRef<typeof AntdMaskedInput>;
+> * 🚀 **Exports/Components:** MaskedInput
+
+```typescript
+import type { InputRef } from 'antd';
 import type { MaskedInput as AntdMaskedInput } from 'antd-mask-input';
 import { ComponentPropsWithRef, forwardRef } from 'react';
 
@@ -19895,12 +21093,17 @@ export const MaskedInput = forwardRef<InputRef, MaskedInputProps>((props, ref) =
   return <S.MaskedInput ref={ref} {...props} />;
 });
 
-        ### 📄 src/components/common/inputs/masked-input/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd-mask-input, styled-components`
+```
+---
 
-        ```ts
-        import { BORDER_RADIUS } from '@/constants';
+### 📄 src/components/common/inputs/masked-input/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** MaskedInput
+
+```typescript
+import { BORDER_RADIUS } from '@/constants';
 import AntdMaskedInput from 'antd-mask-input';
 import styled from 'styled-components';
 
@@ -19918,13 +21121,17 @@ export const MaskedInput = styled(AntdMaskedInput)`
   }
 `;
 
-        ### 📄 src/components/common/inputs/verification-code-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* 🧩 **Component (Arrow):** `VerificationCodeInput`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/inputs/verification-code-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** VerificationCodeInput
+
+```typescript
+import React from 'react';
 
 import * as S from './index.styles';
 
@@ -19953,12 +21160,17 @@ export const VerificationCodeInput: React.FC<VerificationCodeInputProps> = (prop
   );
 };
 
-        ### 📄 src/components/common/inputs/verification-code-input/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, react-verification-input, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
+### 📄 src/components/common/inputs/verification-code-input/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** CodeInput
+
+```typescript
+import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
 import VerificationInput from 'react-verification-input';
 import styled from 'styled-components';
 
@@ -20010,13 +21222,18 @@ export const CodeInput = styled(VerificationInput)`
   }
 `;
 
-        ### 📄 src/components/common/inputs/number-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd`
-* wb **Type/Intf:** `InputNumberProps`
+```
+---
 
-        ```typescript
-        import { InputNumberProps as AntdInputNumberProps } from 'antd';
+### 📄 src/components/common/inputs/number-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export interface InputNumberProps extends AntdInputNumberProps
+> * 🚀 **Exports/Components:** InputNumber
+
+```typescript
+import { InputNumberProps as AntdInputNumberProps } from 'antd';
 import React, { ReactNode } from 'react';
 
 import * as S from './index.styles';
@@ -20035,12 +21252,17 @@ export const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
   )
 );
 
-        ### 📄 src/components/common/inputs/number-input/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, styled-components`
+```
+---
 
-        ```ts
-        import { InputNumber as AntInputNumber } from 'antd';
+### 📄 src/components/common/inputs/number-input/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** InputNumber
+
+```typescript
+import { InputNumber as AntInputNumber } from 'antd';
 import styled from 'styled-components';
 
 interface InputNumberProps {
@@ -20051,12 +21273,17 @@ export const InputNumber = styled(AntInputNumber)<InputNumberProps>`
   ${(props) => props.$block && 'display: block; width: 100%'};
 `;
 
-        ### 📄 src/components/common/inputs/password-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/inputs/password-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** InputPassword
+
+```typescript
+import React from 'react';
 
 import { BaseInputProps, BaseInputRef } from '../base-input';
 import * as S from './index.styles';
@@ -20076,12 +21303,17 @@ export const InputPassword = React.forwardRef<BaseInputRef, InputPasswordProps>(
   )
 );
 
-        ### 📄 src/components/common/inputs/password-input/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/common/inputs/password-input/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** InputPassword
+
+```typescript
+import styled from 'styled-components';
 
 import { BaseInput } from '../base-input';
 
@@ -20094,14 +21326,18 @@ export const InputPassword = styled(BaseInput.Password)`
   }
 `;
 
-        ### 📄 src/components/common/inputs/suffix-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* wb **Type/Intf:** `SuffixInputProps`
-* 🧩 **Component (Arrow):** `SuffixInput`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/components/common/inputs/suffix-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export interface SuffixInputProps extends BaseInputProps
+> * 🚀 **Exports/Components:** SuffixInput
+
+```typescript
+import React from 'react';
 
 import { BaseInput, BaseInputProps } from '../base-input';
 import * as S from './index.styles';
@@ -20117,12 +21353,17 @@ export const SuffixInput: React.FC<SuffixInputProps> = ({
   ...props
 }) => <BaseInput suffix={<S.Suffix isOpen={isOpenSuffix}>{suffix}</S.Suffix>} {...props} />;
 
-        ### 📄 src/components/common/inputs/suffix-input/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/common/inputs/suffix-input/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** Suffix
+
+```typescript
+import styled from 'styled-components';
 
 interface SuffixProps {
   isOpen: boolean;
@@ -20136,14 +21377,18 @@ export const Suffix = styled.div<SuffixProps>`
   ${(props) => !props.isOpen && 'opacity: 0; visibility: hidden'};
 `;
 
-        ### 📄 src/components/common/inputs/base-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `antd, react`
-* wb **Type/Intf:** `BaseInputRef`
-* wb **Type/Intf:** `BaseInputProps`
+```
+---
 
-        ```typescript
-        import { Input, InputProps, InputRef } from 'antd';
+### 📄 src/components/common/inputs/base-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type BaseInputRef = InputRef;, export type BaseInputProps = InputProps;
+> * 🚀 **Exports/Components:** BaseInput
+
+```typescript
+import { Input, InputProps, InputRef } from 'antd';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -20176,12 +21421,17 @@ BaseInput.Search = Input.Search;
 BaseInput.TextArea = Input.TextArea;
 BaseInput.Password = Input.Password;
 
-        ### 📄 src/components/common/inputs/base-input/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, antd, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
+### 📄 src/components/common/inputs/base-input/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** Input
+
+```typescript
+import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import { Input as AntInput } from 'antd';
 import styled from 'styled-components';
 
@@ -20215,14 +21465,17 @@ export const Input = styled(AntInput)`
   }
 `;
 
-        ### 📄 src/components/common/inputs/clipboard-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/hooks/useFeedback, @ant-design/icons`
-* 🧩 **Component (Arrow):** `ClipboardInput`
-* ww **Hooks:** `useFeedback, useCallback`
+```
+---
 
-        ```typescript
-        import { useFeedback } from '@/hooks/useFeedback';
+### 📄 src/components/common/inputs/clipboard-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** ClipboardInput
+
+```typescript
+import { useFeedback } from '@/hooks/useFeedback';
 import { CopyOutlined } from '@ant-design/icons';
 import React, { useCallback } from 'react';
 
@@ -20265,12 +21518,17 @@ export const ClipboardInput: React.FC<ClipboardInputProps> = ({ valueToCopy, ...
   );
 };
 
-        ### 📄 src/components/common/inputs/search-input/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@ant-design/icons, react`
+```
+---
 
-        ```typescript
-        import { SearchOutlined } from '@ant-design/icons';
+### 📄 src/components/common/inputs/search-input/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** SearchInput
+
+```typescript
+import { SearchOutlined } from '@ant-design/icons';
 import React from 'react';
 
 import { BaseSpin } from '../../base-spin';
@@ -20312,12 +21570,17 @@ export const SearchInput = React.forwardRef<BaseInputRef, SearchInputProps>(
   }
 );
 
-        ### 📄 src/components/common/inputs/search-input/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, styled-components`
+```
+---
 
-        ```ts
-        import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
+### 📄 src/components/common/inputs/search-input/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** SearchInput, Space
+
+```typescript
+import { FONT_SIZE, FONT_WEIGHT, media } from '@/constants';
 import styled from 'styled-components';
 
 import { BaseSpace } from '../../base-space';
@@ -20381,12 +21644,16 @@ export const Space = styled(BaseSpace)`
   }
 `;
 
-        ### 📄 src/components/my-profile/payments/index.tsx
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```typescript
-        import ContentLeft from '../components/content-left';
+### 📄 src/components/my-profile/payments/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+
+```typescript
+import ContentLeft from '../components/content-left';
 import * as S from './index.styles';
 import PaymentHistory from './payment-history';
 
@@ -20403,12 +21670,17 @@ const Payment = () => {
 
 export default Payment;
 
-        ### 📄 src/components/my-profile/payments/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/components/my-profile/payments/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** ContentWrapper, ContentRight
+
+```typescript
+import styled from 'styled-components';
 
 export const ContentWrapper = styled.div`
   display: flex;
@@ -20424,13 +21696,16 @@ export const ContentRight = styled.div`
   height: fit-content;
 `;
 
-        ### 📄 src/components/my-profile/payments/payment-history/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/cloud-software/youtube-account/icon-level, @/components/common/no-data, @/constants, @/hooks/features/useSupcriptionPlan, @/interfaces`...
-* ww **Hooks:** `useMemo, useGetPaymentHistory, useTranslation`
+```
+---
 
-        ```typescript
-        import { IConLevel } from '@/components/cloud-software/youtube-account/icon-level';
+### 📄 src/components/my-profile/payments/payment-history/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 11 found
+
+```typescript
+import { IConLevel } from '@/components/cloud-software/youtube-account/icon-level';
 import { NoData } from '@/components/common/no-data';
 import { DATE_FORMAT, RANK_NAME, SORT_TYPE } from '@/constants';
 import { useGetPaymentHistory } from '@/hooks/features/useSupcriptionPlan';
@@ -20597,12 +21872,17 @@ const PaymentHistory = () => {
 
 export default PaymentHistory;
 
-        ### 📄 src/components/my-profile/payments/payment-history/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-table, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseTable } from '@/components/common/base-table';
+### 📄 src/components/my-profile/payments/payment-history/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** PaymentHistory, Title, Table, THead, TSubPlan...
+
+```typescript
+import { BaseTable } from '@/components/common/base-table';
 import { FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
 
@@ -20694,13 +21974,16 @@ export const TAmount = styled.div`
   text-align: center;
 `;
 
-        ### 📄 src/components/my-profile/pesonal-info/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/cloud-software/youtube-account/current-plan, @/components/common/base-label, @/components/common/forms/base-form, @/components/common/inputs/base-input, @/constants`...
-* ww **Hooks:** `usePersonalInfo`
+```
+---
 
-        ```typescript
-        import CurrentPlan from '@/components/cloud-software/youtube-account/current-plan';
+### 📄 src/components/my-profile/pesonal-info/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 10 found
+
+```typescript
+import CurrentPlan from '@/components/cloud-software/youtube-account/current-plan';
 import BaseLabel from '@/components/common/base-label';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { BaseInput } from '@/components/common/inputs/base-input';
@@ -20868,13 +22151,16 @@ const PersonalInfo = () => {
 
 export default PersonalInfo;
 
-        ### 📄 src/components/my-profile/pesonal-info/index.utils.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/hooks/features/useUsers, @/hooks/useFeedback, @/stores/auth/auth.slice, @/stores/hooks`...
-* ww **Hooks:** `useAppDispatch, useEffect, useFeedback, useAppSelector, useUpdateUserInfo, useForm, useTranslation`
+```
+---
 
-        ```typescript
-        import { MESSAGES_ERROR, NUMBER_CHARACTERS } from '@/constants';
+### 📄 src/components/my-profile/pesonal-info/index.utils.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 8 found
+
+```typescript
+import { MESSAGES_ERROR, NUMBER_CHARACTERS } from '@/constants';
 import { useUpdateUserInfo } from '@/hooks/features/useUsers';
 import { useFeedback } from '@/hooks/useFeedback';
 import { updateUserInfo } from '@/stores/auth/auth.slice';
@@ -20990,12 +22276,17 @@ const usePersonalInfo = () => {
 
 export default usePersonalInfo;
 
-        ### 📄 src/components/my-profile/pesonal-info/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/forms/base-form, @/constants, react-phone-input-2`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/my-profile/pesonal-info/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** ContentWrapper, ContentRight, TopContent, Title, Plan...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { FONT_SIZE, FONT_WEIGHT } from '@/constants';
 import PhoneInput from 'react-phone-input-2';
@@ -21094,13 +22385,16 @@ export const PhoneNumber = styled(PhoneInput)<{ disabled: boolean; phoneCodeVali
     `}
 `;
 
-        ### 📄 src/components/my-profile/components/content-left/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-avatar, @/stores/hooks, next-i18next, next/router`
-* ww **Hooks:** `useAppSelector, useTranslation, useRouter`
+```
+---
 
-        ```typescript
-        import { BaseAvatar } from '@/components/common/base-avatar';
+### 📄 src/components/my-profile/components/content-left/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+
+```typescript
+import { BaseAvatar } from '@/components/common/base-avatar';
 import { useAppSelector } from '@/stores/hooks';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
@@ -21141,12 +22435,17 @@ const ContentLeft = () => {
 
 export default ContentLeft;
 
-        ### 📄 src/components/my-profile/components/content-left/index.utils.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants`
+```
+---
 
-        ```typescript
-        import { ROUTER_PATH } from '@/constants';
+### 📄 src/components/my-profile/components/content-left/index.utils.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** arrayPath
+
+```typescript
+import { ROUTER_PATH } from '@/constants';
 
 export const arrayPath = [
   {
@@ -21166,12 +22465,17 @@ export const arrayPath = [
   },
 ];
 
-        ### 📄 src/components/my-profile/components/content-left/index.styles.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `next/image, next/link`
+```
+---
 
-        ```typescript
-        import Image from 'next/image';
+### 📄 src/components/my-profile/components/content-left/index.styles.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** ContentLeftWrapper, AvatarWrapper, AvatarImage, NameAvatar, Name...
+
+```typescript
+import Image from 'next/image';
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
@@ -21254,13 +22558,16 @@ export const PathName = styled.span`
   font-weight: 500;
 `;
 
-        ### 📄 src/components/my-profile/security-settings/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-label, @/components/common/forms/base-form, @/components/common/inputs/password-input, @/constants, @/hooks/features/useUsers`...
-* ww **Hooks:** `useChangePassword, useFeedback, useForm, useTranslation`
+```
+---
 
-        ```typescript
-        import BaseLabel from '@/components/common/base-label';
+### 📄 src/components/my-profile/security-settings/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 10 found
+
+```typescript
+import BaseLabel from '@/components/common/base-label';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { InputPassword } from '@/components/common/inputs/password-input';
 import { MESSAGES_ERROR } from '@/constants';
@@ -21463,12 +22770,17 @@ const SecuritySetting = () => {
 
 export default SecuritySetting;
 
-        ### 📄 src/components/my-profile/security-settings/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/forms/base-form, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/components/my-profile/security-settings/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** ContentWrapper, ContentRight, Title, FormItem, BtnCancel...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { BaseForm } from '@/components/common/forms/base-form';
 import { FONT_WEIGHT } from '@/constants';
 import styled from 'styled-components';
@@ -21510,14 +22822,17 @@ export const BtnSave = styled(BaseButton)`
   margin-top: 1.5rem;
 `;
 
-        ### 📄 src/components/header/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/hooks/useResponsive, react`
-* 🧩 **Component (Arrow):** `Header`
-* ww **Hooks:** `useResponsive`
+```
+---
 
-        ```typescript
-        import { useResponsive } from '@/hooks/useResponsive';
+### 📄 src/components/header/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** Header
+
+```typescript
+import { useResponsive } from '@/hooks/useResponsive';
 import React from 'react';
 
 import { DesktopHeader } from './desktop-header';
@@ -21543,12 +22858,17 @@ export const Header: React.FC<HeaderProps> = ({
   );
 };
 
-        ### 📄 src/components/header/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants`
+```
+---
 
-        ```ts
-        import { LAYOUT, media } from '@/constants';
+### 📄 src/components/header/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** HeaderActionWrapper, DropdownCollapse, BurgerCol, MobileBurger, SearchColumn...
+
+```typescript
+import { LAYOUT, media } from '@/constants';
 import styled, { css } from 'styled-components';
 
 import { BurgerIcon } from '../common/base-burger/BurgerIcon';
@@ -21674,14 +22994,17 @@ export const ButtonHeader = styled(BaseButton)`
   }
 `;
 
-        ### 📄 src/components/header/profile/profile-dropdown/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-logout.svg, @/assets/images/svg/icon-profile.svg, @/components/common/base-avatar, @/components/common/base-col, @/components/common/base-dropdown`...
-* 🧩 **Component (Arrow):** `ProfileDropdown`
-* ww **Hooks:** `useAppDispatch, useEffect, useResponsive, useGetDetailUserQuery, useRouter, useLogout, useFeedback`
+```
+---
 
-        ```typescript
-        import IconLogout from '@/assets/images/svg/icon-logout.svg';
+### 📄 src/components/header/profile/profile-dropdown/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 19 found
+> * 🚀 **Exports/Components:** ProfileDropdown
+
+```typescript
+import IconLogout from '@/assets/images/svg/icon-logout.svg';
 import IconProfile from '@/assets/images/svg/icon-profile.svg';
 import { BaseAvatar } from '@/components/common/base-avatar';
 import { BaseCol } from '@/components/common/base-col';
@@ -21800,12 +23123,17 @@ export const ProfileDropdown: React.FC = () => {
   ) : null;
 };
 
-        ### 📄 src/components/header/profile/profile-dropdown/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @ant-design/icons, styled-components`
+```
+---
 
-        ```ts
-        import { media } from '@/constants';
+### 📄 src/components/header/profile/profile-dropdown/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** ProfileDropdownHeader, DownArrow, NameAvatar, Name
+
+```typescript
+import { media } from '@/constants';
 import { DownOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 
@@ -21869,14 +23197,17 @@ export const Name = styled.h2`
   line-height: normal;
 `;
 
-        ### 📄 src/components/header/profile/profile-overlay/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/hooks/features/useAuth, @/hooks/useFeedback, @/stores/auth/auth.slice, @/stores/hooks`...
-* 🧩 **Component (Arrow):** `ProfileOverlay`
-* ww **Hooks:** `useAppDispatch, useLogout, useRouter, useFeedback, useAppSelector, useTranslation`
+```
+---
 
-        ```typescript
-        import { ROUTER_PATH } from '@/constants';
+### 📄 src/components/header/profile/profile-overlay/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 10 found
+> * 🚀 **Exports/Components:** ProfileOverlay
+
+```typescript
+import { ROUTER_PATH } from '@/constants';
 import { useLogout } from '@/hooks/features/useAuth';
 import { useFeedback } from '@/hooks/useFeedback';
 import { removeCredentials, selectCurrentUser } from '@/stores/auth/auth.slice';
@@ -21919,12 +23250,17 @@ export const ProfileOverlay: React.FC = ({ ...props }) => {
   );
 };
 
-        ### 📄 src/components/header/profile/profile-overlay/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-divider, @/components/common/base-typography, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseDivider } from '@/components/common/base-divider';
+### 📄 src/components/header/profile/profile-overlay/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** Text, ItemsDivider
+
+```typescript
+import { BaseDivider } from '@/components/common/base-divider';
 import { BaseTypography } from '@/components/common/base-typography';
 import { media } from '@/constants';
 import styled from 'styled-components';
@@ -21950,13 +23286,17 @@ export const ItemsDivider = styled(BaseDivider)`
   margin: 0;
 `;
 
-        ### 📄 src/components/header/mobile-header/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-col, react`
-* 🧩 **Component (Arrow):** `MobileHeader`
+```
+---
 
-        ```typescript
-        import { BaseCol } from '@/components/common/base-col';
+### 📄 src/components/header/mobile-header/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** MobileHeader
+
+```typescript
+import { BaseCol } from '@/components/common/base-col';
 import React from 'react';
 
 import * as S from '../index.styles';
@@ -21981,13 +23321,17 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
   );
 };
 
-        ### 📄 src/components/header/desktop-header/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-fi-rr-expand-arrows.svg, @/assets/images/svg/icon-fi-rr-settings.svg, @/components/common/base-row, @/components/language-switcher, react`
-* 🧩 **Component (Arrow):** `DesktopHeader`
+```
+---
 
-        ```typescript
-        import IconExpandArrows from '@/assets/images/svg/icon-fi-rr-expand-arrows.svg';
+### 📄 src/components/header/desktop-header/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** DesktopHeader
+
+```typescript
+import IconExpandArrows from '@/assets/images/svg/icon-fi-rr-expand-arrows.svg';
 import IconSettings from '@/assets/images/svg/icon-fi-rr-settings.svg';
 import { BaseRow } from '@/components/common/base-row';
 import LanguageSwitcher from '@/components/language-switcher';
@@ -22022,12 +23366,16 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ isTwoColumnsLayout
   );
 };
 
-        ### 📄 src/layouts/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/layouts/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+
+```typescript
+import React from 'react';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return <section className="main">{children}</section>;
@@ -22035,13 +23383,16 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
 export default RootLayout;
 
-        ### 📄 src/layouts/admin-layout/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/header, @/components/modals/modal-plan, @/components/modals/modal-reminder, next/dynamic`
-* ww **Hooks:** `useState`
+```
+---
 
-        ```typescript
-        import { Header } from '@/components/header';
+### 📄 src/layouts/admin-layout/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+
+```typescript
+import { Header } from '@/components/header';
 import PlanModal from '@/components/modals/modal-plan';
 import ReminderModal from '@/components/modals/modal-reminder';
 import dynamic from 'next/dynamic';
@@ -22089,12 +23440,17 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
 export default AppLayout;
 
-        ### 📄 src/layouts/admin-layout/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-layout, @/constants, styled-components`
+```
+---
 
-        ```ts
-        import { BaseLayout } from '@/components/common/base-layout';
+### 📄 src/layouts/admin-layout/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** LayoutMaster, LayoutMain
+
+```typescript
+import { BaseLayout } from '@/components/common/base-layout';
 import { media } from '@/constants';
 import styled from 'styled-components';
 
@@ -22112,13 +23468,16 @@ export const LayoutMain = styled(BaseLayout)`
   }
 `;
 
-        ### 📄 src/layouts/admin-layout/footer/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/utils/cookie, next-i18next, react`
-* ww **Hooks:** `useTranslation`
+```
+---
 
-        ```typescript
-        import { DEFAULT_LOCALE } from '@/constants';
+### 📄 src/layouts/admin-layout/footer/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+
+```typescript
+import { DEFAULT_LOCALE } from '@/constants';
 import cookies from '@/utils/cookie';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
@@ -22162,12 +23521,17 @@ const MainFooter = () => {
 
 export default MainFooter;
 
-        ### 📄 src/layouts/admin-layout/footer/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `styled-components`
+```
+---
 
-        ```ts
-        import styled from 'styled-components';
+### 📄 src/layouts/admin-layout/footer/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** ContentFooter, CompanyInfo, Reserved, Copyright, LinkUrl
+
+```typescript
+import styled from 'styled-components';
 
 export const ContentFooter = styled.div`
   display: flex;
@@ -22213,14 +23577,16 @@ export const LinkUrl = styled.div`
   }
 `;
 
-        ### 📄 src/layouts/admin-layout/sider/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/overlay, @/hooks/useResponsive`
-* 🧩 **Component (Arrow):** `MainSider`
-* ww **Hooks:** `useResponsive, useMemo`
+```
+---
 
-        ```typescript
-        import { Overlay } from '@/components/common/overlay';
+### 📄 src/layouts/admin-layout/sider/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+
+```typescript
+import { Overlay } from '@/components/common/overlay';
 import { useResponsive } from '@/hooks/useResponsive';
 import React, { useMemo } from 'react';
 
@@ -22262,12 +23628,17 @@ const MainSider: React.FC<MainSiderProps> = ({ isCollapsed, setCollapsed, ...pro
 
 export default MainSider;
 
-        ### 📄 src/layouts/admin-layout/sider/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-button, @/components/common/base-layout, @/constants, @/constants, next/link`
+```
+---
 
-        ```ts
-        import { BaseButton } from '@/components/common/base-button';
+### 📄 src/layouts/admin-layout/sider/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** Sider, CollapseButton, SiderContent, SiderLogoLink, SiderLogoDiv...
+
+```typescript
+import { BaseButton } from '@/components/common/base-button';
 import { BaseLayout } from '@/components/common/base-layout';
 import { media } from '@/constants';
 import { LAYOUT } from '@/constants';
@@ -22372,12 +23743,16 @@ export const BrandSpan = styled.span`
   color: var(--white);
 `;
 
-        ### 📄 src/layouts/admin-layout/content/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-layout, @/constants`
+```
+---
 
-        ```typescript
-        import { BaseLayout } from '@/components/common/base-layout';
+### 📄 src/layouts/admin-layout/content/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+
+```typescript
+import { BaseLayout } from '@/components/common/base-layout';
 import { LAYOUT, media } from '@/constants';
 import styled, { css } from 'styled-components';
 
@@ -22405,14 +23780,16 @@ export default styled(BaseLayout.Content)<HeaderProps>`
   }
 `;
 
-        ### 📄 src/layouts/admin-layout/sider-menu/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/hooks/features/useUsers, @/stores/hooks, @/stores/progress/progress.slice, @/utils`...
-* 🧩 **Component (Arrow):** `SiderMenu`
-* ww **Hooks:** `useAppDispatch, useRouter, useGetDetailUserQuery, useTranslation`
+```
+---
 
-        ```typescript
-        import { ROUTER_PATH } from '@/constants';
+### 📄 src/layouts/admin-layout/sider-menu/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 11 found
+
+```typescript
+import { ROUTER_PATH } from '@/constants';
 import { useGetDetailUserQuery } from '@/hooks/features/useUsers';
 import { useAppDispatch } from '@/stores/hooks';
 import {
@@ -22516,13 +23893,17 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
 
 export default SiderMenu;
 
-        ### 📄 src/layouts/admin-layout/sider-menu/SiderLogo.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/logo.svg, @/constants, react`
-* 🧩 **Component (Arrow):** `SiderLogo`
+```
+---
 
-        ```typescript
-        import IconLogo from '@/assets/images/svg/logo.svg';
+### 📄 src/layouts/admin-layout/sider-menu/SiderLogo.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** SiderLogo
+
+```typescript
+import IconLogo from '@/assets/images/svg/logo.svg';
 import { ROUTER_PATH } from '@/constants';
 import React from 'react';
 
@@ -22551,13 +23932,18 @@ export const SiderLogo: React.FC<SiderLogoProps> = () => {
   );
 };
 
-        ### 📄 src/layouts/admin-layout/sider-menu/menu.utils.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/menu/icon-cloud-active.svg, @/assets/images/svg/menu/icon-cloud.svg, @/assets/images/svg/menu/icon-profile-active.svg, @/assets/images/svg/menu/icon-profile.svg, react`
-* wb **Type/Intf:** `SidebarNavigationItem`
+```
+---
 
-        ```typescript
-        import IconCloudActive from '@/assets/images/svg/menu/icon-cloud-active.svg';
+### 📄 src/layouts/admin-layout/sider-menu/menu.utils.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🛠️ **Types/Interfaces:** export interface SidebarNavigationItem
+> * 🚀 **Exports/Components:** sidebarNavigation
+
+```typescript
+import IconCloudActive from '@/assets/images/svg/menu/icon-cloud-active.svg';
 import IconCloud from '@/assets/images/svg/menu/icon-cloud.svg';
 import IconProfileActive from '@/assets/images/svg/menu/icon-profile-active.svg';
 import IconProfile from '@/assets/images/svg/menu/icon-profile.svg';
@@ -22622,12 +24008,17 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
   },
 ];
 
-        ### 📄 src/layouts/admin-layout/sider-menu/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-menu`
+```
+---
 
-        ```ts
-        import { BaseMenu } from '@/components/common/base-menu';
+### 📄 src/layouts/admin-layout/sider-menu/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** Menu, PathItem
+
+```typescript
+import { BaseMenu } from '@/components/common/base-menu';
 import styled, { css } from 'styled-components';
 
 export const Menu = styled(BaseMenu)`
@@ -22660,13 +24051,16 @@ export const PathItem = styled.span<{ active: string }>`
         `};
 `;
 
-        ### 📄 src/layouts/admin-layout/header/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces, react`
-* 🧩 **Component (Arrow):** `MainHeader`
+```
+---
 
-        ```typescript
-        import { WithChildrenProps } from '@/interfaces';
+### 📄 src/layouts/admin-layout/header/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+
+```typescript
+import { WithChildrenProps } from '@/interfaces';
 import React from 'react';
 
 import * as S from './index.styles';
@@ -22682,12 +24076,17 @@ const MainHeader: React.FC<MainHeaderProps> = ({ isTwoColumnsLayout, children })
 
 export default MainHeader;
 
-        ### 📄 src/layouts/admin-layout/header/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/base-layout, @/constants, @/constants`
+```
+---
 
-        ```ts
-        import { BaseLayout } from '@/components/common/base-layout';
+### 📄 src/layouts/admin-layout/header/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** Header
+
+```typescript
+import { BaseLayout } from '@/components/common/base-layout';
 import { LAYOUT } from '@/constants';
 import { media } from '@/constants';
 import styled, { css } from 'styled-components';
@@ -22714,13 +24113,16 @@ export const Header = styled(BaseLayout.Header)<HeaderProps>`
   }
 `;
 
-        ### 📄 src/layouts/auth-layout/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* 🧩 **Component (Arrow):** `AuthLayout`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/layouts/auth-layout/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+
+```typescript
+import React from 'react';
 
 import * as S from './index.styles';
 
@@ -22740,12 +24142,17 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
 
 export default AuthLayout;
 
-        ### 📄 src/layouts/auth-layout/index.styles.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/auth/auth-bg.png, @/components/common/base-button, @/components/common/base-checkbox, @/components/common/forms/base-form, @/components/common/inputs/base-input`...
+```
+---
 
-        ```ts
-        import authBackground from '@/assets/images/auth/auth-bg.png';
+### 📄 src/layouts/auth-layout/index.styles.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+> * 🚀 **Exports/Components:** Wrapper, BackgroundWrapper, LoginWrapper, FormWrapper, FormTitle...
+
+```typescript
+import authBackground from '@/assets/images/auth/auth-bg.png';
 import { BaseButton } from '@/components/common/base-button';
 import { BaseCheckbox } from '@/components/common/base-checkbox';
 import { BaseForm } from '@/components/common/forms/base-form';
@@ -22974,12 +24381,16 @@ export const DescriptionVerify = styled.div`
   font-weight: ${FONT_WEIGHT.regular};
 `;
 
-        ### 📄 src/layouts/main-layout/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
+```
+---
 
-        ```typescript
-        import React from 'react';
+### 📄 src/layouts/main-layout/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+
+```typescript
+import React from 'react';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -22992,13 +24403,17 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
 export default MainLayout;
 
-        ### 📄 src/hooks/useFeedback.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/controllers/modal, @/controllers/notification, antd`
-* ww **Hooks:** `useApp`
+```
+---
 
-        ```ts
-        import { modalController } from '@/controllers/modal';
+### 📄 src/hooks/useFeedback.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** useFeedback
+
+```typescript
+import { modalController } from '@/controllers/modal';
 import { notificationController } from '@/controllers/notification';
 import { App } from 'antd';
 
@@ -23019,13 +24434,17 @@ export const useFeedback = (): ReturnType<typeof App.useApp> => {
   };
 };
 
-        ### 📄 src/hooks/useDimensions.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* ww **Hooks:** `useEffect, useCallback`
+```
+---
 
-        ```ts
-        import { useCallback, useEffect, useState } from 'react';
+### 📄 src/hooks/useDimensions.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** useDimensions
+
+```typescript
+import { useCallback, useEffect, useState } from 'react';
 
 interface Dimension {
   width: number | undefined;
@@ -23067,13 +24486,16 @@ export const useDimensions = (ref: { current: Element | null }): Dimension => {
   return { width: dimensions.width, height: dimensions.height };
 };
 
-        ### 📄 src/hooks/useOnClickOutside.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* ww **Hooks:** `useEffect`
+```
+---
 
-        ```ts
-        import { RefObject, useEffect } from 'react';
+### 📄 src/hooks/useOnClickOutside.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+
+```typescript
+import { RefObject, useEffect } from 'react';
 
 type AnyEvent = MouseEvent | TouchEvent;
 
@@ -23107,14 +24529,16 @@ function useOnClickOutside<T extends HTMLElement = HTMLElement>(
 
 export { useOnClickOutside };
 
-        ### 📄 src/hooks/useLoadServerError.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/interfaces, antd, lodash/find, lodash/forEach`
-* 🧩 **Component (Default):** `useLoadServerError`
-* ww **Hooks:** `useFeedback, useLoadServerError`
+```
+---
 
-        ```ts
-        import { RESPONSE_CODE } from '@/constants';
+### 📄 src/hooks/useLoadServerError.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+
+```typescript
+import { RESPONSE_CODE } from '@/constants';
 import { ApiError, ServerError, ValidationError } from '@/interfaces';
 import { FormInstance } from 'antd';
 import find from 'lodash/find';
@@ -23216,13 +24640,16 @@ export default function useLoadServerError() {
   };
 }
 
-        ### 📄 src/hooks/useCheckMobile.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, react`
-* ww **Hooks:** `useState, useEffect`
+```
+---
 
-        ```ts
-        import { SCREENS } from '@/constants';
+### 📄 src/hooks/useCheckMobile.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+
+```typescript
+import { SCREENS } from '@/constants';
 import { useEffect, useState } from 'react';
 
 const useCheckMobileScreen = () => {
@@ -23243,17 +24670,17 @@ const useCheckMobileScreen = () => {
 
 export default useCheckMobileScreen;
 
-        ### 📄 src/hooks/useAppMutation.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/hooks/useLoadServerError, @/interfaces, @/utils/react-query, @tanstack/react-query, antd`
-* wb **Type/Intf:** `AppMutationOptions`
-* wb **Type/Intf:** `useAppMutationCustomProps`
-* wb **Type/Intf:** `useAppMutationProps`
-* 🧩 **Component (Default):** `useAppMutation`
-* ww **Hooks:** `useMutation, useLoadServerError`
+```
+---
 
-        ```ts
-        import useLoadServerError from '@/hooks/useLoadServerError';
+### 📄 src/hooks/useAppMutation.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🛠️ **Types/Interfaces:** export interface AppMutationOptions, export interface useAppMutationCustomProps, export interface useAppMutationProps<TData, TError, TVariables, TContext>
+
+```typescript
+import useLoadServerError from '@/hooks/useLoadServerError';
 import { ApiError } from '@/interfaces';
 import { useMutation } from '@/utils/react-query';
 import {
@@ -23314,13 +24741,17 @@ export default function useAppMutation<
   return { ...mutation, mutate: safeMutate };
 }
 
-        ### 📄 src/hooks/use-timer.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* ww **Hooks:** `useState, useEffect`
+```
+---
 
-        ```ts
-        import { useEffect, useState } from 'react';
+### 📄 src/hooks/use-timer.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** useTimer
+
+```typescript
+import { useEffect, useState } from 'react';
 
 export const useTimer = (initialSeconds: number = 300, onEndTime?: () => void) => {
   const [value, setValue] = useState(0);
@@ -23350,13 +24781,17 @@ export const useTimer = (initialSeconds: number = 300, onEndTime?: () => void) =
   return [value, execute, reset] as [number, () => void, (stop?: boolean) => void];
 };
 
-        ### 📄 src/hooks/useMounted.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* ww **Hooks:** `useEffect, useRef`
+```
+---
 
-        ```ts
-        import { MutableRefObject, useEffect, useRef } from 'react';
+### 📄 src/hooks/useMounted.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🚀 **Exports/Components:** useMounted
+
+```typescript
+import { MutableRefObject, useEffect, useRef } from 'react';
 
 interface UseMountedReturnVal {
   isMounted: MutableRefObject<boolean>;
@@ -23376,13 +24811,16 @@ export const useMounted = (): UseMountedReturnVal => {
   return { isMounted };
 };
 
-        ### 📄 src/hooks/useDebounce.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `react`
-* ww **Hooks:** `useEffect`
+```
+---
 
-        ```ts
-        import { useEffect, useState } from 'react';
+### 📄 src/hooks/useDebounce.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+
+```typescript
+import { useEffect, useState } from 'react';
 
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
@@ -23400,12 +24838,17 @@ function useDebounce<T>(value: T, delay: number): T {
 
 export default useDebounce;
 
-        ### 📄 src/hooks/usePagination.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces, react`
+```
+---
 
-        ```ts
-        import { IPaginationParams } from '@/interfaces';
+### 📄 src/hooks/usePagination.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** usePagination
+
+```typescript
+import { IPaginationParams } from '@/interfaces';
 import { useState } from 'react';
 
 const LIMIT = 20;
@@ -23430,13 +24873,17 @@ export const usePagination = (initialPage = 1) => {
   };
 };
 
-        ### 📄 src/hooks/useResponsive.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, react-responsive`
-* ww **Hooks:** `useMediaQuery`
+```
+---
 
-        ```ts
-        import { BREAKPOINTS, media } from '@/constants';
+### 📄 src/hooks/useResponsive.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** useResponsive
+
+```typescript
+import { BREAKPOINTS, media } from '@/constants';
 import { MediaQueryAllQueryable, MediaQueryMatchers, useMediaQuery } from 'react-responsive';
 
 interface ResponsiveReturnValues {
@@ -23484,15 +24931,17 @@ export const useResponsive = (): ResponsiveReturnValues => {
   };
 };
 
-        ### 📄 src/hooks/useAppQuery.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces, @tanstack/react-query`
-* wb **Type/Intf:** `UseAppQueryResult`
-* 🧩 **Component (Default):** `useAppQuery`
-* ww **Hooks:** `useQuery, useLoadServerError`
+```
+---
 
-        ```ts
-        import { ApiError } from '@/interfaces';
+### 📄 src/hooks/useAppQuery.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type UseAppQueryResult<TData, TError> = Omit<UseQueryResult<TData, TError>, 'refetch'> &
+
+```typescript
+import { ApiError } from '@/interfaces';
 import {
   QueryClient,
   QueryKey,
@@ -23540,14 +24989,17 @@ export default function useAppQuery<
   return { ...query, refetch: safeRefetch };
 }
 
-        ### 📄 src/hooks/features/useYoutubeAccount.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/cloud-software/youtube-accounts, @/interfaces/cloud-software`
-* ww **Hooks:** `useAppQuery, useAppMutation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import {
+### 📄 src/hooks/features/useYoutubeAccount.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** useConnectYoutube, useRefreshTotalVideo, useGetListYoutube, useCallbackYoutube, useDeleteYoutubeMutate...
+
+```typescript
+import {
   callbackYoutube,
   connectYoutube,
   deleteYoutube,
@@ -23643,14 +25095,17 @@ export const useGetTotalVideoInfo = () =>
     gcTime: 0,
   });
 
-        ### 📄 src/hooks/features/useTranslate.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/cloud-software/translate, @/interfaces/cloud-software`
-* ww **Hooks:** `useAppQuery, useAppMutation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import {
+### 📄 src/hooks/features/useTranslate.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** useGetListLanguage, useTranslateText, useGetListYoutubeLanguage
+
+```typescript
+import {
   getListLanguage,
   getListYoutubeLanguage,
   translateText,
@@ -23679,14 +25134,17 @@ export const useGetListYoutubeLanguage = (params: IListLanguageRequest, enabled:
     enabled,
   });
 
-        ### 📄 src/hooks/features/useSupcriptionPlan.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/supcription-plan, @/interfaces`
-* ww **Hooks:** `useAppQuery, useAppMutation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import {
+### 📄 src/hooks/features/useSupcriptionPlan.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** useGetPaymentHistory, usePaymentOrder, usePaymentCapture, useChangePlan
+
+```typescript
+import {
   getPaymentHistory,
   paymentCapture,
   paymentOrder,
@@ -23709,14 +25167,17 @@ export const usePaymentCapture = () => useAppMutation(paymentCapture, undefined,
 
 export const useChangePlan = () => useAppMutation(updatePlan);
 
-        ### 📄 src/hooks/features/useCaptionize.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/cloud-software/caption, @/interfaces/cloud-software`
-* ww **Hooks:** `useAppQuery, useAppMutation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import {
+### 📄 src/hooks/features/useCaptionize.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** useGetCaptionByVideoMutation, useGetCaptionDetail, useGetCaptionByVideoQuery, useTranslateCaptionMutation, usePublishCaptionMutation...
+
+```typescript
+import {
   getCaptionByVideo,
   getCaptionDetail,
   getCaptionPushHistory,
@@ -23780,14 +25241,17 @@ export const useGetCaptionPushHistoryMutation = (options?: AppMutationOptions) =
     useAppMutationProps: options,
   });
 
-        ### 📄 src/hooks/features/useAuth.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/auth`
-* ww **Hooks:** `useAppMutation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { forgotPassword, logout, register, resendVerify, resetPassword } from '@/api/auth';
+### 📄 src/hooks/features/useAuth.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** useResendVerifyMutate, useRegisterMutate, useForgotPasswordMutate, useResetPasswordMutate, useLogout
+
+```typescript
+import { forgotPassword, logout, register, resendVerify, resetPassword } from '@/api/auth';
 
 import useAppMutation, { AppMutationOptions } from '../useAppMutation';
 
@@ -23828,14 +25292,17 @@ export const useLogout = (options?: AppMutationOptions) =>
     useAppMutationProps: options,
   });
 
-        ### 📄 src/hooks/features/useUsers.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/users, @/interfaces/users`
-* ww **Hooks:** `useAppQuery, useAppMutation`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { changePassword, getDetailUser, getUsers, updateUserInfo } from '@/api/users';
+### 📄 src/hooks/features/useUsers.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** useGetDetailUserQuery, useGetUsers, useGetUsersForCSV, useChangePassword, useUpdateUserInfo
+
+```typescript
+import { changePassword, getDetailUser, getUsers, updateUserInfo } from '@/api/users';
 import { GetUsersRequest } from '@/interfaces/users';
 
 import useAppMutation from '../useAppMutation';
@@ -23874,14 +25341,17 @@ export const useUpdateUserInfo = () => {
   });
 };
 
-        ### 📄 src/hooks/features/useTagManagement.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/tag, @/interfaces/tags`
-* ww **Hooks:** `useAppQuery`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { getTag } from '@/api/tag';
+### 📄 src/hooks/features/useTagManagement.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** useGetTag
+
+```typescript
+import { getTag } from '@/api/tag';
 import { GetTagRequest } from '@/interfaces/tags';
 
 import useAppQuery from '../useAppQuery';
@@ -23892,14 +25362,17 @@ export const useGetTag = (params: GetTagRequest) =>
     queryFn: () => getTag(params),
   });
 
-        ### 📄 src/hooks/features/useLabelManagement.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/labelManagement, @/interfaces/labelManagement`
-* ww **Hooks:** `useAppQuery`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { getLabel } from '@/api/labelManagement';
+### 📄 src/hooks/features/useLabelManagement.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** useGetLabel
+
+```typescript
+import { getLabel } from '@/api/labelManagement';
 import { GetLabelRequest } from '@/interfaces/labelManagement';
 
 import useAppQuery from '../useAppQuery';
@@ -23910,13 +25383,17 @@ export const useGetLabel = (params?: GetLabelRequest) =>
     queryFn: () => getLabel(),
   });
 
-        ### 📄 src/api/cloud-software/caption/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces/cloud-software`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { request } from '@/api/request';
+### 📄 src/api/cloud-software/caption/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** getCaptionByVideo, getCaptionDetail, translateCaption, publishCaption, getCaptionPushHistory
+
+```typescript
+import { request } from '@/api/request';
 import {
   ICaptionByVideo,
   ICaptionDetail,
@@ -23955,13 +25432,17 @@ export const getCaptionPushHistory = (params: IGetCaptionPushHistoryRequest) =>
     params
   );
 
-        ### 📄 src/api/cloud-software/translate/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces/cloud-software`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { request } from '@/api/request';
+### 📄 src/api/cloud-software/translate/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** getListLanguage, translateText, getListYoutubeLanguage
+
+```typescript
+import { request } from '@/api/request';
 import {
   IListLanguage,
   IListLanguageRequest,
@@ -23985,13 +25466,17 @@ export const getListYoutubeLanguage = (params: IListLanguageRequest) =>
     params
   );
 
-        ### 📄 src/api/cloud-software/youtube-accounts/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces, @/interfaces/cloud-software`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { request } from '@/api/request';
+### 📄 src/api/cloud-software/youtube-accounts/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** connectYoutube, getListYoutube, refreshTotalVideosYoutube, deleteYoutube, callbackYoutube...
+
+```typescript
+import { request } from '@/api/request';
 import { ResponseData } from '@/interfaces';
 import {
   IConnectYoutube,
@@ -24050,13 +25535,17 @@ export const getVideoHistory = (params: IYoutubeDetailVideo) =>
 export const getTotalVideoInfo = () =>
   request.get<null, { data: ITotalVideoInfo }>('/youtube/total-translation-of-video');
 
-        ### 📄 src/api/auth/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { request } from '@/api/request';
+### 📄 src/api/auth/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** login, resendVerify, register, forgotPassword, verifyForgotPasswordSms...
+
+```typescript
+import { request } from '@/api/request';
 import {
   ForgotPassword,
   LoginRequest,
@@ -24093,25 +25582,33 @@ export const resetPassword = (body: ResetPassword) =>
 export const logout = (id: number) =>
   request.delete<null, ResponseData<{ success: boolean }>>(`/auth/sign-out/${id}`);
 
-        ### 📄 src/api/labelManagement/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { request } from '@/api/request';
+### 📄 src/api/labelManagement/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** getLabel
+
+```typescript
+import { request } from '@/api/request';
 import { GetLabelRequest, GetLabelResponse, ResponseData } from '@/interfaces';
 
 export const getLabel = (params?: GetLabelRequest) =>
   request.get<GetLabelRequest, ResponseData<GetLabelResponse>>('/admin/label', params);
 
-        ### 📄 src/api/users/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { request } from '@/api/request';
+### 📄 src/api/users/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** getUsers, getDetailUser, changePassword, updateUserInfo
+
+```typescript
+import { request } from '@/api/request';
 import {
   GetUsersRequest,
   GetUsersResponse,
@@ -24132,13 +25629,18 @@ export const changePassword = (payload: IChangePassword) =>
 export const updateUserInfo = (payload: IUserInfoUpdate) =>
   request.put<IUserInfoUpdate, { data: UserDetailResponse }>('/user/update', payload);
 
-        ### 📄 src/api/request/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/utils/cookie, antd, next-i18next, next/router`
-* wb **Type/Intf:** `FailedRequest`
+```
+---
 
-        ```ts
-        import { RESPONSE_CODE, ROUTER_PATH } from '@/constants';
+### 📄 src/api/request/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🛠️ **Types/Interfaces:** export interface FailedRequest
+> * 🚀 **Exports/Components:** request
+
+```typescript
+import { RESPONSE_CODE, ROUTER_PATH } from '@/constants';
 import cookies from '@/utils/cookie';
 import { notification } from 'antd';
 import Axios, {
@@ -24265,13 +25767,17 @@ export const request = {
   },
 };
 
-        ### 📄 src/api/supcription-plan/index.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces, @/interfaces/plan-overview`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```ts
-        import { request } from '@/api/request';
+### 📄 src/api/supcription-plan/index.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🚀 **Exports/Components:** getPaymentHistory, paymentOrder, paymentCapture, updatePlan, getOrderDetail
+
+```typescript
+import { request } from '@/api/request';
 import { PaginationParams, ResponseData } from '@/interfaces';
 import {
   MembershipPlanPayLoad,
@@ -24295,24 +25801,33 @@ export const updatePlan = (payload: MembershipPlanPayLoad) =>
 export const getOrderDetail = (id: string) =>
   request.get<string, ResponseData<any>>(`/user/detail-order/${id}`);
 
-        ### 📄 src/api/tag/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/api/request, @/interfaces`
-* ⚡ **API Route / Server Action Detected**
+```
+---
 
-        ```typescript
-        import { request } from '@/api/request';
+### 📄 src/api/tag/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+> * 🚀 **Exports/Components:** getTag
+
+```typescript
+import { request } from '@/api/request';
 import { GetTagRequest, GetTagResponse, ResponseData } from '@/interfaces';
 
 export const getTag = (params: GetTagRequest) =>
   request.get<GetTagRequest, ResponseData<GetTagResponse>>('/admin/tag', params);
 
-        ### 📄 src/controllers/notification.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/assets/images/svg/icon-check-circle.svg, @/assets/images/svg/icon-error.svg, @/assets/images/svg/icon-info.svg, @/assets/images/svg/icon-triangle-warning.svg, @/constants`...
+```
+---
 
-        ```typescript
-        import CheckCircleFilled from '@/assets/images/svg/icon-check-circle.svg';
+### 📄 src/controllers/notification.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 9 found
+> * 🚀 **Exports/Components:** notificationController
+
+```typescript
+import CheckCircleFilled from '@/assets/images/svg/icon-check-circle.svg';
 import StopFilled from '@/assets/images/svg/icon-error.svg';
 import InfoCircleFilled from '@/assets/images/svg/icon-info.svg';
 import ExclamationCircleFilled from '@/assets/images/svg/icon-triangle-warning.svg';
@@ -24438,12 +25953,17 @@ export const notificationController = (
   error: open('error', notification),
 });
 
-        ### 📄 src/controllers/modal.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @ant-design/icons, antd/es/modal/confirm, react, styled-components`
+```
+---
 
-        ```typescript
-        import { FONT_SIZE, FONT_WEIGHT, HEIGHT } from '@/constants';
+### 📄 src/controllers/modal.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** modalController
+
+```typescript
+import { FONT_SIZE, FONT_WEIGHT, HEIGHT } from '@/constants';
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -24512,12 +26032,17 @@ export const modalController = (modal: ModalType): ModalType => ({
   error: openError(modal),
 });
 
-        ### 📄 src/pages/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/dashboard, @/constants, next, next-i18next/serverSideTranslations`
+```
+---
 
-        ```typescript
-        import DashBoard from '@/components/dashboard';
+### 📄 src/pages/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 4 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import DashBoard from '@/components/dashboard';
 import { DEFAULT_LOCALE } from '@/constants';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -24536,12 +26061,16 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 
 export default DashBoardPage;
 
-        ### 📄 src/pages/_document.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@ant-design/cssinjs`
+```
+---
 
-        ```typescript
-        import { StyleProvider, createCache, extractStyle } from '@ant-design/cssinjs';
+### 📄 src/pages/_document.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 2 found
+
+```typescript
+import { StyleProvider, createCache, extractStyle } from '@ant-design/cssinjs';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 
 const MyDocument = () => (
@@ -24592,12 +26121,16 @@ MyDocument.getInitialProps = async (ctx: DocumentContext) => {
 
 export default MyDocument;
 
-        ### 📄 src/pages/_app.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/error-boundary, @/stores/store, @/styles/theme-config, @/styles/theme-global, @/types/page`...
+```
+---
 
-        ```typescript
-        import ErrorBoundary from '@/components/common/error-boundary';
+### 📄 src/pages/_app.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 16 found
+
+```typescript
+import ErrorBoundary from '@/components/common/error-boundary';
 import { store } from '@/stores/store';
 import { getThemeConfig } from '@/styles/theme-config';
 import GlobalStyle from '@/styles/theme-global';
@@ -24650,12 +26183,17 @@ export default appWithTranslation(
   })
 );
 
-        ### 📄 src/pages/cloud-software/youtube-accounts/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/cloud-software/youtube-account, @/components/common/container-wrapper, @/constants, @/layouts/admin-layout, next`...
+```
+---
 
-        ```typescript
-        import YoutubeAccountComponent from '@/components/cloud-software/youtube-account';
+### 📄 src/pages/cloud-software/youtube-accounts/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import YoutubeAccountComponent from '@/components/cloud-software/youtube-account';
 import ContainerWrapper from '@/components/common/container-wrapper';
 import { DEFAULT_LOCALE } from '@/constants';
 import AdminLayout from '@/layouts/admin-layout';
@@ -24681,12 +26219,17 @@ YoutubeAccount.layout = AdminLayout;
 
 export default YoutubeAccount;
 
-        ### 📄 src/pages/cloud-software/translator/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/cloud-software/translator, @/components/modals/modal-route-change, @/constants, @/layouts/admin-layout, next`...
+```
+---
 
-        ```typescript
-        import TranslatorComponent from '@/components/cloud-software/translator';
+### 📄 src/pages/cloud-software/translator/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import TranslatorComponent from '@/components/cloud-software/translator';
 import RouteChangeWrapper from '@/components/modals/modal-route-change';
 import { DEFAULT_LOCALE } from '@/constants';
 import AdminLayout from '@/layouts/admin-layout';
@@ -24711,12 +26254,17 @@ Translation.layout = AdminLayout;
 
 export default Translation;
 
-        ### 📄 src/pages/cloud-software/captionizer/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/cloud-software/captionizer, @/components/modals/modal-route-change, @/constants, @/layouts/admin-layout, next`...
+```
+---
 
-        ```typescript
-        import CaptionComponent from '@/components/cloud-software/captionizer';
+### 📄 src/pages/cloud-software/captionizer/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import CaptionComponent from '@/components/cloud-software/captionizer';
 import RouteChangeWrapper from '@/components/modals/modal-route-change';
 import { DEFAULT_LOCALE } from '@/constants';
 import AdminLayout from '@/layouts/admin-layout';
@@ -24742,13 +26290,17 @@ Captionizer.layout = AdminLayout;
 
 export default Captionizer;
 
-        ### 📄 src/pages/auth/verify-password/error/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/auth/verify-error, @/constants, @/layouts/auth-layout, next, next-i18next`...
-* ww **Hooks:** `useTranslation`
+```
+---
 
-        ```typescript
-        import VerifyError from '@/components/auth/verify-error';
+### 📄 src/pages/auth/verify-password/error/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import VerifyError from '@/components/auth/verify-error';
 import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
@@ -24774,12 +26326,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 VerifyPasswordError.layout = AuthLayout;
 export default VerifyPasswordError;
 
-        ### 📄 src/pages/auth/verify-account/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/auth/verify-account, @/constants, @/layouts/auth-layout, next, next-i18next/serverSideTranslations`...
+```
+---
 
-        ```typescript
-        import VerifyRegister from '@/components/auth/verify-account';
+### 📄 src/pages/auth/verify-account/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import VerifyRegister from '@/components/auth/verify-account';
 import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
@@ -24801,13 +26358,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 VerifyAccount.layout = AuthLayout;
 export default VerifyAccount;
 
-        ### 📄 src/pages/auth/signup/error/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/auth/verify-error, @/constants, @/layouts/auth-layout, next, next-i18next`...
-* ww **Hooks:** `useTranslation`
+```
+---
 
-        ```typescript
-        import VerifyError from '@/components/auth/verify-error';
+### 📄 src/pages/auth/signup/error/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import VerifyError from '@/components/auth/verify-error';
 import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
@@ -24831,12 +26392,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 VerifyAccountError.layout = AuthLayout;
 export default VerifyAccountError;
 
-        ### 📄 src/pages/auth/register/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/auth/register-form, @/constants, @/layouts/auth-layout, next, next-i18next/serverSideTranslations`...
+```
+---
 
-        ```typescript
-        import { RegisterForm } from '@/components/auth/register-form';
+### 📄 src/pages/auth/register/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import { RegisterForm } from '@/components/auth/register-form';
 import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
@@ -24858,12 +26424,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 Register.layout = AuthLayout;
 export default Register;
 
-        ### 📄 src/pages/auth/new-password/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/auth/new-password-form, @/constants, @/layouts/auth-layout, next, next-i18next/serverSideTranslations`...
+```
+---
 
-        ```typescript
-        import { NewPasswordForm } from '@/components/auth/new-password-form';
+### 📄 src/pages/auth/new-password/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import { NewPasswordForm } from '@/components/auth/new-password-form';
 import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
@@ -24884,12 +26455,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 NewPassword.layout = AuthLayout;
 export default NewPassword;
 
-        ### 📄 src/pages/auth/forgot-password/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/auth/forgot-password-form, @/constants, @/layouts/auth-layout, next, next-i18next/serverSideTranslations`...
+```
+---
 
-        ```typescript
-        import { ForgotPasswordForm } from '@/components/auth/forgot-password-form';
+### 📄 src/pages/auth/forgot-password/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import { ForgotPasswordForm } from '@/components/auth/forgot-password-form';
 import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
@@ -24910,12 +26486,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 ForgotPassword.layout = AuthLayout;
 export default ForgotPassword;
 
-        ### 📄 src/pages/auth/login/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/auth/login-form, @/constants, @/layouts/auth-layout, next, next-i18next/serverSideTranslations`...
+```
+---
 
-        ```typescript
-        import { LoginForm } from '@/components/auth/login-form';
+### 📄 src/pages/auth/login/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import { LoginForm } from '@/components/auth/login-form';
 import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
@@ -24936,13 +26517,17 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 Login.layout = AuthLayout;
 export default Login;
 
-        ### 📄 src/pages/youtube/callback/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, @/layouts/auth-layout, next, next-i18next/serverSideTranslations, react`
-* ww **Hooks:** `useEffect`
+```
+---
 
-        ```typescript
-        import { DEFAULT_LOCALE } from '@/constants';
+### 📄 src/pages/youtube/callback/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 5 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import { DEFAULT_LOCALE } from '@/constants';
 import AuthLayout from '@/layouts/auth-layout';
 import { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -24985,13 +26570,16 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
 YoutubeCallback.layout = AuthLayout;
 export default YoutubeCallback;
 
-        ### 📄 src/pages/youtube/callback/index.utils.ts
-        > **Context Summary**
-        * 🧩 **Component (Default):** `useYoutubeAccount`
-* ww **Hooks:** `useCallbackYoutube, useYoutubeAccount`
+```
+---
 
-        ```ts
-        // interface IYoutubeAccount {
+### 📄 src/pages/youtube/callback/index.utils.ts
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```typescript
+// interface IYoutubeAccount {
 //   dataCallback: ResponseData<any> | undefined;
 // }
 export default function useYoutubeAccount(): any {
@@ -24999,12 +26587,17 @@ export default function useYoutubeAccount(): any {
   // return { dataCallback };
 }
 
-        ### 📄 src/pages/my-profile/payment-history/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/container-wrapper, @/components/my-profile/payments, @/constants, @/layouts/admin-layout, next`...
+```
+---
 
-        ```typescript
-        import ContainerWrapper from '@/components/common/container-wrapper';
+### 📄 src/pages/my-profile/payment-history/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import ContainerWrapper from '@/components/common/container-wrapper';
 import Payment from '@/components/my-profile/payments';
 import { DEFAULT_LOCALE } from '@/constants';
 import AdminLayout from '@/layouts/admin-layout';
@@ -25034,12 +26627,17 @@ PaymentPage.layout = AdminLayout;
 
 export default PaymentPage;
 
-        ### 📄 src/pages/my-profile/personal-info/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/container-wrapper, @/components/my-profile/pesonal-info, @/constants, @/layouts/admin-layout, next`...
+```
+---
 
-        ```typescript
-        import ContainerWrapper from '@/components/common/container-wrapper';
+### 📄 src/pages/my-profile/personal-info/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 6 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import ContainerWrapper from '@/components/common/container-wrapper';
 import PersonalInfo from '@/components/my-profile/pesonal-info';
 import { DEFAULT_LOCALE } from '@/constants';
 import AdminLayout from '@/layouts/admin-layout';
@@ -25068,12 +26666,17 @@ PersonalInfoPage.layout = AdminLayout;
 
 export default PersonalInfoPage;
 
-        ### 📄 src/pages/my-profile/security-settings/index.tsx
-        > **Context Summary**
-        * 🔗 **Imports:** `@/components/common/container-wrapper, @/components/my-profile/security-settings, @/constants, @/layouts/admin-layout, next`...
+```
+---
 
-        ```typescript
-        import ContainerWrapper from '@/components/common/container-wrapper';
+### 📄 src/pages/my-profile/security-settings/index.tsx
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 7 found
+> * 🚀 **Exports/Components:** getStaticProps
+
+```typescript
+import ContainerWrapper from '@/components/common/container-wrapper';
 import SecuritySetting from '@/components/my-profile/security-settings';
 import { DEFAULT_LOCALE } from '@/constants';
 import AdminLayout from '@/layouts/admin-layout';
@@ -25103,24 +26706,17 @@ SecuritySettingPage.layout = AdminLayout;
 
 export default SecuritySettingPage;
 
-        ### 📄 src/interfaces/common.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/constants, axios, react`
-* wb **Type/Intf:** `PaginationParams`
-* wb **Type/Intf:** `MetaData`
-* wb **Type/Intf:** `ResponseData`
-* wb **Type/Intf:** `ValidationError`
-* wb **Type/Intf:** `ServerError`
-* wb **Type/Intf:** `ApiError`
-* wb **Type/Intf:** `WithChildrenProps`
-* wb **Type/Intf:** `Pagination`
-* wb **Type/Intf:** `LEVELTYPE`
-* wb **Type/Intf:** `IPaginationParams`
-* wb **Type/Intf:** `IDataPagination`
-* wb **Type/Intf:** `Price`
+```
+---
 
-        ```ts
-        import { SORT_TYPE } from '@/constants';
+### 📄 src/interfaces/common.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 3 found
+> * 🛠️ **Types/Interfaces:** export type PaginationParams =, export type MetaData =, export type ResponseData<T> = MetaData &, export type ValidationError =, export type ServerError =...
+
+```typescript
+import { SORT_TYPE } from '@/constants';
 import { AxiosResponse } from 'axios';
 import { ReactNode } from 'react';
 
@@ -25241,17 +26837,17 @@ export interface Price {
   };
 }
 
-        ### 📄 src/interfaces/plan-overview.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces`
-* wb **Type/Intf:** `InfoPlan`
-* wb **Type/Intf:** `MembershipPlanPayLoad`
-* wb **Type/Intf:** `PaymentInfo`
-* wb **Type/Intf:** `PaymentOrder`
-* wb **Type/Intf:** `PaymentCapture`
+```
+---
 
-        ```ts
-        import { LEVEL_USER } from '@/interfaces';
+### 📄 src/interfaces/plan-overview.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🛠️ **Types/Interfaces:** export interface InfoPlan, export interface MembershipPlanPayLoad, export interface PaymentInfo, export interface PaymentOrder, export interface PaymentCapture extends PaymentOrder
+
+```typescript
+import { LEVEL_USER } from '@/interfaces';
 
 export interface InfoPlan {
   level: keyof typeof LEVEL_USER;
@@ -25300,16 +26896,17 @@ export interface PaymentCapture extends PaymentOrder {
   order_id: string;
 }
 
-        ### 📄 src/interfaces/labelManagement.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces`
-* wb **Type/Intf:** `GetLabelRequest`
-* wb **Type/Intf:** `IParamsLabel`
-* wb **Type/Intf:** `ILabel`
-* wb **Type/Intf:** `GetLabelResponse`
+```
+---
 
-        ```ts
-        import { PaginationParams } from '@/interfaces';
+### 📄 src/interfaces/labelManagement.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🛠️ **Types/Interfaces:** export interface GetLabelRequest extends PaginationParams, export interface IParamsLabel extends GetLabelRequest, export interface ILabel, export interface GetLabelResponse
+
+```typescript
+import { PaginationParams } from '@/interfaces';
 
 export interface GetLabelRequest extends PaginationParams {
   search?: string;
@@ -25327,18 +26924,17 @@ export interface GetLabelResponse {
   data: ILabel[];
 }
 
-        ### 📄 src/interfaces/users.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces`
-* wb **Type/Intf:** `GetUsersRequest`
-* wb **Type/Intf:** `IParams`
-* wb **Type/Intf:** `IUser`
-* wb **Type/Intf:** `GetUsersResponse`
-* wb **Type/Intf:** `IChangePassword`
-* wb **Type/Intf:** `IUserInfoUpdate`
+```
+---
 
-        ```ts
-        import { PaginationParams } from '@/interfaces';
+### 📄 src/interfaces/users.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🛠️ **Types/Interfaces:** export interface GetUsersRequest extends PaginationParams, export interface IParams extends GetUsersRequest, export interface IUser, export interface GetUsersResponse, export interface IChangePassword...
+
+```typescript
+import { PaginationParams } from '@/interfaces';
 
 export interface GetUsersRequest extends PaginationParams {
   search?: string;
@@ -25386,43 +26982,16 @@ export interface IUserInfoUpdate {
   phone_code: string;
 }
 
-        ### 📄 src/interfaces/cloud-software.ts
-        > **Context Summary**
-        * wb **Type/Intf:** `IConnectYoutube`
-* wb **Type/Intf:** `IRefreshTotalVideo`
-* wb **Type/Intf:** `IDisconnectYoutube`
-* wb **Type/Intf:** `IListYoutubeAccount`
-* wb **Type/Intf:** `IConnectYoutubeCallback`
-* wb **Type/Intf:** `IConnectYoutubeVideos`
-* wb **Type/Intf:** `IYoutubeDetailVideo`
-* wb **Type/Intf:** `ILocalizations`
-* wb **Type/Intf:** `ISnippetVideo`
-* wb **Type/Intf:** `ITransVideoYoutube`
-* wb **Type/Intf:** `ITransVideoResponse`
-* wb **Type/Intf:** `IListLanguageRequest`
-* wb **Type/Intf:** `IListYoutubeLanguageResponse`
-* wb **Type/Intf:** `IListLanguage`
-* wb **Type/Intf:** `ITranslateVideo`
-* wb **Type/Intf:** `ItranslateTextRequest`
-* wb **Type/Intf:** `IRefreshVideo`
-* wb **Type/Intf:** `IVideoHistoryResponse`
-* wb **Type/Intf:** `IThumbnail`
-* wb **Type/Intf:** `IVideoYoutube`
-* wb **Type/Intf:** `IListVideoByAccount`
-* wb **Type/Intf:** `IDetailVideoYoutube`
-* wb **Type/Intf:** `IGetCaptionByVideoRequest`
-* wb **Type/Intf:** `IGetDetailCaptionRequest`
-* wb **Type/Intf:** `ICaptionByVideo`
-* wb **Type/Intf:** `ICaptionDetail`
-* wb **Type/Intf:** `IPublishCaptionRequest`
-* wb **Type/Intf:** `ITranslateCaptionRequest`
-* wb **Type/Intf:** `ITranslateCaptionResponse`
-* wb **Type/Intf:** `IGetCaptionPushHistoryRequest`
-* wb **Type/Intf:** `IGetCaptionPushHistoryResponse`
-* wb **Type/Intf:** `ITotalVideoInfo`
+```
+---
 
-        ```ts
-        // ----- START: CONNECT ------
+### 📄 src/interfaces/cloud-software.ts
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export interface IConnectYoutube, export interface IRefreshTotalVideo, export interface IDisconnectYoutube, export interface IListYoutubeAccount, export interface IConnectYoutubeCallback...
+
+```typescript
+// ----- START: CONNECT ------
 
 export interface IConnectYoutube {
   id?: any;
@@ -25689,36 +27258,33 @@ export interface ITotalVideoInfo {
   total_account_youtube: number;
 }
 
-        ### 📄 src/interfaces/index.ts
-        > **Context Summary**
-        * (No structural elements detected)
+```
+---
 
-        ```ts
-        export * from './common';
+### 📄 src/interfaces/index.ts
+> **Context Summary**
+> 
+> * (No significant exports/imports detected)
+
+```typescript
+export * from './common';
 export * from './theme';
 export * from './auth';
 export * from './users';
 export * from './tags';
 export * from './labelManagement';
 
-        ### 📄 src/interfaces/theme.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `typescript`
-* wb **Type/Intf:** `ITheme`
-* wb **Type/Intf:** `Dimension`
-* wb **Type/Intf:** `ChartData`
-* wb **Type/Intf:** `xData`
-* wb **Type/Intf:** `LanguageType`
-* wb **Type/Intf:** `ThemeType`
-* wb **Type/Intf:** `ChartSeries`
-* wb **Type/Intf:** `ChartSeriesData`
-* wb **Type/Intf:** `Severity`
-* wb **Type/Intf:** `TwoFactorAuthOption`
-* wb **Type/Intf:** `ActivityStatusType`
-* wb **Type/Intf:** `PaymentCard`
+```
+---
 
-        ```ts
-        import { NumericLiteral } from 'typescript';
+### 📄 src/interfaces/theme.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🛠️ **Types/Interfaces:** export interface ITheme, export type Dimension = number | string;, export type ChartData = number[];, export type xData = number[] | string[];, export type LanguageType = 'ko' | 'en';...
+
+```typescript
+import { NumericLiteral } from 'typescript';
 
 export interface ITheme {
   primary: string;
@@ -25834,24 +27400,16 @@ export interface PaymentCard {
   isEdit: boolean;
 }
 
-        ### 📄 src/interfaces/auth.ts
-        > **Context Summary**
-        * wb **Type/Intf:** `User`
-* wb **Type/Intf:** `ChangeRankData`
-* wb **Type/Intf:** `YoutubeAccount`
-* wb **Type/Intf:** `UserModel`
-* wb **Type/Intf:** `LoginRequest`
-* wb **Type/Intf:** `LoginResponse`
-* wb **Type/Intf:** `RegisterRequest`
-* wb **Type/Intf:** `RegisterResponse`
-* wb **Type/Intf:** `ForgotPassword`
-* wb **Type/Intf:** `VerifyForgotPasswordSms`
-* wb **Type/Intf:** `ResetPassword`
-* wb **Type/Intf:** `VerifyUser`
-* wb **Type/Intf:** `UserDetailResponse`
+```
+---
 
-        ```ts
-        export interface User {
+### 📄 src/interfaces/auth.ts
+> **Context Summary**
+> 
+> * 🛠️ **Types/Interfaces:** export interface User, export type ChangeRankData =, export type YoutubeAccount =, export interface UserModel, export interface LoginRequest...
+
+```typescript
+export interface User {
   id: number;
   email: string;
   type: string;
@@ -25987,15 +27545,17 @@ export interface UserDetailResponse {
   renew_plan: boolean;
 }
 
-        ### 📄 src/interfaces/tags.ts
-        > **Context Summary**
-        * 🔗 **Imports:** `@/interfaces/common`
-* wb **Type/Intf:** `ITags`
-* wb **Type/Intf:** `GetTagRequest`
-* wb **Type/Intf:** `GetTagResponse`
+```
+---
 
-        ```ts
-        import { PaginationParams } from '@/interfaces/common';
+### 📄 src/interfaces/tags.ts
+> **Context Summary**
+> 
+> * 🔗 **Imports:** 1 found
+> * 🛠️ **Types/Interfaces:** export interface ITags, export interface GetTagRequest extends PaginationParams, export interface GetTagResponse
+
+```typescript
+import { PaginationParams } from '@/interfaces/common';
 
 export interface ITags {
   language: string;
@@ -26011,3 +27571,6 @@ export interface GetTagRequest extends PaginationParams {
 export interface GetTagResponse {
   data: ITags[];
 }
+
+```
+---
