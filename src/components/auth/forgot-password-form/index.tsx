@@ -43,8 +43,7 @@ export const ForgotPasswordForm: React.FC = () => {
             <Auth.Description>{t('reset.selectMethodDesc', { ns: 'auth' })}</Auth.Description>
             <S.RadioSelect
               defaultValue={method}
-              onChange={(e) => handleChangeMethod(e.target.value)}
-            >
+              onChange={(e) => handleChangeMethod(e.target.value)}>
               <S.Space>
                 <Radio value={METHOD_TYPE.EMAIL}>{t('email', { ns: 'common' })}</Radio>
                 <Radio value={METHOD_TYPE.PHONE}>{t('phoneNumber', { ns: 'common' })}</Radio>

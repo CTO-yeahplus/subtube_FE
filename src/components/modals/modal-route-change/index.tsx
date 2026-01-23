@@ -93,8 +93,7 @@ const RouteChangeWrapper = ({ children }: PropsWithChildren) => {
         }}
         btnCancel={{
           action: onClose,
-        }}
-      >
+        }}>
         <S.ModalDesc>{t('message.questionQuit')}</S.ModalDesc>
       </ModalConfirm>
       {children}

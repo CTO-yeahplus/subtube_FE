@@ -1,0 +1,57 @@
+- info Loaded env from /Users/eugeneko/Documents/EKO_DEV/SUB_TUBE/youtube_translation_fe/.env
+- info Linting and checking validity of types...
+- info Creating an optimized production build...
+Warning: For production Image Optimization with Next.js, the optional 'sharp' package is strongly recommended. Run 'yarn add sharp', and Next.js will use it automatically for Image Optimization.
+Read more: https://nextjs.org/docs/messages/sharp-missing-in-production
+Browserslist: caniuse-lite is outdated. Please run:
+  npx browserslist@latest --update-db
+  Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
+- warn Compiled with warnings
+
+./node_modules/next-i18next/dist/commonjs/serverSideTranslations.js
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./node_modules/next-i18next/dist/commonjs/serverSideTranslations.js
+./node_modules/next-i18next/serverSideTranslations.js
+./src/components/auth/verify-account/index.tsx
+
+- info Collecting page data...
+- info Generating static pages (0/39)
+- info Generating static pages (9/39)
+- info Generating static pages (19/39)
+- info Generating static pages (29/39)
+- info Generating static pages (39/39)
+- info Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ● /                                      192 kB          563 kB
+├   /_app                                  0 B             289 kB
+├ ○ /404                                   184 B           289 kB
+├ ● /auth/forgot-password                  334 B           405 kB
+├ ● /auth/login                            2.27 kB         345 kB
+├ ● /auth/new-password                     1.2 kB          406 kB
+├ ● /auth/register                         2.6 kB          363 kB
+├ ● /auth/signup/error                     383 B           311 kB
+├ ● /auth/verify-account                   68.9 kB         376 kB
+├ ● /auth/verify-password/error            392 B           311 kB
+├ ● /cloud-software/captionizer            35.1 kB         585 kB
+├ ● /cloud-software/translator             7.76 kB         557 kB
+├ ● /cloud-software/youtube-accounts       12 kB           447 kB
+├ ● /my-profile/payment-history            6.57 kB         516 kB
+├ ● /my-profile/personal-info              5.91 kB         440 kB
+├ ● /my-profile/security-settings          4.37 kB         421 kB
+├ ● /youtube/callback                      3.08 kB         310 kB
+└ ○ /youtube/callback/index.utils          242 B           290 kB
++ First Load JS shared by all              315 kB
+  ├ chunks/framework-5e8ac8dd643904dd.js   45.2 kB
+  ├ chunks/main-283a2040c2c76dbf.js        28.5 kB
+  ├ chunks/pages/_app-c37c8569b5c0b8b8.js  214 kB
+  ├ chunks/webpack-0a8f3f9a2fa9bcd5.js     1.92 kB
+  └ css/49b673fda130f605.css               25.3 kB
+
+ƒ Middleware                               22.2 kB
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+

@@ -218,8 +218,7 @@ const CaptionComponent = () => {
             type="primary"
             onClick={handlePublish}
             loading={loadingPublish}
-            disabled={disabledPublishBtn}
-          >
+            disabled={disabledPublishBtn}>
             {t('translator.publish')}
             <IconArrowRight />
           </S.PublishButton>

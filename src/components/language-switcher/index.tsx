@@ -54,8 +54,7 @@ export default function LanguageSwitcher() {
           },
         }}
         placement="bottomRight"
-        trigger={['click']}
-      >
+        trigger={['click']}>
         <S.Country onClick={(e) => e.preventDefault()}>
           {lang === 'en' ? <IconUSA /> : <IconKorea />}
         </S.Country>

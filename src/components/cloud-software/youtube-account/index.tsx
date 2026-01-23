@@ -123,7 +123,7 @@ const YoutubeAccountComponent = () => {
       dispatch(setIsOpenReminderPayment(true));
       cookies.set('reminder', 'true');
     }
-  }, [useDetail, dispatch, getTypeUSer]);
+  }, [useDetail, dispatch, getTypeUSer, isCanceledPlan, isReminder]); // 변수 추가
 
   const handleToggleModalDelete = () => {
     setIsOpenModalDelete((prev) => !prev);
@@ -322,8 +322,7 @@ const YoutubeAccountComponent = () => {
         <S.AddAccountButton
           type="primary"
           loading={false}
-          onClick={() => handleReachOfLimitConnect()}
-        >
+          onClick={() => handleReachOfLimitConnect()}>
           {t('youtube.add-account')}
         </S.AddAccountButton>
       </S.ContainerYourAccount>
@@ -337,8 +336,7 @@ const YoutubeAccountComponent = () => {
                 height={60}
                 loader={() => item.picture ?? ''}
                 src={item.picture ?? ''}
-                alt="avatar"
-              ></S.Avatar>
+                alt="avatar"></S.Avatar>
               <S.ChannelInfo>
                 <S.ChannelTitle>{item?.name_channel}</S.ChannelTitle>
                 <S.ChannelVideo>
@@ -392,8 +390,7 @@ const YoutubeAccountComponent = () => {
                             },
                           }
                         );
-                      }}
-                    >
+                      }}>
                       {t('youtube.refresh-videos')}
                       <IconRefresh />
                     </S.MenuButton>
@@ -403,14 +400,12 @@ const YoutubeAccountComponent = () => {
                         setIsOpenPopOver(false);
                         handleToggleModalDelete();
                         setItemId(item.id);
-                      }}
-                    >
+                      }}>
                       {t('youtube.delete-account')}
                       <IconTrash />
                     </S.MenuButton>
                   </>
-                }
-              >
+                }>
                 <S.InfoButton>
                   <IconMenu />
                 </S.InfoButton>
@@ -438,8 +433,7 @@ const YoutubeAccountComponent = () => {
           onCancel={handleToggleModalDelete}
           footer={false}
           closeIcon={false}
-          centered
-        >
+          centered>
           <S.ContainerModal>
             <S.ModalTitle>{t('youtube.delete-account')}</S.ModalTitle>
             <S.Icon>
@@ -466,8 +460,7 @@ const YoutubeAccountComponent = () => {
           footer={false}
           closeIcon={false}
           width={690}
-          centered
-        >
+          centered>
           <S.ContainerModal>
             <S.ModalTitle>{t('youtube.limit-of-connection')}</S.ModalTitle>
             <S.Icon>
@@ -480,8 +473,7 @@ const YoutubeAccountComponent = () => {
                     'youtube.your-current-plan-level',
                     _renderLevelUser(useDetail?.level || '')
                   ),
-                }}
-              ></S.ModalDesc>
+                }}></S.ModalDesc>
               <S.ModalDesc>{t('youtube.upgrade-your-plan')}</S.ModalDesc>
             </div>
             <S.ModalBtn>
@@ -493,8 +485,7 @@ const YoutubeAccountComponent = () => {
                 onClick={() => {
                   setIsOpenModalLimitConnect(false);
                   dispatch(setIsOpenPlanOverview(true));
-                }}
-              >
+                }}>
                 {t('youtube.upgrade')}
               </S.Button>
             </S.ModalBtn>

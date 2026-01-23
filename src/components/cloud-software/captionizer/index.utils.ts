@@ -16,7 +16,7 @@ import { useAppDispatch } from '@/stores/hooks';
 import { setIsProgress } from '@/stores/progress/progress.slice';
 import { htmlDecode } from '@/utils';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import useYoutubeAccount from '../index.utils';
 import { usePublishCaption, useTransCaption } from './action-hook';
@@ -46,7 +46,7 @@ const useTranslateCaption = () => {
         setDataListYoutube(sortData);
       }
     })();
-  }, [pagination.currentPage]);
+  }, [pagination.currentPage, dataListYoutube, refetchListYoutube]);
 
   const handleLoadMoreAccount = () => {
     const total = dataPagination?.total ?? 0;
@@ -134,14 +134,14 @@ const useTranslateCaption = () => {
   const { mutate: getCaptionDetailMutate, isPending: getCaptionDetailPending } =
     useGetCaptionDetail();
 
-  const listOptionsAccount = dataListYoutube
-    ? dataListYoutube.map((item) => {
-        return {
+  const listOptionsAccount = useMemo(() => {
+    return dataListYoutube
+      ? dataListYoutube.map((item) => ({
           value: item.id.toString(),
           label: item.name_channel,
-        };
-      })
-    : [];
+        }))
+      : [];
+  }, [dataListYoutube]);
 
   const listOptionsLanguage = dataListLanguage?.data
     ? dataListLanguage?.data?.map((item) => {
@@ -169,9 +169,9 @@ const useTranslateCaption = () => {
 
   useEffect(() => {
     dispatch(setIsProgress(!!videoSelected));
-  }, [videoSelected, setIsProgress]);
+  }, [videoSelected, dispatch]);
 
-  const handleGetListVideo = async () => {
+  const handleGetListVideo = useCallback(async () => {
     if (!accountSelected) return;
 
     try {
@@ -201,12 +201,12 @@ const useTranslateCaption = () => {
       setPageToken(nextPageToken);
       setTotalResults(totalResults);
 
-      setDataTable([...dataTable, ...dataListVideo.data.items]);
+      setDataTable((dataTable) => [...dataTable, ...dataListVideo.data.items]);
     } catch (error: any) {
       if (typeof error?.data?.message !== 'string' || !error?.data?.message) return;
       notification.error({ message: error.data.message });
     }
-  };
+  }, [accountSelected, pageToken, searchParams, notification]);
 
   const handleChangeAccount = (value: string) => {
     setAccountSelected(value);
@@ -237,7 +237,7 @@ const useTranslateCaption = () => {
 
   useEffect(() => {
     handleGetListVideo();
-  }, [accountSelected, searchParams, refreshVideo]);
+  }, [accountSelected, searchParams, refreshVideo, handleGetListVideo]);
 
   const {
     data: detailVideo,

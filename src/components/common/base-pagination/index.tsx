@@ -9,8 +9,7 @@ export const BasePagination: React.FC<BasePaginationProps> = (props) => (
   <ConfigProvider
     theme={{
       components: { Pagination: { wireframe: props.size !== 'small' } },
-    }}
-  >
+    }}>
     <S.Pagination {...props} />
   </ConfigProvider>
 );

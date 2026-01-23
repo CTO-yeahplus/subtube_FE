@@ -29,8 +29,7 @@ const ModalFinishUpdate = ({ isOpen, text, subText, onClose, videoId }: ModalFin
       footer={false}
       closeIcon={false}
       width={745}
-      destroyOnClose={true}
-    >
+      destroyOnClose={true}>
       <S.Title>{t('translator.finishedUpdating')}</S.Title>
 
       <S.Icon>

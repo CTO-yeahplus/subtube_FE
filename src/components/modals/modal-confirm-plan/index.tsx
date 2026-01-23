@@ -89,8 +89,7 @@ const ModalPlanConfirm = ({ typeConfirm, isOpen, onOK }: IProps) => {
         action: onOK,
         name: infoModalConfirm.btnOk.text,
       }}
-      type={infoModalConfirm.type}
-    >
+      type={infoModalConfirm.type}>
       {infoModalConfirm.content}
     </ModalConfirm>
   );

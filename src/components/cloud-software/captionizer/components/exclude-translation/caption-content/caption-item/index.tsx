@@ -21,7 +21,7 @@ export const CaptionItemFor = React.forwardRef<any, IProps>((props, ref) => {
   useEffect(() => {
     const decode = htmlDecode(defaultCaptionDetail?.text);
     decode && setText(decode);
-  }, []);
+  }, [defaultCaptionDetail?.text]);
 
   const onchange = (v: string) => {
     debounce(v);

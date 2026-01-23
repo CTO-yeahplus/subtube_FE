@@ -89,8 +89,7 @@ const EmailForm = (props: IProps) => {
           layout="vertical"
           onFinish={handleVerifyEmail}
           requiredMark="optional"
-          initialValues={initValues}
-        >
+          initialValues={initValues}>
           <Auth.BackWrapper onClick={handleBack}>
             <Auth.BackIcon />
             {t('button.back', { ns: 'common' })}
@@ -107,8 +106,7 @@ const EmailForm = (props: IProps) => {
                 pattern: REGEX_EMAIL,
                 message: t('validate.notValidEmail'),
               },
-            ]}
-          >
+            ]}>
             <Auth.FormInput placeholder="Eg: translate@youtube.com" maxLength={64} />
           </Auth.FormItem>
           <BaseForm.Item noStyle>
@@ -129,8 +127,7 @@ const EmailForm = (props: IProps) => {
             {t('reset.receiveLink', { ns: 'auth' })}
             <Auth.LinkButton
               disabled={isResend || forgotPassword.isPending}
-              onClick={handleResendEmail}
-            >
+              onClick={handleResendEmail}>
               {t('reset.resend', { ns: 'auth' })}
             </Auth.LinkButton>
             {isResend && <>{`(${time})`}</>}

@@ -49,21 +49,18 @@ export const RegisterForm: React.FC = () => {
           layout="vertical"
           onFinish={handleRegister}
           requiredMark="optional"
-          initialValues={initValues}
-        >
+          initialValues={initValues}>
           <S.Title>{t('signUp')}</S.Title>
           <Auth.FormItem
             name="firstName"
             label={<BaseLabel label={t('firstName')} required />}
-            rules={[{ required: true, whitespace: true, message: t('validate.requiredField') }]}
-          >
+            rules={[{ required: true, whitespace: true, message: t('validate.requiredField') }]}>
             <Auth.FormInput placeholder="E.g. David" maxLength={64} />
           </Auth.FormItem>
           <Auth.FormItem
             name="lastName"
             label={<BaseLabel label={t('lastName')} required />}
-            rules={[{ required: true, whitespace: true, message: t('validate.requiredField') }]}
-          >
+            rules={[{ required: true, whitespace: true, message: t('validate.requiredField') }]}>
             <Auth.FormInput placeholder="E.g. Wayne" maxLength={64} />
           </Auth.FormItem>
           <Auth.FormItem
@@ -76,8 +73,7 @@ export const RegisterForm: React.FC = () => {
                 pattern: REGEX_EMAIL,
                 message: t('validate.notValidEmail'),
               },
-            ]}
-          >
+            ]}>
             <Auth.FormInput placeholder="E.g. translate@youtube.com" maxLength={64} />
           </Auth.FormItem>
           <Auth.FormItem
@@ -97,8 +93,7 @@ export const RegisterForm: React.FC = () => {
                   return Promise.resolve();
                 },
               }),
-            ]}
-          >
+            ]}>
             <S.PhoneNumber
               country={'kr'}
               onChange={(value, country: CountryData) => {
@@ -144,8 +139,7 @@ export const RegisterForm: React.FC = () => {
                   return Promise.resolve();
                 },
               }),
-            ]}
-          >
+            ]}>
             <Auth.FormInputPassword placeholder="David@123" minLength={8} maxLength={30} />
           </Auth.FormItem>
           <Auth.FormItem
@@ -162,8 +156,7 @@ export const RegisterForm: React.FC = () => {
                   return Promise.reject(new Error(t('confirmPasswordError')));
                 },
               }),
-            ]}
-          >
+            ]}>
             <Auth.FormInputPassword placeholder="David@123" minLength={8} maxLength={30} />
           </Auth.FormItem>
           {/* <Auth.ActionsWrapper>

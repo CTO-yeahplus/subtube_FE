@@ -63,7 +63,7 @@ export const LogoWrapper = styled.div`
 export const NavMenu = styled.nav`
   display: none;
   gap: 40px;
-  
+
   @media ${media.md} {
     display: flex;
   }
@@ -138,8 +138,6 @@ export const HeroTitle = styled.h1`
     animation: ${blink} 0.8s step-end infinite;
   }
 `;
-
-
 
 // [추가] Scroll Reveal 효과를 위한 클래스
 export const RevealOnScroll = styled.div<{ $delay?: string }>`
@@ -228,21 +226,22 @@ export const MarqueeSection = styled.div`
   overflow: hidden;
   display: flex;
   position: relative;
-  
-  &::before, &::after {
-    content: "";
+
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
     top: 0;
     width: 150px;
     height: 100%;
     z-index: 2;
   }
-  
+
   &::before {
     left: 0;
     background: linear-gradient(to right, #fbfbfd, transparent);
   }
-  
+
   &::after {
     right: 0;
     background: linear-gradient(to left, #fbfbfd, transparent);
@@ -254,7 +253,7 @@ export const MarqueeTrack = styled.div`
   gap: 60px;
   animation: ${marquee} 40s linear infinite;
   width: max-content;
-  
+
   &:hover {
     animation-play-state: paused;
   }
@@ -267,7 +266,7 @@ export const LanguageItem = styled.div`
   white-space: nowrap;
   transition: color 0.3s;
   cursor: default;
-  
+
   &:hover {
     color: #0071e3;
   }
@@ -277,13 +276,12 @@ export const BentoGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  
+
   @media ${media.md} {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 320px;
   }
 `;
-
 
 // [수정] BentoCard에 Spotlight 효과를 위한 스타일 추가
 export const BentoCard = styled.div<{ $colSpan?: number; $bg?: string }>`
@@ -298,7 +296,7 @@ export const BentoCard = styled.div<{ $colSpan?: number; $bg?: string }>`
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
   position: relative;
   overflow: hidden; /* Spotlight가 밖으로 나가지 않게 */
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 
   &:hover {
     transform: translateY(-8px);
@@ -338,14 +336,19 @@ export const BentoCard = styled.div<{ $colSpan?: number; $bg?: string }>`
     grid-column: span ${(props) => props.$colSpan || 1};
   }
 
-  ${(props) => props.$bg && css`background: ${props.$bg}; color: white;`}
+  ${(props) =>
+    props.$bg &&
+    css`
+      background: ${props.$bg};
+      color: white;
+    `}
 `;
 
 export const CardIcon = styled.div`
   width: 48px;
   height: 48px;
   margin-bottom: 20px;
-  
+
   svg {
     width: 100%;
     height: 100%;
@@ -389,8 +392,12 @@ export const PricingCard = styled.div<{ $featured?: boolean }>`
   border: 1px solid ${(props) => (props.$featured ? '#0071e3' : '#d2d2d7')};
   box-shadow: ${(props) => (props.$featured ? '0 12px 32px rgba(0,113,227,0.12)' : 'none')};
   position: relative;
-  
-  ${(props) => props.$featured && css`transform: scale(1.05);`}
+
+  ${(props) =>
+    props.$featured &&
+    css`
+      transform: scale(1.05);
+    `}
 `;
 
 export const PlanTitle = styled.h3`
@@ -405,7 +412,7 @@ export const PlanPrice = styled.div`
   font-weight: 700;
   color: #1d1d1f;
   margin-bottom: 24px;
-  
+
   span {
     font-size: 14px;
     font-weight: 500;
@@ -449,11 +456,13 @@ export const FooterContent = styled.div`
   align-items: center;
   font-size: 12px;
   color: #86868b;
-  
+
   a {
     color: #424245;
     margin-left: 20px;
-    &:hover { text-decoration: underline; }
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -494,7 +503,9 @@ export const FaqQuestion = styled.button<{ $isOpen: boolean }>`
 
   &:hover {
     color: #0071e3;
-    svg { color: #0071e3; }
+    svg {
+      color: #0071e3;
+    }
   }
 `;
 
@@ -503,7 +514,7 @@ export const FaqAnswer = styled.div<{ $isOpen: boolean }>`
   overflow: hidden;
   transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
   opacity: ${(props) => (props.$isOpen ? '1' : '0')};
-  
+
   p {
     padding-bottom: 24px;
     font-size: 16px;

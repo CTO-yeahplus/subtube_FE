@@ -13,8 +13,7 @@ export const Burger: React.FC<BurgerProps> = ({ className, onClick }) => (
     viewBox="280 215 400 220"
     fill="currentColor"
     className={className}
-    onClick={onClick}
-  >
+    onClick={onClick}>
     <path
       d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
       id="top"

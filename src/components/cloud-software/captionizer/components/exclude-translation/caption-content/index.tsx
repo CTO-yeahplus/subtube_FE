@@ -25,7 +25,7 @@ export const CaptionContent = React.forwardRef<any, IProps>((props, ref) => {
   });
 
   // eslint-disable-next-line no-unused-vars
-  const [_, setIsResize] = useState<boolean>(false);
+  const [, setIsResize] = useState<boolean>(false);
 
   useEffect(() => {
     setIsResize((prev) => !prev);
@@ -70,8 +70,7 @@ export const CaptionContent = React.forwardRef<any, IProps>((props, ref) => {
                     cache={cache}
                     parent={parent}
                     columnIndex={0}
-                    rowIndex={index}
-                  >
+                    rowIndex={index}>
                     {({ registerChild }) => {
                       const captionItem = defaultCaptions?.length ? defaultCaptions[index] : null;
                       if (captionItem) {

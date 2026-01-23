@@ -5,7 +5,7 @@ import { updateUserInfo } from '@/stores/auth/auth.slice';
 import { useAppDispatch, useAppSelector } from '@/stores/hooks';
 import { Form } from 'antd';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface PersonalInfoForm {
   firstName: string;
@@ -76,7 +76,8 @@ const usePersonalInfo = () => {
     });
   };
 
-  const initFormValues = () => {
+  // useCallback으로 감싸줍니다.
+  const initFormValues = useCallback(() => {
     if (user) {
       const initValues: PersonalInfoForm = {
         firstName: user?.first_name,
@@ -87,16 +88,16 @@ const usePersonalInfo = () => {
       };
       form.setFieldsValue(initValues);
     }
-  };
+  }, [user, form]); // form과 user가 바뀔 때만 함수 재생성
+
+  useEffect(() => {
+    initFormValues();
+  }, [initFormValues]); // 의존성 배열에 추가
 
   const toggleEdit = () => {
     if (openEdit) initFormValues();
     setOpenEdit(!openEdit);
   };
-
-  useEffect(() => {
-    initFormValues();
-  }, [user]);
 
   return {
     t,

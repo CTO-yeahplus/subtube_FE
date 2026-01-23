@@ -85,8 +85,7 @@ export const BaseCardPlan = ({
           <S.Button
             type="primary"
             disabled={isDisableBtn}
-            onClick={() => onHandleGetStarted(level, data)}
-          >
+            onClick={() => onHandleGetStarted(level, data)}>
             {t('youtube.plan-overview.getStarted')}
           </S.Button>
         )}

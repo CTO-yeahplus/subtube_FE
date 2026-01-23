@@ -62,8 +62,7 @@ const PersonalInfo = () => {
         <BaseForm
           form={form}
           onFinish={handleSubmit}
-          validateTrigger={['onFocus', 'onBlur', 'onChange']}
-        >
+          validateTrigger={['onFocus', 'onBlur', 'onChange']}>
           <Row gutter={36}>
             <Col span={12}>
               <S.FormItem
@@ -76,8 +75,7 @@ const PersonalInfo = () => {
                     transform: (v) => v?.trim(),
                   },
                 ]}
-                required={false}
-              >
+                required={false}>
                 <BaseInput
                   placeholder={t('Personal.FirstName')}
                   disabled={!openEdit}
@@ -96,8 +94,7 @@ const PersonalInfo = () => {
                     transform: (v) => v?.trim(),
                   },
                 ]}
-                required={false}
-              >
+                required={false}>
                 <BaseInput
                   placeholder={t('Personal.LastName')}
                   disabled={!openEdit}
@@ -127,8 +124,7 @@ const PersonalInfo = () => {
                     },
                   }),
                 ]}
-                required={false}
-              >
+                required={false}>
                 <S.PhoneNumber
                   disabled={!openEdit}
                   phoneCodeValid={phoneCodeValid}
@@ -151,8 +147,7 @@ const PersonalInfo = () => {
                 name="email"
                 label={<BaseLabel label={t('Personal.Email')} required />}
                 rules={[{ required: true, message: t('validate.requiredField', { ns: 'common' }) }]}
-                required={false}
-              >
+                required={false}>
                 <BaseInput placeholder={t('Personal.Email')} disabled />
               </S.FormItem>
             </Col>

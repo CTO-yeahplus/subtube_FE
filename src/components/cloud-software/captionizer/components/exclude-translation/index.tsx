@@ -79,8 +79,7 @@ const ExcludeTranslation: React.FC<IProps> = (props) => {
         <S.ReadButton
           type="primary"
           onClick={onReadCaptionFromYoutube}
-          loading={getCaptionDetailPending}
-        >
+          loading={getCaptionDetailPending}>
           {t('translator.read_captions_from_youtube')}
         </S.ReadButton>
         <BaseButton type="primary" danger onClick={handleClearCaptions}>

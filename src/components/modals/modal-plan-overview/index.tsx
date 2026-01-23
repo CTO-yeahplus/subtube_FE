@@ -295,7 +295,7 @@ const ModalPlanOverview = () => {
   };
 
   // restart membership
-  const handleRestartMembership = () => {
+  const handleRestartMembership = useCallback(() => {
     mutate(
       {
         keep_yt_account_id: [],
@@ -305,14 +305,12 @@ const ModalPlanOverview = () => {
       {
         onSuccess: () => {
           notification.success({ message: t('validate.MC14', { ns: 'common' }) });
-          queryClient.invalidateQueries({
-            queryKey: ['userDetail'],
-          });
+          queryClient.invalidateQueries({ queryKey: ['userDetail'] });
           cookies.set('reminder', 'true');
         },
       }
     );
-  };
+  }, [mutate, user?.level, t, notification]); // 의존성 추가
 
   // handle action case Typeconfirm
   const handleActionConfirmModal = useCallback(() => {
@@ -338,7 +336,7 @@ const ModalPlanOverview = () => {
       default:
         break;
     }
-  }, [typeConfirmModal]);
+  }, [typeConfirmModal, push]);
 
   const isCanceledPlan = useMemo(() => {
     return (
@@ -346,11 +344,11 @@ const ModalPlanOverview = () => {
       !user?.changeRank.change_rank &&
       !user?.changeRank.keep_yt_account_id.length
     );
-  }, [user]);
+  }, [user?.changeRank]);
 
   const isExpiredDate = useMemo(() => {
     return user?.expire_date && checkExpiredDate(user.expire_date);
-  }, [user]);
+  }, [user?.expire_date]);
 
   const notificationPlan = useMemo(() => {
     if (user && user.changeRank) {
@@ -376,7 +374,7 @@ const ModalPlanOverview = () => {
         );
       }
     }
-  }, [user, t]);
+  }, [handleRestartMembership, user, t]);
 
   const validUntil = dayjs().add(365, 'day').format(DATE_FORMAT.DAY_MONTH_YEAR);
 
@@ -388,8 +386,7 @@ const ModalPlanOverview = () => {
         footer={false}
         closable={false}
         width={1024}
-        centered
-      >
+        centered>
         <S.Close>
           <IconClose onClick={handleTogglePlanOVerview} />
         </S.Close>
@@ -460,8 +457,7 @@ const ModalPlanOverview = () => {
         width={586}
         centered
         onCancel={() => setIsOpenCheckOut(false)}
-        destroyOnClose={true}
-      >
+        destroyOnClose={true}>
         <Checkout
           loadingPayment={loadingPayment}
           validUntil={validUntil}
@@ -488,8 +484,7 @@ const ModalPlanOverview = () => {
           footer={false}
           width={650}
           centered
-          onCancel={handleCancelDowngrade}
-        >
+          onCancel={handleCancelDowngrade}>
           <DownGradePlan
             plan={newPlan}
             currentPlanInfo={currentPlanInfo}
@@ -506,8 +501,7 @@ const ModalPlanOverview = () => {
         footer={false}
         width={650}
         centered
-        onCancel={handleKeepCancelPlan}
-      >
+        onCancel={handleKeepCancelPlan}>
         <CancelPlanModal
           currentPlanInfo={currentPlanInfo}
           onKeep={handleKeepCancelPlan}

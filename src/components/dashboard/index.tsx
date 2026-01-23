@@ -22,7 +22,7 @@ import cookies from '@/utils/cookie';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -44,7 +44,7 @@ const DashBoard = () => {
 
   const dispatch = useAppDispatch();
 
-  const handleGetUserDetail = async () => {
+  const handleGetUserDetail = useCallback(async () => {
     try {
       const res = await getDetailUser();
       if (res?.data) {
@@ -53,7 +53,7 @@ const DashBoard = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     const accessToken = cookies.get('access_token');
@@ -61,7 +61,7 @@ const DashBoard = () => {
     if (!accessToken && !refreshToken) return;
 
     handleGetUserDetail();
-  }, []);
+  }, [handleGetUserDetail]);
 
   const user = useAppSelector(selectCurrentUser);
   const fName = user?.first_name?.charAt(0).toUpperCase();
@@ -220,8 +220,7 @@ const DashBoard = () => {
                   as={BaseRow}
                   gutter={[10, 10]}
                   align="middle"
-                  onClick={() => router.push(ROUTER_PATH.YOUTUBE_ACCOUNT)}
-                >
+                  onClick={() => router.push(ROUTER_PATH.YOUTUBE_ACCOUNT)}>
                   <BaseCol>
                     <BaseAvatar alt="User" shape="circle" size={40}>
                       <S.NameAvatar>{`${fName}`}</S.NameAvatar>
@@ -254,8 +253,7 @@ const DashBoard = () => {
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
-          }}
-        >
+          }}>
           <SwiperSlide>
             <S.WrapperSlideItem>
               <S.SlideTitle style={{ fontSize: '48px' }}>{t('slide.title1')}</S.SlideTitle>
@@ -423,8 +421,7 @@ const DashBoard = () => {
                     {<IConLevel size="middle" level={level} />}
                   </S.ContainerLevel>
                   <S.DescriptionOverview
-                    dangerouslySetInnerHTML={{ __html: t(description) }}
-                  ></S.DescriptionOverview>
+                    dangerouslySetInnerHTML={{ __html: t(description) }}></S.DescriptionOverview>
                   <S.SubSale>
                     <b>${formatNumberWithCommas(currentPriceYear)}</b>/
                     {t('pricing.plan-overview.year')} ~{' '}
@@ -439,8 +436,9 @@ const DashBoard = () => {
                   <S.Infos>
                     <IconChecked />
                     <S.TextInfo
-                      dangerouslySetInnerHTML={{ __html: t('pricing.plan-overview.2-months-free') }}
-                    ></S.TextInfo>
+                      dangerouslySetInnerHTML={{
+                        __html: t('pricing.plan-overview.2-months-free'),
+                      }}></S.TextInfo>
                   </S.Infos>
                   {info.map((item, index) => (
                     <S.Infos key={index}>

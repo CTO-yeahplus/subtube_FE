@@ -3,7 +3,7 @@ import { NoData } from '@/components/common/no-data';
 import { IVideoYoutube } from '@/interfaces/cloud-software';
 import { debounce } from 'lodash';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import * as S from './index.styles';
 import useSelectVideo from './index.utils';
@@ -46,9 +46,9 @@ const SelectVideo = (props: IProps) => {
     handleLoadMoreAccount,
   } = useSelectVideo(props);
 
-  const onReachBottom = () => {
+  const onReachBottom = useCallback(() => {
     if (tableData.data.length && tableData.data.length < totalResults) handleGetListVideo();
-  };
+  }, [tableData.data.length, totalResults, handleGetListVideo]);
 
   useEffect(() => {
     const tableVideoContainer = ref.current as any;
@@ -65,7 +65,7 @@ const SelectVideo = (props: IProps) => {
         tableBody.removeEventListener('scroll', onScroll);
       };
     }
-  }, [tableData]);
+  }, [tableData, onReachBottom]);
 
   const onLoadMoreAccount = (element: HTMLElement) => {
     if (element) {

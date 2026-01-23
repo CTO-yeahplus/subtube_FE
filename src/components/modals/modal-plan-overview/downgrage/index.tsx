@@ -62,7 +62,7 @@ const DownGradePlan = ({
         setDataListYoutube(sortData);
       }
     })();
-  }, [pagination.currentPage]);
+  }, [pagination.currentPage, refetchListYoutube, dataListYoutube]); // 의존성 추가
 
   const handleLoadMoreAccount = () => {
     const total = dataPagination?.total ?? 0;
@@ -154,8 +154,7 @@ const DownGradePlan = ({
                   number: infoPlan.numberAcc,
                   level: infoPlan.text,
                 }),
-              }}
-            ></p>
+              }}></p>
             <p>{t('downgrade.description2')}</p>
           </S.Description>
           <S.Label>{t('downgrade.textSelectAccount', { number: infoPlan.numberAcc })}</S.Label>

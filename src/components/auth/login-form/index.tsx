@@ -184,8 +184,7 @@ export const LoginForm: React.FC = () => {
           layout="vertical"
           onFinish={handleSubmit}
           requiredMark="optional"
-          initialValues={initValues}
-        >
+          initialValues={initValues}>
           <Auth.FormTitle>{t('login')}</Auth.FormTitle>
           <Auth.Description>{t('login.loginInfo', { ns: 'auth' })}</Auth.Description>
           <Auth.FormItem
@@ -197,8 +196,7 @@ export const LoginForm: React.FC = () => {
                 max: 64,
                 message: t('validate.max', { length: 64 }),
               },
-            ]}
-          >
+            ]}>
             <Auth.FormInput placeholder="Eg: translate@youtube.com" maxLength={64} />
           </Auth.FormItem>
           <Auth.FormItem
@@ -234,8 +232,7 @@ export const LoginForm: React.FC = () => {
                   return Promise.resolve();
                 },
               }),
-            ]}
-          >
+            ]}>
             <Auth.FormInputPassword placeholder="David@123" minLength={8} maxLength={30} />
           </Auth.FormItem>
           <Auth.Text>

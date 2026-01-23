@@ -34,8 +34,7 @@ export const BaseCard: React.FC<BaseCardProps> = ({
             defaultPaddings.mobile
       }
       $autoHeight={autoHeight}
-      {...props}
-    >
+      {...props}>
       {children}
     </S.Card>
   );

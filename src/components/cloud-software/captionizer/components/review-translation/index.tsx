@@ -96,14 +96,7 @@ const ReviewTranslation: React.FC<IProps> = (props) => {
           ),
         };
       }),
-    [
-      loadingTranslate,
-      translationLanguageSelected,
-      listOptionsLanguage,
-      listTranslationLanguage,
-      listTranslationLanguageError,
-      listVideoTranslated,
-    ]
+    [translationLanguageSelected, listOptionsLanguage]
   );
 
   const [activeKey, setActiveKey] = useState(defaultPanes[0]?.key ?? '');
@@ -176,8 +169,7 @@ const ReviewTranslation: React.FC<IProps> = (props) => {
                     )}
                   </S.TabItem>
                 }
-                key={pane.key}
-              >
+                key={pane.key}>
                 {loadingTranslate && listTranslationLanguage.includes(pane.locale) ? (
                   <S.WrapperLoading>
                     <S.Icon>

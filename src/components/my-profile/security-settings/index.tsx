@@ -63,8 +63,7 @@ const SecuritySetting = () => {
           onFinish={handleSubmit}
           initialValues={initValues}
           autoComplete="off"
-          validateTrigger={['onBlur', 'onChange']}
-        >
+          validateTrigger={['onBlur', 'onChange']}>
           <Row>
             <Col span={12}>
               <S.FormItem
@@ -102,8 +101,7 @@ const SecuritySetting = () => {
                     },
                   }),
                 ]}
-                required={false}
-              >
+                required={false}>
                 <InputPassword placeholder={t('ChangePassword.CurrentPassword')} />
               </S.FormItem>
             </Col>
@@ -145,8 +143,7 @@ const SecuritySetting = () => {
                     },
                   }),
                 ]}
-                required={false}
-              >
+                required={false}>
                 <InputPassword
                   placeholder={t('ChangePassword.NewPassword')}
                   onChange={() => {
@@ -180,8 +177,7 @@ const SecuritySetting = () => {
                     },
                   }),
                 ]}
-                required={false}
-              >
+                required={false}>
                 <InputPassword placeholder={t('ChangePassword.ConfirmPassword')} />
               </S.FormItem>
             </Col>

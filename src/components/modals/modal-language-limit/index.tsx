@@ -54,8 +54,7 @@ export const ModalLanguageLimit: React.FC<IProps> = (props) => {
                 onClick={() => {
                   dispatch(setIsOpenPlanOverview(true));
                   onClose();
-                }}
-              >
+                }}>
                 {t('translator.language-limit-popover.upgrade')}
               </S.ActionButton>
             </S.WrapActionButton>
@@ -113,8 +112,7 @@ export const ModalLanguageLimit: React.FC<IProps> = (props) => {
         footer={null}
         centered
         onCancel={onClose}
-        width={650}
-      >
+        width={650}>
         <S.PopupContent>
           <S.Title>{t('translator.language-limit-popover.title')}</S.Title>
           <S.WrapIconLevel>

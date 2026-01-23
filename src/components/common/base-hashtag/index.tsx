@@ -34,8 +34,7 @@ export const BaseHashTag: React.FC<BaseHashTagProps> = ({
           onClick={(e) => {
             removeTag();
             e.stopPropagation();
-          }}
-        >
+          }}>
           <S.RemoveTagIcon />
         </S.RemoveTagWrapper>
       )}

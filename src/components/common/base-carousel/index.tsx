@@ -74,8 +74,7 @@ export const BaseCarousel = React.forwardRef<Slider, Settings>(
         dots={dots}
         infinite={infinite}
         centerMode={centerMode}
-        {...props}
-      >
+        {...props}>
         {children}
       </Slider>
     );

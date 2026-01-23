@@ -27,8 +27,7 @@ const ContentLeft = () => {
         <S.Path
           key={index}
           href={item.path}
-          activepath={(item.path === router.pathname).toString()}
-        >
+          activepath={(item.path === router.pathname).toString()}>
           <S.PathIcon color={item.color} />
           <S.PathName>{t(item.name)}</S.PathName>
         </S.Path>

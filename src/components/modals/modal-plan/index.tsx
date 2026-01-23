@@ -54,7 +54,7 @@ const PlanModal = () => {
   const newPlanInfo = useMemo(() => {
     const data = planData.find((plan) => plan.level === levelRenew?.toUpperCase());
     return data || null;
-  }, [user, levelRenew]);
+  }, [levelRenew]);
 
   const paymentCalculator = useCallback(() => {
     const defaultTax = 0;
@@ -172,8 +172,7 @@ const PlanModal = () => {
         title={t('renewPlan.title')}
         type={TType.SAD}
         isOpen={isOpenRenew}
-        onClose={handleToggleRenewModal}
-      >
+        onClose={handleToggleRenewModal}>
         <S.PlanDescription>
           <p
             dangerouslySetInnerHTML={{
@@ -181,8 +180,7 @@ const PlanModal = () => {
                 // level: levelRenew,
                 date: dayjs(user?.expire_date).add(1, 'day').format(DATE_FORMAT.LONG_DATE),
               }),
-            }}
-          ></p>
+            }}></p>
           <p>{t('renewPlan.description2')}</p>
           <S.Note>
             <S.Text>{t('renewPlan.note')}</S.Text>
@@ -206,8 +204,7 @@ const PlanModal = () => {
         width={586}
         centered
         onCancel={() => setIsOpenCheckout(false)}
-        destroyOnClose={true}
-      >
+        destroyOnClose={true}>
         <Checkout
           loadingPayment={loadingPayment}
           validUntil={validUntil}

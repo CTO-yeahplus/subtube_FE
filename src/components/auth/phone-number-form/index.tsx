@@ -225,14 +225,12 @@ const PhoneNumberForm = (props: IProps) => {
           layout="vertical"
           onFinish={handleSendCode}
           requiredMark="optional"
-          initialValues={initValues}
-        >
+          initialValues={initValues}>
           <Auth.BackWrapper
             onClick={() => {
               window.recaptchaVerifier = undefined;
               handleBack();
-            }}
-          >
+            }}>
             <Auth.BackIcon />
             {t('button.back', { ns: 'common' })}
           </Auth.BackWrapper>
@@ -256,8 +254,7 @@ const PhoneNumberForm = (props: IProps) => {
                   return Promise.resolve();
                 },
               }),
-            ]}
-          >
+            ]}>
             <S.PhoneNumber
               country={'kr'}
               onChange={(value, country: CountryData) => {
@@ -293,8 +290,7 @@ const PhoneNumberForm = (props: IProps) => {
               setIsShowOtp(false);
               setVerificationCode('');
               setInvalidCode('');
-            }}
-          >
+            }}>
             <Auth.BackIcon />
             {t('button.back', { ns: 'common' })}
           </Auth.BackWrapper>
@@ -321,8 +317,7 @@ const PhoneNumberForm = (props: IProps) => {
             <Auth.LinkButton
               style={{ height: '100%', marginTop: '1rem' }}
               disabled={isResend || loading || loadingVerify}
-              onClick={handleResendPhoneNumber}
-            >
+              onClick={handleResendPhoneNumber}>
               {t('reset.resend', { ns: 'auth' })}
             </Auth.LinkButton>
             {isResend && <>{`(${time})`}</>}
@@ -331,8 +326,7 @@ const PhoneNumberForm = (props: IProps) => {
             type="primary"
             onClick={handleVerifycode}
             loading={loadingVerify}
-            disabled={loading}
-          >
+            disabled={loading}>
             {t('select.verify', { ns: 'auth' })}
           </Auth.SubmitButton>
         </>

@@ -85,8 +85,7 @@ const SiderMenu: React.FC<SiderContentProps> = ({ setCollapsed }) => {
                     }
 
                     router.push(childNav.url ?? '');
-                  }}
-                >
+                  }}>
                   <S.PathItem active={(router.pathname === childNav.url).toString()}>
                     {t(childNav.title)}
                   </S.PathItem>

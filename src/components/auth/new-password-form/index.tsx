@@ -63,8 +63,7 @@ export const NewPasswordForm: React.FC = () => {
         layout="vertical"
         onFinish={handleSubmit}
         requiredMark="optional"
-        initialValues={initStates}
-      >
+        initialValues={initStates}>
         <Auth.FormTitle>{t('newPass.title')}</Auth.FormTitle>
         <Auth.Description>{t('newPass.desc')}</Auth.Description>
         <Auth.FormItem
@@ -101,8 +100,7 @@ export const NewPasswordForm: React.FC = () => {
                 return Promise.resolve();
               },
             }),
-          ]}
-        >
+          ]}>
           <Auth.FormInputPassword placeholder="David@123" minLength={8} maxLength={30} />
         </Auth.FormItem>
         <Auth.FormItem
@@ -119,8 +117,7 @@ export const NewPasswordForm: React.FC = () => {
                 return Promise.reject(new Error(t('confirmPasswordError', { ns: 'common' })));
               },
             }),
-          ]}
-        >
+          ]}>
           <Auth.FormInputPassword placeholder="David@123" minLength={8} maxLength={30} />
         </Auth.FormItem>
         <BaseForm.Item noStyle>

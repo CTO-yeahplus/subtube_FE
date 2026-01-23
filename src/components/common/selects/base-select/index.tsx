@@ -22,8 +22,7 @@ export const BaseSelect = React.forwardRef<RefSelectProps, BaseSelectProps>(
       className={className}
       $width={width}
       $shadow={shadow}
-      {...props}
-    >
+      {...props}>
       {children}
     </S.Select>
   )

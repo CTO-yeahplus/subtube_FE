@@ -93,8 +93,7 @@ const SubmitPayment = React.forwardRef<any, ISubmitPaymentProps>((props, ref) =>
         onClick={handlePlaceOrder}
         loading={loadingPayment}
         disabled={isInitForm}
-        style={!isInitForm ? { display: 'block' } : { display: 'none' }}
-      >
+        style={!isInitForm ? { display: 'block' } : { display: 'none' }}>
         {t('checkout.placeOrder')}
       </S.ButtonPay>
 
@@ -108,8 +107,7 @@ const SubmitPayment = React.forwardRef<any, ISubmitPaymentProps>((props, ref) =>
           </S.Note>
 
           <S.AcceptText
-            dangerouslySetInnerHTML={{ __html: t('checkout.acceptText') }}
-          ></S.AcceptText>
+            dangerouslySetInnerHTML={{ __html: t('checkout.acceptText') }}></S.AcceptText>
         </>
       )}
     </>
@@ -145,8 +143,7 @@ const PaymentMethod = (props: IPaymentProps) => {
         createOrder={createOrder}
         onApprove={onApprove}
         onError={() => {}}
-        style={style}
-      >
+        style={style}>
         <S.WrapperDivide>
           <S.Divide />
           <S.DivideText>{t('checkout.or')}</S.DivideText>

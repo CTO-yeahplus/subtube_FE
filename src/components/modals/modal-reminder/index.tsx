@@ -57,7 +57,7 @@ const ReminderModal = () => {
   const newPlanInfo = useMemo(() => {
     const data = planData.find((plan) => plan.level === levelRenew?.toUpperCase());
     return data || null;
-  }, [user, levelRenew]);
+  }, [levelRenew]);
 
   const paymentCalculator = useCallback(() => {
     const defaultTax = 0;
@@ -177,8 +177,7 @@ const ReminderModal = () => {
         type={TType.REMINDER}
         isOpen={isOpenReminder}
         closeIcon={true}
-        onClose={handleToggleReminderModal}
-      >
+        onClose={handleToggleReminderModal}>
         <S.PlanDescription>
           <p>{t('reminder.description1')}</p>
           <p
@@ -186,8 +185,7 @@ const ReminderModal = () => {
               __html: t('reminder.description2', {
                 date: dayjs(user?.expire_date).add(1, 'day').format(DATE_FORMAT.LONG_DATE),
               }),
-            }}
-          ></p>
+            }}></p>
         </S.PlanDescription>
         <S.ButtonGroup>
           <S.Button type="primary" onClick={handleOpenCheckout}>
@@ -205,8 +203,7 @@ const ReminderModal = () => {
         width={586}
         centered
         onCancel={() => setIsOpenCheckout(false)}
-        destroyOnClose={true}
-      >
+        destroyOnClose={true}>
         <Checkout
           loadingPayment={loadingPayment}
           validUntil={validUntil}

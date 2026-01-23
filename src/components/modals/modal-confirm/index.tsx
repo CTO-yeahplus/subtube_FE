@@ -103,8 +103,7 @@ const ModalConfirm = ({
             color={styleBtn.btnOk.color}
             type="primary"
             onClick={btnOk?.action}
-            loading={btnOk?.loading}
-          >
+            loading={btnOk?.loading}>
             {btnOk.name || 'Submit'}
           </S.Button>
         )}
@@ -114,8 +113,7 @@ const ModalConfirm = ({
             border={styleBtn.btnCancel.border}
             color={styleBtn.btnCancel.color}
             type="primary"
-            onClick={btnCancel?.action}
-          >
+            onClick={btnCancel?.action}>
             {btnCancel.name || 'Cancel'}
           </S.Button>
         )}

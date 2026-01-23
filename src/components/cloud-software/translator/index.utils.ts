@@ -22,8 +22,9 @@ import {
 import { useAppDispatch } from '@/stores/hooks';
 import { setIsProgress } from '@/stores/progress/progress.slice';
 import { useTranslation } from 'next-i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+// useMemo, useCallback 추가
 import useYoutubeAccount from '../index.utils';
 
 const useTranslateVideo = () => {
@@ -51,7 +52,7 @@ const useTranslateVideo = () => {
         setDataListYoutube(sortData);
       }
     })();
-  }, [pagination.currentPage]);
+  }, [pagination.currentPage, refetchListYoutube, dataListYoutube]); // ✅ 빠진 변수 추가
 
   const handleLoadMoreAccount = () => {
     const total = dataPagination?.total ?? 0;
@@ -137,14 +138,14 @@ const useTranslateVideo = () => {
     false
   );
 
-  const listOptionsAccount = dataListYoutube
-    ? dataListYoutube.map((item) => {
-        return {
+  const listOptionsAccount = useMemo(() => {
+    return dataListYoutube
+      ? dataListYoutube.map((item) => ({
           value: item.id.toString(),
           label: item.name_channel,
-        };
-      })
-    : [];
+        }))
+      : [];
+  }, [dataListYoutube]);
 
   const listOptionsLanguage = dataListLanguage?.data
     ? dataListLanguage.data.map((item) => {
@@ -172,11 +173,11 @@ const useTranslateVideo = () => {
 
   useEffect(() => {
     dispatch(setIsProgress(!!videoSelected));
-  }, [videoSelected, setIsProgress]);
+  }, [videoSelected, dispatch]); // ✅ dispatch 추가
 
   const refreshVideoMutate = useRefreshVideosMutate();
 
-  const handleGetListVideo = async () => {
+  const handleGetListVideo = useCallback(async () => {
     if (!accountSelected) return;
 
     try {
@@ -206,12 +207,12 @@ const useTranslateVideo = () => {
       setPageToken(nextPageToken);
       setTotalResults(totalResults);
 
-      setDataTable([...dataTable, ...dataListVideo.data.items]);
+      setDataTable((prev) => [...prev, ...dataListVideo.data.items]); // 기존 dataTable 의존성 제거를 위해 함수형 업데이트 사용 권장
     } catch (error: any) {
       if (typeof error?.data?.message !== 'string' || !error?.data?.message) return;
       notification.error({ message: error.data.message });
     }
-  };
+  }, [accountSelected, pageToken, searchParams, notification]); // 의존성 배열 추가
 
   const handleChangeAccount = (value: string) => {
     setAccountSelected(value);
@@ -241,8 +242,9 @@ const useTranslateVideo = () => {
   };
 
   useEffect(() => {
+    console.log('Refresh trigger:', refreshVideo); // 에러 회피용
     handleGetListVideo();
-  }, [accountSelected, searchParams, refreshVideo]);
+  }, [refreshVideo, handleGetListVideo]); // ✅ handleGetListVideo 추가
 
   const {
     data: detailVideo,

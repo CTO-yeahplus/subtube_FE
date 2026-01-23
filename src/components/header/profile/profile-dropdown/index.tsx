@@ -97,8 +97,7 @@ export const ProfileDropdown: React.FC = () => {
       }}
       overlayClassName="menusProfile"
       trigger={['click']}
-      placement="bottomRight"
-    >
+      placement="bottomRight">
       <S.ProfileDropdownHeader as={BaseRow} gutter={[10, 10]} align="middle">
         <BaseCol>
           <BaseAvatar alt="User" shape="circle" size={40}>

@@ -47,7 +47,7 @@ const TranslationContent = React.forwardRef<any, ITranslationContent>((props, re
     const content = listVideoTranslated?.find((item) => item.language === locale);
     setInputTitle(content?.title ?? '');
     setInputDescription(content?.description ?? '');
-  }, [locale]);
+  }, [listVideoTranslated, locale]);
 
   useEffect(() => {
     const content = listVideoTranslated.find((item) => item.language === locale);
@@ -75,7 +75,7 @@ const TranslationContent = React.forwardRef<any, ITranslationContent>((props, re
     } else {
       setDescriptionError('');
     }
-  }, [listVideoTranslated, locale]);
+  }, [listVideoTranslated, locale, t]);
 
   const handleChangeTitle = (value: string) => {
     if (/[><]/.test(value)) return;
@@ -207,14 +207,7 @@ const ReviewTranslation = (props: IProps) => {
           ),
         };
       }),
-    [
-      listVideoTranslated,
-      loadingTranslate,
-      translationLanguageSelected,
-      listOptionsLanguage,
-      listTranslationLanguage,
-      listTranslationLanguageError,
-    ]
+    [translationLanguageSelected, listOptionsLanguage]
   );
 
   const [activeKey, setActiveKey] = useState(defaultPanes[0]?.key ?? '');
@@ -285,8 +278,7 @@ const ReviewTranslation = (props: IProps) => {
                     )}
                   </S.TabItem>
                 }
-                key={pane.key}
-              >
+                key={pane.key}>
                 {loadingTranslate && listTranslationLanguage.includes(pane.locale) ? (
                   <S.WrapperLoading>
                     <S.Icon>
