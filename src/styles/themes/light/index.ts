@@ -2,16 +2,35 @@ import { BASE_COLORS } from '@/constants';
 import { shadeColor } from '@/utils';
 
 export const lightColorsTheme = {
-  primary: '#01509A',
-  primary1: '#f5f5f5',
-  primaryGradient: 'linear-gradient(211.49deg, #006CCF 15.89%, #00509A 48.97%)',
+  // Apple Style Blue (Action Color)
+  primary: '#0071e3', 
+  primary1: '#f5f5f7', // Apple Background Gray
+  primaryGradient: 'linear-gradient(180deg, #0077ED 0%, #0071E3 100%)',
+  
+  // Semantic Colors
+  secondary: '#06c',
+  error: '#ff3b30',
+  warning: '#ff9500',
+  success: '#34c759',
+  
+  // Backgrounds
+  background: '#ffffff',
+  secondaryBackground: '#f5f5f7', // 섹션 구분을 위한 옅은 회색
+  
+  // Text
+  textMain: '#1d1d1f', // 완전한 검정보다는 아주 짙은 회색
+  textLight: '#86868b',
+  subText: '#86868b',
+  
+  // UI Elements
+  border: '#d2d2d7',
+  shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  
+  // Glassmorphism
+  glassBg: 'rgba(255, 255, 255, 0.72)',
+  glassBorder: 'rgba(255, 255, 255, 0.2)',
+
   light: '#C5D3E0',
-  secondary: '#0085FF',
-  error: '#FF5252',
-  warning: '#FFB155',
-  success: '#30AF5B',
-  background: BASE_COLORS.white,
-  secondaryBackground: '#F8FBFF',
   secondaryBackgroundSelected: shadeColor('#F8FBFF', -5),
   additionalBackground: '#ffffff',
   collapseBackground: 'rgb(0, 108, 207)',
@@ -19,18 +38,13 @@ export const lightColorsTheme = {
   siderBackground: '#ffffff',
   spinnerBase: '#f42f25',
   scroll: '#c5d3e0',
-  border: '#cce1f4',
   borderNft: '#79819A',
-  textMain: '#404040',
-  textLight: '#9A9B9F',
   textSuperLight: '#BEC0C6',
   textSecondary: BASE_COLORS.white,
   textDark: '#404040',
   textNftLight: '#79819A',
   textSiderPrimary: '#FFB765',
   textSiderSecondary: '#ffffff',
-  subText: 'rgba(0, 0, 0, 0.45)',
-  shadow: 'rgba(0, 0, 0, 0.07)',
   boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
   boxShadowHover: '0 4px 16px 0 rgba(0, 0, 0, 0.2)',
   boxShadowNft:

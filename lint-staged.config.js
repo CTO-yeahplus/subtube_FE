@@ -1,13 +1,14 @@
 module.exports = {
-  // Type check TypeScript files
-  '**/*.(ts|tsx)': () => 'yarn tsc --noEmit',
-
-  // Lint then format TypeScript and JavaScript files
+  // yarn tsc -> npx tsc
+  '**/*.(ts|tsx)': () => 'npx tsc --noEmit', 
+  
   '**/*.(ts|tsx|js)': (filenames) => [
-    `yarn eslint --fix ${filenames.join(' ')}`,
-    `yarn prettier --write ${filenames.join(' ')}`,
+    // yarn eslint -> npx eslint
+    `npx eslint --fix ${filenames.join(' ')}`, 
+    // yarn prettier -> npx prettier
+    `npx prettier --write ${filenames.join(' ')}`, 
   ],
-
-  // Format MarkDown and JSON
-  '**/*.(md|json)': (filenames) => `yarn prettier --write ${filenames.join(' ')}`,
-};
+  
+  // yarn prettier -> npx prettier
+  '**/*.(md|json)': (filenames) => `npx prettier --write ${filenames.join(' ')}`, 
+}

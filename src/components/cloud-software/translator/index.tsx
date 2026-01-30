@@ -1,251 +1,57 @@
-import IconArrowLeft from '@/assets/images/svg/icon-arrow-left.svg';
-import IconArrowRight from '@/assets/images/svg/icon-arrow-right.svg';
-import NoVideo from '@/assets/images/translator/no-video.png';
-import { BaseImage } from '@/components/common/base-image';
-import { StepSwitch } from '@/components/common/step-switch';
-import ModalFinishUpdate from '@/components/modals/modal-finish-update';
-import ModalLoading from '@/components/modals/modal-loading';
-import { DATE_FORMAT, STEP_TRANSLATE } from '@/constants';
-import { ITranslateVideo } from '@/interfaces/cloud-software';
-import dayjs from 'dayjs';
-import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
-import React, { createContext, useContext } from 'react';
-
-import CurrentPlan from '../youtube-account/current-plan';
-import ExcludeTranslation from './components/exclude-translation';
-import ReviewTranslation from './components/review-translation';
-import SelectLanguage from './components/select-language';
-import SelectVideo from './components/select-video';
-import * as S from './index.styles';
+import React from 'react';
 import useTranslateVideo from './index.utils';
 
-interface ITranslator {
-  listVideoTranslated: ITranslateVideo[];
-  setListVideoTranslated: React.Dispatch<React.SetStateAction<ITranslateVideo[]>>;
-}
-
-const TranslatorContext = createContext<ITranslator | null>(null);
-
-export const useTranslator = () => useContext(TranslatorContext) as ITranslator;
-
+// 🩺 디버깅용 UI 컴포넌트
 const TranslatorComponent = () => {
-  const { t } = useTranslation(['cloud-software', 'common']);
+  // 1. 훅 실행
+  const hookResult = useTranslateVideo();
+  
+  // 2. 훅이 터졌는지 확인
+  if (!hookResult) {
+    return <h1 style={{ color: 'red', padding: 50 }}>🚨 Hook 결과가 null입니다! (로직 에러)</h1>;
+  }
 
   const {
-    steps,
-    current,
-    prev,
-    next,
-    dataTable,
-    totalResults,
-    listOptionsAccount,
     accountSelected,
-    videoSelected,
-    handleGetListVideo,
-    handleChangeAccount,
-    handleRefreshVideo,
-    handleParamsChange,
-    handleChangeVideo,
-    defaultLanguage,
-    listOptionsLanguage,
-    listOptionsYoutubeLanguage,
-    originalLanguageSelected,
-    translationLanguageSelected,
-    originalLanguageError,
-    translationLanguageError,
-    setOriginalLanguageSelected,
-    setTranslationLanguageSelected,
-    setOriginalLanguageError,
-    setTranslationLanguageError,
-    refetchListLanguage,
-    refetchDetailVideo,
-    refetchVideoHistory,
-    refetchListYoutubeLanguage,
-    defaultTitle,
-    defaultDescription,
-    excludeTitle,
-    excludeDescription,
-    titleError,
-    setExcludeTitle,
-    setExcludeDescription,
-    setDefaultTitle,
-    setDefaultDescription,
-    setTitleError,
-    loadingTranslate,
-    listTranslationLanguage,
-    listVideoTranslated,
-    listTranslationLanguageError,
-    setListVideoTranslated,
-    loadingPublishVideo,
-    openModalFinish,
-    handleToggleModalFinish,
-    disabledNextBtn,
-    disabledPublishBtn,
-    handlePublish,
-    handleRestoreTranslation,
-    handleLoadMoreAccount,
-  } = useTranslateVideo();
-
-  const renderStep = () => {
-    switch (current) {
-      case STEP_TRANSLATE.STEP_1:
-        return (
-          <SelectVideo
-            dataTable={dataTable}
-            totalResults={totalResults}
-            listOptionsAccount={listOptionsAccount}
-            accountSelected={accountSelected}
-            videoSelected={videoSelected}
-            handleChangeAccount={handleChangeAccount}
-            handleRefreshVideo={handleRefreshVideo}
-            handleParamsChange={handleParamsChange}
-            handleGetListVideo={handleGetListVideo}
-            handleChangeVideo={handleChangeVideo}
-            handleLoadMoreAccount={handleLoadMoreAccount}
-          />
-        );
-
-      case STEP_TRANSLATE.STEP_2:
-        return (
-          <SelectLanguage
-            accountSelected={accountSelected}
-            videoSelected={videoSelected}
-            defaultLanguage={defaultLanguage}
-            listOptionsLanguage={listOptionsLanguage}
-            listOptionsYoutubeLanguage={listOptionsYoutubeLanguage}
-            originalLanguageSelected={originalLanguageSelected}
-            translationLanguageSelected={translationLanguageSelected}
-            originalLanguageError={originalLanguageError}
-            translationLanguageError={translationLanguageError}
-            setOriginalLanguageSelected={setOriginalLanguageSelected}
-            setTranslationLanguageSelected={setTranslationLanguageSelected}
-            setOriginalLanguageError={setOriginalLanguageError}
-            setTranslationLanguageError={setTranslationLanguageError}
-            refetchListLanguage={refetchListLanguage}
-            refetchDetailVideo={refetchDetailVideo}
-            refetchVideoHistory={refetchVideoHistory}
-            refetchListYoutubeLanguage={refetchListYoutubeLanguage}
-          />
-        );
-
-      case STEP_TRANSLATE.STEP_3:
-        return (
-          <ExcludeTranslation
-            defaultTitle={defaultTitle}
-            defaultDescription={defaultDescription}
-            excludeTitle={excludeTitle}
-            excludeDescription={excludeDescription}
-            titleError={titleError}
-            setExcludeTitle={setExcludeTitle}
-            setExcludeDescription={setExcludeDescription}
-            setDefaultTitle={setDefaultTitle}
-            setDefaultDescription={setDefaultDescription}
-            setTitleError={setTitleError}
-          />
-        );
-
-      case STEP_TRANSLATE.STEP_4:
-        return (
-          <ReviewTranslation
-            loadingTranslate={loadingTranslate}
-            translationLanguageSelected={translationLanguageSelected}
-            listOptionsLanguage={listOptionsLanguage}
-            listTranslationLanguage={listTranslationLanguage}
-            listTranslationLanguageError={listTranslationLanguageError}
-            handleRestoreTranslation={handleRestoreTranslation}
-          />
-        );
-
-      default:
-        break;
-    }
-  };
+    listOptionsAccount,
+    dataTable,
+    current,
+    steps
+  } = hookResult;
 
   return (
-    <TranslatorContext.Provider value={{ listVideoTranslated, setListVideoTranslated }}>
-      <S.ContainerTitle>
-        <S.ContainerTitleLeft>
-          <S.Title>{t('translator.translator')}</S.Title>
-          <S.SubTitle>{t('translator.translateVideos')}</S.SubTitle>
-        </S.ContainerTitleLeft>
-        <CurrentPlan />
-      </S.ContainerTitle>
+    <div style={{ padding: '50px 20px', backgroundColor: '#f5f5f5', minHeight: '100vh' }}>
+      <h2 style={{ color: 'blue' }}>🛠️ Translator 디버깅 모드</h2>
+      
+      <div style={{ background: 'white', padding: 20, borderRadius: 8, marginBottom: 20 }}>
+        <h3>1. 계정 데이터 상태</h3>
+        <p><strong>선택된 계정 ID:</strong> {accountSelected ? accountSelected : '없음 (Loading...)'}</p>
+        <p><strong>불러온 계정 목록 수:</strong> {listOptionsAccount?.length ?? 0} 개</p>
+        
+        {/* 계정 목록 자세히 보기 */}
+        <details>
+            <summary>계정 목록 열기</summary>
+            <pre>{JSON.stringify(listOptionsAccount, null, 2)}</pre>
+        </details>
+      </div>
 
-      <StepSwitch steps={steps} current={current} />
+      <div style={{ background: 'white', padding: 20, borderRadius: 8, marginBottom: 20 }}>
+        <h3>2. 비디오 데이터 상태</h3>
+        <p><strong>비디오 목록 수:</strong> {dataTable?.length ?? 0} 개</p>
+        
+        {/* 비디오 데이터 자세히 보기 */}
+        <details>
+            <summary>비디오 데이터(첫번째 항목) 확인</summary>
+            <pre>{dataTable && dataTable.length > 0 ? JSON.stringify(dataTable[0], null, 2) : '비디오 없음'}</pre>
+        </details>
+      </div>
 
-      <S.ButtonWrapper>
-        <S.StepButton type="primary" disabled={current === STEP_TRANSLATE.STEP_1} onClick={prev}>
-          <IconArrowLeft />
-          {t('translator.previous')}
-        </S.StepButton>
-
-        <S.SelectedVideo>
-          <S.ImageWrapper>
-            <BaseImage
-              width={120}
-              height={90}
-              src={videoSelected ? videoSelected.picture : NoVideo.src}
-              alt=""
-              preview={false}
-            />
-          </S.ImageWrapper>
-          <div>
-            <S.SelectedTitle>
-              {videoSelected ? (
-                <Link href={`https://youtu.be/${videoSelected.id}`} target="_blank">
-                  {videoSelected.title}
-                </Link>
-              ) : (
-                t('translator.noVideo')
-              )}
-            </S.SelectedTitle>
-            {videoSelected && (
-              <S.SelectedDate>
-                {dayjs(videoSelected.date).format(DATE_FORMAT.DAY_MONTH_YEAR)}
-              </S.SelectedDate>
-            )}
-            <S.SelectedDesc>
-              {videoSelected ? videoSelected.description : t('translator.selectVideoInlist')}
-            </S.SelectedDesc>
-          </div>
-        </S.SelectedVideo>
-
-        {current < steps.length - 1 && (
-          <S.StepButton type="primary" onClick={next} disabled={disabledNextBtn}>
-            {t('translator.nextStep')}
-            <IconArrowRight />
-          </S.StepButton>
-        )}
-        {current === steps.length - 1 && (
-          <S.PublishButton type="primary" onClick={handlePublish} disabled={disabledPublishBtn}>
-            {t('translator.publish')}
-            <IconArrowRight />
-          </S.PublishButton>
-        )}
-      </S.ButtonWrapper>
-
-      <div>{renderStep()}</div>
-
-      <ModalLoading
-        isOpen={loadingPublishVideo}
-        title={t('translator.publishingVideos')}
-        desc={t('translator.waitingDesc')}
-      />
-
-      <ModalFinishUpdate
-        isOpen={openModalFinish}
-        onClose={handleToggleModalFinish}
-        text={t('translator.finishedUpdatingVideo')}
-        subText={{
-          start: t('translator.finish-updating-modal.translator.subtext-start'),
-          hightlight: t('translator.finish-updating-modal.translator.subtext-highlight'),
-          continue: t('translator.finish-updating-modal.translator.subtext-continue'),
-          second: t('translator.finish-updating-modal.translator.subtext-second'),
-        }}
-        videoId={videoSelected?.id}
-      />
-    </TranslatorContext.Provider>
+      <div style={{ background: 'white', padding: 20, borderRadius: 8 }}>
+        <h3>3. UI 상태</h3>
+        <p><strong>현재 단계 (Current Step):</strong> {current}</p>
+        <p><strong>총 단계 수:</strong> {steps?.length ?? 0}</p>
+      </div>
+    </div>
   );
 };
 

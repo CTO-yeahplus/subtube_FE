@@ -27,38 +27,24 @@ export const Burger: React.FC<BurgerProps> = ({ className, onClick }) => (
   </svg>
 );
 
-export const BurgerIcon = styled(Burger)<{ isCross: boolean }>`
+// 2. 여기서 MenuOutlined 대신 Burger를 넣으세요!
+export const BurgerIcon = styled(Burger)` 
+  font-size: 24px; /* 크기 조금 키움 */
+  color: #1d1d1f;
   cursor: pointer;
-  transform: translate3d(0, 0, 0);
+  margin-right: 20px;
+  
+  /* 모바일 터치 영역 확보 */
+  padding: 8px; 
+  border-radius: 50%;
+  transition: background 0.2s;
 
-  path {
-    fill: none;
-    transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25),
-      stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
-    stroke-width: 30px;
-    stroke-linecap: round;
-    stroke: currentColor;
-    stroke-dashoffset: 0;
+  &:hover {
+    background: rgba(0,0,0,0.05);
+  }
 
-    &#top,
-    &#bottom {
-      stroke-dasharray: 240px 950px;
-    }
-    &#middle {
-      stroke-dasharray: 240px 240px;
-    }
-
-    ${(props) =>
-      props.isCross &&
-      css`
-        &#top,
-        &#bottom {
-          stroke-dashoffset: -650px;
-        }
-        &#middle {
-          stroke-dashoffset: -115px;
-          stroke-dasharray: 1px 220px;
-        }
-      `}
+  /* 모바일에서만 보이게 */
+  @media (max-width: 768px) {
+    display: block; 
   }
 `;

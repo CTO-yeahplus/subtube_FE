@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export const Header = styled(BaseLayout.Header)<HeaderProps>`
   line-height: 1.5;
-  background: #fff;
+  background: transparent;
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.1);
 
   @media only screen and ${media.md} {

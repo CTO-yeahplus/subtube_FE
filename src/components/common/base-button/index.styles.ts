@@ -9,113 +9,42 @@ interface BtnProps {
   $noStyle?: boolean;
 }
 
+// src/components/common/base-button/index.styles.ts
+
 export const Button = styled(AntButton)<BtnProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
+  /* 기본 리셋 */
+  height: auto;
+  padding: 12px 28px;
+  border-radius: 980px; /* Pill Shape */
+  font-size: 17px;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
 
-  transition-duration: 0.3s;
-
-  font-weight: ${FONT_WEIGHT.semibold};
-  box-shadow: none;
-
-  ${(props) =>
-    props.$noStyle &&
-    css`
-      width: unset;
-      padding: 0;
-      height: unset;
-    `}
-
-  &.ant-btn-dangerous {
-    &.ant-btn-text {
-      &:focus,
-      &:not(:disabled):hover {
-        background: rgba(0, 0, 0, 0.018);
-      }
+  /* Primary Button (Blue) */
+  &.ant-btn-primary {
+    background: #0071e3;
+    box-shadow: none;
+    
+    &:hover {
+      background: #0077ed; /* 살짝 밝아짐 */
+      transform: scale(1.01); /* 미세한 커짐 */
+    }
+    
+    &:active {
+      transform: scale(0.98); /* 눌리는 느낌 */
     }
   }
 
-  ${(props) =>
-    !props.danger &&
-    css`
-      &.ant-btn-background-ghost {
-        color: var(--primary-color);
-        border-color: var(--primary-color);
+  /* Default/Ghost Button */
+  &.ant-btn-default {
+    background: rgba(0, 0, 0, 0.05); /* 옅은 회색 배경 */
+    color: #1d1d1f;
+    border: none;
 
-        &:disabled {
-          background-color: var(--disabled-bg-color);
-        }
-      }
-
-      &.ant-btn-link {
-        span,
-        a {
-          text-decoration: underline;
-        }
-      }
-
-      &:focus,
-      &:not(:disabled):hover {
-        &.ant-btn-default,
-        &.ant-btn-dashed {
-          color: var(--ant-primary-5);
-          border-color: var(--ant-primary-5);
-        }
-      }
-
-      &:focus {
-        &.ant-btn-link,
-        &.ant-btn-background-ghost {
-          color: var(--ant-primary-5);
-        }
-
-        &.ant-btn-text {
-          background-color: rgba(0, 0, 0, 0.018);
-        }
-
-        &.ant-btn-primary {
-          background-color: var(--ant-primary-5);
-        }
-
-        &.ant-btn-primary,
-        &.ant-btn-background-ghost {
-          border-color: var(--ant-primary-5);
-        }
-      }
-
-      &:not(:disabled):hover {
-        &.ant-btn-primary {
-          background-color: var(--secondary-color);
-        }
-
-        &.ant-btn-text,
-        &.ant-btn-background-ghost {
-          color: var(--secondary-color);
-          background-color: transparent;
-        }
-
-        &.ant-btn-primary,
-        &.ant-btn-background-ghost {
-          border-color: var(--secondary-color);
-        }
-      }
-
-      ${props.$severity &&
-      css`
-        background-color: rgba(${defineColorBySeverity(props.$severity, true)}, 0.2);
-        border-color: ${defineColorBySeverity(props.$severity)};
-        color: ${defineColorBySeverity(props.$severity)};
-
-        &.ant-btn-default {
-          &:focus,
-          &:not(:disabled):hover {
-            background-color: var(--background-color);
-            border-color: rgba(${defineColorBySeverity(props.$severity, true)}, 0.9);
-            color: rgba(${defineColorBySeverity(props.$severity, true)}, 0.9);
-          }
-        }
-      `}
-    `}
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+      color: #000;
+    }
+  }
 `;

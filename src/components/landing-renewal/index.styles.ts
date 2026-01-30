@@ -286,62 +286,35 @@ export const BentoGrid = styled.div`
 // [수정] BentoCard에 Spotlight 효과를 위한 스타일 추가
 export const BentoCard = styled.div<{ $colSpan?: number; $bg?: string }>`
   background: #ffffff;
-  border-radius: 28px;
+  border-radius: 30px; /* 더 큰 둥근 모서리 */
   padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  
+  /* 부드러운 그림자와 미세한 테두리 */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04); 
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  
   position: relative;
-  overflow: hidden; /* Spotlight가 밖으로 나가지 않게 */
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); /* 부드러운 물리 애니메이션 */
 
+  /* Hover 시 살짝 떠오르며 그림자 확산 */
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
   }
 
-  /* Spotlight Effect Layer */
+  /* Spotlight Effect (기존 로직 유지하되 투명도 조정) */
   &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background: radial-gradient(
       800px circle at var(--mouse-x) var(--mouse-y),
-      rgba(0, 113, 227, 0.06),
+      rgba(0, 113, 227, 0.04), /* 너무 파랗지 않게 은은하게 */
       transparent 40%
     );
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-    z-index: 1;
   }
-
-  &:hover::before {
-    opacity: 1;
-  }
-
-  /* Content Layer (위로 올리기) */
-  > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  @media ${media.md} {
-    grid-column: span ${(props) => props.$colSpan || 1};
-  }
-
-  ${(props) =>
-    props.$bg &&
-    css`
-      background: ${props.$bg};
-      color: white;
-    `}
 `;
 
 export const CardIcon = styled.div`
@@ -354,18 +327,19 @@ export const CardIcon = styled.div`
     height: 100%;
   }
 `;
-
+// 텍스트 스타일 개선
 export const CardTitle = styled.h3`
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 600;
   margin-bottom: 12px;
+  color: #1d1d1f;
 `;
 
 export const CardText = styled.p`
   font-size: 17px;
+  line-height: 1.5;
+  color: #86868b; /* Apple Gray */
   font-weight: 500;
-  line-height: 1.4;
-  opacity: 0.8;
 `;
 
 // --- Pricing ---

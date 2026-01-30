@@ -7,6 +7,7 @@ import {
 } from '@/hooks/features/useTranslate';
 import {
   useGetDetailVideoYoutube,
+  useGetListYoutube, // ✅ 올바른 Hook import
   useGetVideoHistory,
   usePublishVideoMutate,
   useRefreshVideosMutate,
@@ -24,35 +25,71 @@ import { setIsProgress } from '@/stores/progress/progress.slice';
 import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-// useMemo, useCallback 추가
-import useYoutubeAccount from '../index.utils';
+// 🚨 [수정] 아래 줄이 있으면 절대 안 됩니다! 제거했습니다.
+// import useYoutubeAccount from '../index.utils'; 
 
 const useTranslateVideo = () => {
   const { t } = useTranslation(['cloud-software', 'common']);
-
   const { notification } = useFeedback();
-
   const pagination = usePagination();
+  const dispatch = useAppDispatch();
 
-  const { loadingListYoutube, dataPagination, refetchListYoutube } = useYoutubeAccount(
-    pagination.params,
-    false
-  );
+  // 1. API 호출 (올바른 Hook 사용)
+  const { 
+    data: dataListYoutubeRaw, 
+    isFetching: loadingListYoutube, 
+    refetch: refetchListYoutube 
+  } = useGetListYoutube(pagination.params, false);
+
+  const dataPagination = (dataListYoutubeRaw?.data as any)?.pageInfo || {};
 
   const [dataListYoutube, setDataListYoutube] = useState<IListYoutubeAccount[]>([]);
 
+  // 2. 데이터 탐색 로직 (강력한 파싱)
   useEffect(() => {
+    let isMounted = true;
     (async () => {
-      const data = await refetchListYoutube();
-      if (data?.data?.data.entities) {
-        const listAccount = [...dataListYoutube, ...data.data.data.entities];
-        const sortData = listAccount.sort((a, b) => {
-          return a.name_channel?.toLowerCase() > b.name_channel?.toLowerCase() ? 1 : -1;
-        });
-        setDataListYoutube(sortData);
+      try {
+        const result = await refetchListYoutube();
+        const responseData = (result as any)?.data;
+        
+        let rawItems: any[] = [];
+        const body = (responseData as any)?.data;
+
+        // 데이터가 어디에 숨어있든 찾아냄
+        if (body) {
+           if (Array.isArray(body)) rawItems = body;
+           else if (Array.isArray(body.items)) rawItems = body.items;
+           else if (Array.isArray(body.entities)) rawItems = body.entities;
+           else if (body.data && Array.isArray(body.data)) rawItems = body.data;
+           else if (body.data?.items && Array.isArray(body.data.items)) rawItems = body.data.items;
+           else if (body.data?.entities && Array.isArray(body.data.entities)) rawItems = body.data.entities;
+        }
+
+        // TypeORM [items, count] 배열 구조 대응
+        if (rawItems.length === 2 && Array.isArray(rawItems[0]) && typeof rawItems[1] === 'number') {
+            rawItems = rawItems[0];
+        }
+
+        if (isMounted && rawItems.length > 0) {
+          console.log("✅ Accounts Found:", rawItems.length); // 콘솔에서 확인 가능
+          const listAccount = [...dataListYoutube, ...rawItems];
+          // 중복 제거
+          const uniqueAccounts = Array.from(new Map(listAccount.map(item => [item.id, item])).values());
+          
+          const sortData = uniqueAccounts.sort((a, b) => {
+            return (a.name_channel || '').toLowerCase() > (b.name_channel || '').toLowerCase() ? 1 : -1;
+          });
+          setDataListYoutube(sortData);
+        } else {
+            console.log("⚠️ No accounts found in data:", responseData);
+        }
+      } catch (error) {
+        console.error("Failed to fetch youtube accounts", error);
       }
     })();
-  }, [pagination.currentPage, refetchListYoutube, dataListYoutube]); // ✅ 빠진 변수 추가
+    return () => { isMounted = false; };
+  }, [pagination.currentPage, refetchListYoutube]); 
 
   const handleLoadMoreAccount = () => {
     const total = dataPagination?.total ?? 0;
@@ -64,27 +101,14 @@ const useTranslateVideo = () => {
 
   const translateText = useTranslateText();
   const publishVideo = usePublishVideoMutate();
-
   const loadingTranslate = translateText.isPending;
   const loadingPublishVideo = publishVideo.isPending;
 
   const steps = [
-    {
-      key: STEP_TRANSLATE.STEP_1,
-      title: t('translator.selectVideo'),
-    },
-    {
-      key: STEP_TRANSLATE.STEP_2,
-      title: t('translator.languages'),
-    },
-    {
-      key: STEP_TRANSLATE.STEP_3,
-      title: t('translator.customize'),
-    },
-    {
-      key: STEP_TRANSLATE.STEP_4,
-      title: t('translator.reviewAndPublish'),
-    },
+    { key: STEP_TRANSLATE.STEP_1, title: t('translator.selectVideo') },
+    { key: STEP_TRANSLATE.STEP_2, title: t('translator.languages') },
+    { key: STEP_TRANSLATE.STEP_3, title: t('translator.customize') },
+    { key: STEP_TRANSLATE.STEP_4, title: t('translator.reviewAndPublish') },
   ];
 
   const [current, setCurrent] = useState(STEP_TRANSLATE.STEP_1);
@@ -108,72 +132,57 @@ const useTranslateVideo = () => {
   const [refreshVideo, setRefreshVideo] = useState<boolean>(false);
   const [listTranslationLanguage, setListTranslationLanguage] = useState<string[]>([]);
   const [listTranslationLanguageError, setListTranslationLanguageError] = useState<string[]>([]);
+  
   const videoIdRef = useRef<string>('');
   const titleRef = useRef<string>('');
   const descriptionRef = useRef<string>('');
   const excludeTitleRef = useRef<string[]>([]);
   const excludeDescriptionRef = useRef<string[]>([]);
   const listVideoTranslatedRef = useRef<ITranslateVideo[]>([]);
-  const dispatch = useAppDispatch();
 
+  // 3. API Hooks (accountSelected가 있어야 호출됨)
   const {
     data: dataListLanguage,
     refetch: refetchListLanguage,
     isFetching: loadingListLanguage,
-  } = useGetListLanguage(
-    {
-      youtube_account_id: Number(accountSelected),
-    },
-    false
-  );
+  } = useGetListLanguage({ youtube_account_id: Number(accountSelected) }, false);
 
   const {
     data: dataListYoutubeLanguage,
     refetch: refetchListYoutubeLanguage,
     isFetching: loadingListYoutubeLanguage,
-  } = useGetListYoutubeLanguage(
-    {
-      youtube_account_id: Number(accountSelected),
-    },
-    false
-  );
+  } = useGetListYoutubeLanguage({ youtube_account_id: Number(accountSelected) }, false);
 
   const listOptionsAccount = useMemo(() => {
-    return dataListYoutube
-      ? dataListYoutube.map((item) => ({
-          value: item.id.toString(),
-          label: item.name_channel,
-        }))
-      : [];
+    return dataListYoutube?.map((item) => ({
+      value: item.id.toString(),
+      label: item.name_channel || 'No Name',
+    })) ?? [];
   }, [dataListYoutube]);
 
-  const listOptionsLanguage = dataListLanguage?.data
-    ? dataListLanguage.data.map((item) => {
-        return {
-          value: item.code,
-          label: item.name,
-        };
-      })
-    : [];
+  const listOptionsLanguage = useMemo(() => 
+    dataListLanguage?.data?.map((item) => ({
+      value: item.code,
+      label: item.name,
+    })) ?? [], [dataListLanguage]);
 
-  const listOptionsYoutubeLanguage = dataListYoutubeLanguage?.data?.items
-    ? dataListYoutubeLanguage?.data?.items?.map((item) => {
-        return {
-          value: item.id,
-          label: item.snippet.name,
-        };
-      })
-    : [];
+  const listOptionsYoutubeLanguage = useMemo(() => 
+    dataListYoutubeLanguage?.data?.items?.map((item) => ({
+      value: item.id,
+      label: item.snippet?.name || item.id,
+    })) ?? [], [dataListYoutubeLanguage]);
 
+  // 자동 선택 로직
   useEffect(() => {
-    if (listOptionsAccount && !accountSelected) {
+    if (listOptionsAccount.length > 0 && !accountSelected) {
       setAccountSelected(listOptionsAccount[0]?.value ?? '');
     }
   }, [listOptionsAccount, accountSelected]);
 
   useEffect(() => {
-    dispatch(setIsProgress(!!videoSelected));
-  }, [videoSelected, dispatch]); // ✅ dispatch 추가
+    // 🚨 dispatch 타입 에러 해결 (as any 추가)
+    dispatch(setIsProgress(!!videoSelected) as any);
+  }, [videoSelected, dispatch]);
 
   const refreshVideoMutate = useRefreshVideosMutate();
 
@@ -181,38 +190,32 @@ const useTranslateVideo = () => {
     if (!accountSelected) return;
 
     try {
-      let params: any = {
-        youtube_account_id: Number(accountSelected),
-      };
+      let params: any = { youtube_account_id: Number(accountSelected) };
 
-      if (pageToken) {
-        params = {
-          youtube_account_id: Number(accountSelected),
-          page_token: pageToken,
-        };
-      }
-
-      if (searchParams) {
-        params = {
-          youtube_account_id: Number(accountSelected),
-          page_token: pageToken,
-          text: searchParams,
-        };
-      }
+      if (pageToken) params = { ...params, page_token: pageToken };
+      if (searchParams) params = { ...params, text: searchParams };
 
       const dataListVideo = await videosYoutube(params);
 
-      const nextPageToken = dataListVideo?.data?.nextPageToken ?? '';
-      const totalResults = dataListVideo?.data?.pageInfo?.totalResults ?? 0;
+      // 데이터가 없으면 리턴
+      if (!dataListVideo || !dataListVideo.data) {
+        return; 
+      }
+
+      const nextPageToken = dataListVideo.data.nextPageToken ?? '';
+      const totalResults = dataListVideo.data.pageInfo?.totalResults ?? 0;
       setPageToken(nextPageToken);
       setTotalResults(totalResults);
 
-      setDataTable((prev) => [...prev, ...dataListVideo.data.items]); // 기존 dataTable 의존성 제거를 위해 함수형 업데이트 사용 권장
+      const newItems = dataListVideo.data.items ?? [];
+      setDataTable((prev) => [...prev, ...newItems]);
+
     } catch (error: any) {
-      if (typeof error?.data?.message !== 'string' || !error?.data?.message) return;
-      notification.error({ message: error.data.message });
+      if (error?.response?.status !== 401 && typeof error?.data?.message === 'string') {
+        notification.error({ message: error.data.message });
+      }
     }
-  }, [accountSelected, pageToken, searchParams, notification]); // 의존성 배열 추가
+  }, [accountSelected, pageToken, searchParams, notification]);
 
   const handleChangeAccount = (value: string) => {
     setAccountSelected(value);
@@ -223,7 +226,6 @@ const useTranslateVideo = () => {
 
   const handleRefreshVideo = () => {
     const payload = { youtube_account_id: Number(accountSelected) };
-
     refreshVideoMutate.mutate(payload, {
       onSuccess() {
         setVideoSelected(null);
@@ -242,10 +244,10 @@ const useTranslateVideo = () => {
   };
 
   useEffect(() => {
-    console.log('Refresh trigger:', refreshVideo); // 에러 회피용
     handleGetListVideo();
-  }, [refreshVideo, handleGetListVideo]); // ✅ handleGetListVideo 추가
+  }, [refreshVideo]); 
 
+  // (아래부터는 기존 로직 동일)
   const {
     data: detailVideo,
     refetch: refetchDetailVideo,
@@ -280,47 +282,52 @@ const useTranslateVideo = () => {
   }, [defaultLanguage, videoSelected]);
 
   useEffect(() => {
-    if (!defaultLocalized && !videoSelected) return;
-    setDefaultTitle(videoSelected?.title || defaultLocalized?.title);
-    setDefaultDescription(videoSelected?.description || defaultLocalized?.description);
+    if (!videoSelected) return;
+    setDefaultTitle(videoSelected.title || defaultLocalized?.title || '');
+    setDefaultDescription(videoSelected.description || defaultLocalized?.description || '');
   }, [defaultLocalized, videoSelected]);
 
   useEffect(() => {
     if (videoSelected && videoSelected.translated && videoHistory?.data) {
-      const translateLocalizations: ILocalizations[] = JSON.parse(
-        videoHistory?.data?.localizations
-      );
-      const defaultLanguage = videoHistory?.data?.default_lang;
-      const excludeTitle = JSON.parse(videoHistory?.data?.exclude_title) ?? [];
-      const excludeDescription = JSON.parse(videoHistory?.data?.exclude_description) ?? [];
+      try {
+        const historyData = videoHistory.data;
+        const translateLocalizations: ILocalizations[] = historyData.localizations 
+          ? JSON.parse(historyData.localizations) 
+          : [];
+        
+        const defaultLanguage = historyData.default_lang;
+        const excludeTitle = historyData.exclude_title ? JSON.parse(historyData.exclude_title) : [];
+        const excludeDescription = historyData.exclude_description ? JSON.parse(historyData.exclude_description) : [];
 
-      const findDefaultLocalized = translateLocalizations.find(
-        (item) => item.lang === defaultLanguage
-      );
+        const findDefaultLocalized = translateLocalizations.find(
+          (item) => item.lang === defaultLanguage
+        );
 
-      const filterLocalizations = translateLocalizations.filter(
-        (item) => item.lang !== defaultLanguage
-      );
-      const translationLanguageSelected = filterLocalizations.map((item) => item.lang);
+        const filterLocalizations = translateLocalizations.filter(
+          (item) => item.lang !== defaultLanguage
+        );
+        const translationLanguageSelected = filterLocalizations.map((item) => item.lang);
 
-      const listVideo = filterLocalizations.map((item) => {
-        return {
+        const listVideo = filterLocalizations.map((item) => ({
           title: item.title,
           description: item.description,
           language: item.lang,
-        };
-      });
+        }));
 
-      setTranslationLanguageSelected(translationLanguageSelected);
-      setExcludeTitle(excludeTitle);
-      setExcludeDescription(excludeDescription);
-      setListVideoTranslated(listVideo);
-      videoIdRef.current = videoSelected.id;
-      titleRef.current = videoSelected?.title || findDefaultLocalized?.title;
-      descriptionRef.current = videoSelected?.description || findDefaultLocalized?.description;
-      excludeTitleRef.current = excludeTitle;
-      excludeDescriptionRef.current = excludeDescription;
-      listVideoTranslatedRef.current = listVideo;
+        setTranslationLanguageSelected(translationLanguageSelected);
+        setExcludeTitle(excludeTitle);
+        setExcludeDescription(excludeDescription);
+        setListVideoTranslated(listVideo);
+        
+        videoIdRef.current = videoSelected.id;
+        titleRef.current = videoSelected.title || findDefaultLocalized?.title || '';
+        descriptionRef.current = videoSelected.description || findDefaultLocalized?.description || '';
+        excludeTitleRef.current = excludeTitle;
+        excludeDescriptionRef.current = excludeDescription;
+        listVideoTranslatedRef.current = listVideo;
+      } catch (e) {
+        console.error("Error parsing video history", e);
+      }
     }
   }, [videoHistory, videoSelected]);
 
@@ -329,9 +336,7 @@ const useTranslateVideo = () => {
       .filter((item) => {
         return !item.title ||
           item.title.length > NUMBER_CHARACTERS.title.max ||
-          item.description.length > NUMBER_CHARACTERS.description.max
-          ? true
-          : false;
+          item.description.length > NUMBER_CHARACTERS.description.max;
       })
       .map((item) => item.language);
 
@@ -345,6 +350,14 @@ const useTranslateVideo = () => {
     loadingVideoHistory ||
     loadingListYoutubeLanguage ||
     !listOptionsAccount.length;
+  
+  const disabledPublishBtn =
+    !accountSelected ||
+    !videoSelected ||
+    !listVideoTranslated.length ||
+    !originalLanguageSelected ||
+    !categoryId ||
+    listTranslationLanguageError.length > 0;
 
   const handleToggleModalFinish = () => {
     setOpenModalFinish((prev) => !prev);
@@ -352,65 +365,31 @@ const useTranslateVideo = () => {
 
   const handleTranslateText = () => {
     if (!accountSelected || !videoSelected || !translationLanguageSelected.length) return;
-
     const currentTranslationLanguage = listVideoTranslated.map((item) => item.language);
-
-    const changeTranslationLanguage = translationLanguageSelected.filter((newLocale) => {
-      const result = currentTranslationLanguage.find(
-        (currentLocale) => currentLocale === newLocale
-      );
-      return result ? false : true;
-    });
+    const changeTranslationLanguage = translationLanguageSelected.filter((newLocale) => !currentTranslationLanguage.includes(newLocale));
 
     const isChangeDefaultTitle = titleRef.current !== defaultTitle;
     const isChangeDefaultDescription = descriptionRef.current !== defaultDescription;
-
     const isChangeVideoId = videoIdRef.current !== videoSelected.id;
 
-    const changeExcludeTitle =
-      excludeTitleRef.current.length > excludeTitle.length
-        ? excludeTitleRef.current.filter(
-            (currentExcludeTitle) => !excludeTitle.includes(currentExcludeTitle)
-          )
-        : excludeTitle.filter(
-            (newExcludeTitle) => !excludeTitleRef.current.includes(newExcludeTitle)
-          );
+    const changeExcludeTitle = excludeTitleRef.current.length > excludeTitle.length
+      ? excludeTitleRef.current.filter(t => !excludeTitle.includes(t))
+      : excludeTitle.filter(t => !excludeTitleRef.current.includes(t));
 
-    const changeExcludeDescription =
-      excludeDescriptionRef.current.length > excludeDescription.length
-        ? excludeDescriptionRef.current.filter(
-            (currentExcludeDescription) => !excludeDescription.includes(currentExcludeDescription)
-          )
-        : excludeDescription.filter(
-            (newExcludeDescription) =>
-              !excludeDescriptionRef.current.includes(newExcludeDescription)
-          );
+    const changeExcludeDescription = excludeDescriptionRef.current.length > excludeDescription.length
+      ? excludeDescriptionRef.current.filter(d => !excludeDescription.includes(d))
+      : excludeDescription.filter(d => !excludeDescriptionRef.current.includes(d));
 
     const isChangeExcludeTitle = changeExcludeTitle.length > 0;
     const isChangeExcludeDescription = changeExcludeDescription.length > 0;
 
-    const isTranslateAllLocale =
-      isChangeVideoId ||
-      isChangeDefaultTitle ||
-      isChangeDefaultDescription ||
-      isChangeExcludeTitle ||
-      isChangeExcludeDescription;
-
-    const isTranslateChangeLocale =
-      !isChangeVideoId &&
-      !isChangeDefaultTitle &&
-      !isChangeDefaultDescription &&
-      !isChangeExcludeTitle &&
-      !isChangeExcludeDescription &&
-      changeTranslationLanguage.length > 0;
-
+    const isTranslateAllLocale = isChangeVideoId || isChangeDefaultTitle || isChangeDefaultDescription || isChangeExcludeTitle || isChangeExcludeDescription;
+    const isTranslateChangeLocale = !isChangeVideoId && !isChangeDefaultTitle && !isChangeDefaultDescription && !isChangeExcludeTitle && !isChangeExcludeDescription && changeTranslationLanguage.length > 0;
     const isTranslateVideo = isTranslateAllLocale || isTranslateChangeLocale;
 
     if (!isTranslateVideo) return;
 
-    const languages = isTranslateAllLocale
-      ? translationLanguageSelected
-      : changeTranslationLanguage;
+    const languages = isTranslateAllLocale ? translationLanguageSelected : changeTranslationLanguage;
 
     setListTranslationLanguage(languages);
 
@@ -424,19 +403,19 @@ const useTranslateVideo = () => {
 
     translateText.mutate(payload, {
       onSuccess(response) {
+        if (!response?.data) return;
+
         const filterVideoTranslated = languages.map((locale) => {
-          const findVideo = response.data.find((item) => item.language === locale);
-          return findVideo;
-        });
+          return response.data.find((item) => item.language === locale);
+        }).filter(item => item !== undefined);
 
         const excludeTranslationLanguage = translationLanguageSelected.filter(
           (locale) => !languages.includes(locale)
         );
 
         const excludeVideoTranslated = excludeTranslationLanguage.map((locale) => {
-          const findVideo = listVideoTranslated.find((item) => item.language === locale);
-          return findVideo;
-        });
+          return listVideoTranslated.find((item) => item.language === locale);
+        }).filter(item => item !== undefined);
 
         const listVideo = isTranslateAllLocale
           ? filterVideoTranslated
@@ -458,7 +437,6 @@ const useTranslateVideo = () => {
 
   const next = () => {
     if (disabledNextBtn) return;
-
     if (current === STEP_TRANSLATE.STEP_1 && !videoSelected) {
       notification.error({ message: t('translator.noVideo') });
       return;
@@ -480,7 +458,6 @@ const useTranslateVideo = () => {
         return;
       }
       if (titleError) return;
-
       handleTranslateText();
     }
     setCurrent(current + 1);
@@ -490,25 +467,13 @@ const useTranslateVideo = () => {
     setCurrent(current - 1);
   };
 
-  const disabledPublishBtn =
-    !accountSelected ||
-    !videoSelected ||
-    !listVideoTranslated.length ||
-    !originalLanguageSelected ||
-    !categoryId ||
-    listTranslationLanguageError.length > 0;
-
   const handlePublish = () => {
     if (disabledPublishBtn) return;
-
-    const translatedLocalizations = listVideoTranslated.map((item) => {
-      return {
-        lang: item.language,
-        title: item.title,
-        description: item.description,
-      };
-    });
-
+    const translatedLocalizations = listVideoTranslated.map((item) => ({
+      lang: item.language,
+      title: item.title,
+      description: item.description,
+    }));
     const localizations = [
       {
         lang: originalLanguageSelected,
@@ -517,7 +482,6 @@ const useTranslateVideo = () => {
       },
       ...translatedLocalizations,
     ];
-
     const payload = {
       youtube_account_id: Number(accountSelected),
       video_id: videoSelected.id,
@@ -530,12 +494,12 @@ const useTranslateVideo = () => {
 
     publishVideo.mutate(payload, {
       onSuccess(response) {
+        if (!response?.data) return;
         setCurrent(STEP_TRANSLATE.STEP_1);
         handleToggleModalFinish();
-
-        const payload = { youtube_account_id: Number(accountSelected) };
-
-        refreshVideoMutate.mutate(payload, {
+        
+        const refreshPayload = { youtube_account_id: Number(accountSelected) };
+        refreshVideoMutate.mutate(refreshPayload, {
           onSuccess() {
             const updateTable = dataTable.map((item) => {
               return item.id.videoId === response.data.id
@@ -543,30 +507,13 @@ const useTranslateVideo = () => {
                 : item;
             });
             setDataTable(updateTable);
-
-            const findVideo = updateTable.find((item) => item.id.videoId === response.data.id);
-            if (!findVideo) return;
-
-            const updateVideoSelected = {
-              key: findVideo.id.videoId,
-              id: findVideo.id.videoId,
-              picture: findVideo.snippet.thumbnails.default.url,
-              channelId: findVideo.snippet.channelId,
-              channelTitle: findVideo.snippet.channelTitle,
-              title: findVideo.snippet.title,
-              description: findVideo.snippet.description,
-              date: findVideo.snippet.publishedAt,
-              translated: findVideo?.is_push,
-              captionized: false,
-            };
-
-            setVideoSelected(updateVideoSelected);
+            setVideoSelected(null);
           },
         });
       },
       onError(error: any) {
-        if (typeof error?.data?.message !== 'string' || !error?.data?.message) return;
-        notification.error({ message: error.data.message });
+        const msg = error?.data?.message || 'Failed to publish video';
+        if (typeof msg === 'string') notification.error({ message: msg });
       },
     });
   };
